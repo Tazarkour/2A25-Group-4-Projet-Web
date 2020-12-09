@@ -66,7 +66,12 @@
         <?php 
         include "../config.php";
         include "../Controller/BlogC.php";
-        afficherposts();
+        $search="";
+        if (isset($_GET["search"]))
+        {
+          $search=$_GET["search"];
+        }
+        afficherposts($search);
 
         ?>
       </div>
@@ -75,9 +80,11 @@
           <h5 class="card-header">Search</h5>
           <div class="card-body">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
+              <form method="GET" action="" >
+              <input type="text" class="form-control" id="search" name="search" placeholder="Search for...">
               <span class="input-group-append">
-                <button class="btn btn-secondary" type="button">Go!</button>
+                <button class="btn btn-secondary" type="submit">Go!</button>
+              </form>
               </span>
             </div>
           </div>
