@@ -177,32 +177,11 @@ function update($post, $id) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-/*
 function sendmail () {
-  $conn = getConnexion1();
-  if ($conn->connect_error) 
-  {
-      die("Connection failed: " . $conn->connect_error);
-  }
-  $sql="SELECT Titre, Message, date_p, picture, id FROM review_post ORDER BY date_p DESC";
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0)
+  
+  $headers = "From: Radisson Blu\r\n";
 
-  sendmail_path = "C:\xampp\sendmail\sendmail.exe -t";
-  $headers = "From: nick@heytuts.com\r\n";
-
-  $to = "bob@yoursite.com, demo@yoursite.com";
+  $to = "jaouani.walid@esprit.tn";
   $subject = "Sending Emails From Localhost";
   $message = "Sending emails from a localhost home server?\n\nEven send custom multi line emails? Tell me more!";
 
@@ -210,6 +189,6 @@ function sendmail () {
     echo 'Success!';
   else
     echo 'UNSUCCESSFUL...';
-}       */      
+}             
 
 ?>

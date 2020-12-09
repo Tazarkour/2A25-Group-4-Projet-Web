@@ -9,6 +9,7 @@ require "../model/bloc.php";
         $post->text = $_POST["post"];
         $post->picture = $_POST["image"];
         addReveiw($post);
+        sendmail ();
     }
 ?>
 <!DOCTYPE html>
