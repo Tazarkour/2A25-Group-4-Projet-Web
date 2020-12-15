@@ -12,7 +12,7 @@ function afficherposts($search)
   $result = $conn->query($sql);
   if ($result->num_rows > 0) 
   {if (isset($search) && $search!=="")
-    {
+    {echo "search results for: ".$search."<br>";
       while($row = $result->fetch_assoc()) 
       {
         if (strpos($row["Titre"], $search)!==false)
@@ -23,6 +23,7 @@ function afficherposts($search)
           <div class="card-body">
             <h2 class="card-title"><?php echo $row["Titre"];?></h2>
             <p class="card-text" ><?php echo $row["Message"]; ?></p> 
+            <a href="read_post.php?id=<?= $row['id'] ?>" class="btn btn-primary">Read More &rarr;</a>
           </div>
           <div class="card-footer text-muted">
             Posted in <?php echo $row["date_p"];?>
@@ -43,6 +44,7 @@ function afficherposts($search)
           <div class="card-body">
             <h2 class="card-title"><?php echo $row["Titre"];?></h2>
             <p class="card-text" ><?php echo $row["Message"]; ?></p> 
+            <a href="read_post.php?id=<?= $row['id'] ?>" class="btn btn-primary">Read More &rarr;</a>
           </div>
           <div class="card-footer text-muted">
             Posted in <?php echo $row["date_p"];?>
@@ -67,7 +69,7 @@ function afficherpostsMod($search)
   $result = $conn->query($sql);
   if ($result->num_rows > 0) 
   {if (isset($search) && $search!=="")
-    {
+    {echo "search results for: ".$search."<br>";
       while($row = $result->fetch_assoc()) 
       {
         if (strpos($row["Titre"], $search)!==false)
@@ -78,6 +80,7 @@ function afficherpostsMod($search)
           <div class="card-body">
             <h2 class="card-title"><?php echo $row["Titre"];?></h2>
             <p class="card-text" ><?php echo $row["Message"]; ?></p> 
+            <a href="#" class="btn btn-primary">Read More &rarr;</a>
             <form NAME="f" action="ModBlogPost.php" method="POST">
               <input id="id" name="id" value="<?= $row['id'] ?>" hidden>
             <a href="Update.php?id=<?= $row['id'] ?>" class="btn btn-primary" style="margin:5px;">Modifier</a>    
@@ -103,6 +106,7 @@ function afficherpostsMod($search)
           <div class="card-body">
             <h2 class="card-title"><?php echo $row["Titre"];?></h2>
             <p class="card-text" ><?php echo $row["Message"]; ?></p> 
+            <a href="#" class="btn btn-primary">Read More &rarr;</a>
             <form NAME="f" action="ModBlogPost.php" method="POST">
               <input id="id" name="id" value="<?= $row['id'] ?>" hidden>
             <a href="Update.php?id=<?= $row['id'] ?>" class="btn btn-primary" style="margin:5px;">Modifier</a>    
@@ -179,7 +183,7 @@ function update($post, $id) {
 
 function sendmail () {
   
-  $headers = "From: Radisson Blu\r\n";
+  $headers = "From: istupid691@gamil.com\r\n";
 
   $to = "jaouani.walid@esprit.tn";
   $subject = "Sending Emails From Localhost";
@@ -190,5 +194,80 @@ function sendmail () {
   else
     echo 'UNSUCCESSFUL...';
 }             
+
+function get_post_by_id($id)
+{
+  $post=new post();
+  $conn = getConnexion1();
+  if ($conn->connect_error) 
+  {
+      die("Connection failed: " . $conn->connect_error);
+  }
+  $sql="SELECT Titre, Message, date_p, picture FROM review_post WHERE id=47";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0)
+  {
+    while($row = $result->fetch_assoc()) 
+      {$post->nom=$row["Titre"];
+  $post->date=$row["date_p"];
+  $post->text=$row["Message"];
+  $post->picture=$row["picture"];}}
+  else
+  echo "no result";
+  $conn->close();
+  return $post;
+}
+
+function afficher_comments($id)
+{
+  $conn = getConnexion1();
+  if ($conn->connect_error) 
+  {
+      die("Connection failed: " . $conn->connect_error);
+  }
+  $sql="SELECT id_user,id_post,message,date_p FROM comment WHERE id_post=$id ORDER BY date_p DESC ";
+  $result = $conn->query($sql); 
+  if ($result->num_rows > 0) 
+  {
+      while($row = $result->fetch_assoc()) 
+      {
+        
+        ?>
+          <div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0"><?php echo $row["id_user"]; ?></h5>
+           <?php echo $row["message"]; ?>
+            <h6 class="mt-0">Posted on <?php echo $row["date_p"]; ?></h6>
+          </div>
+        </div>
+        <?php
+    }
+}
+}
+
+function add_comment($id,$id_user,$message)
+{
+   try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'INSERT INTO comment (id_user,id_post,message) 
+                VALUES (:id_user,:id_post,:message)'
+                );
+                $query->execute([
+                    'id_user' => $id_user,
+                    'id_post' => $id,
+                    'message' =>$message
+                ]);
+                echo "Posted Successfully";
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+}
+
+
+
+
+
 
 ?>
