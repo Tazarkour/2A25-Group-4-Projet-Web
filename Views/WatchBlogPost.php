@@ -66,15 +66,21 @@
         <?php 
         include "../config.php";
         include "../Controller/BlogC.php";
+        
         $search="";
         if (isset($_GET["search"]))
         {
           $search=$_GET["search"];
         }
-        afficherposts($search);
+        if (isset($_GET["tri"]))
+          $tri=$_GET["tri"];
+        else $tri="";
+        echo $tri;
+        afficherposts($search, $tri);
 
         ?>
       </div>
+
         <!-- Search Widget -->
         <div class="card my-4">
           <h5 class="card-header">Search</h5>
@@ -87,12 +93,48 @@
               </form>
               </span>
             </div>
+             <div class="card my-4">
+          <h5 class="card-header">Trier Par</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="WatchBlogPost.php?tri=AZ">Alphabetique A-Z</a>
+                  </li>
+                  <li>
+                    <a href="WatchBlogPost.php?tri=ZA">Alphabetique Z-A</a>
+                  </li>
+                  <li>
+                    <a href="WatchBlogPost.php?tri=DC">Date Croissant</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="WatchBlogPost.php?tri=DD">Date Decroissant</a>
+                  </li>
+                  <li>
+                    <a href="#">Most Active</a>
+                  </li>
+                  <li>
+                    <a href="#">Least Active</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
+          </div>
+
+        </div>
+
       </div>
 
     </div>
     <!-- /.row -->
+
 
   </div>
   <!-- /.container -->

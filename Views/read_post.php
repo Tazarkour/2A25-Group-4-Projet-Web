@@ -23,7 +23,7 @@ if (isset($_POST["message"]))
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Radisson Blu</title>
+  <title><?php echo $post->nom ?></title>
 
   <!-- Bootstrap core CSS -->
   <link href="../Assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
