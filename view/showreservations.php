@@ -1,0 +1,107 @@
+<?php
+include '../controller/reservationC.php';
+$reservationC= new reservationC();
+
+$liste=$reservationC->afficherReservation();
+
+
+$tri='';
+if (isset($_GET["tri"]))
+    $tri=$_GET["tri"];
+
+
+$listereservation=$reservationC->afficherActivites($tri);
+
+
+
+
+?>
+<html>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> show reservation name </title>
+</head>
+<body>
+<a class="btn btn-info" href="index1.php"> <i class="glyphicon glyphicon-plus" > </i> &nbsp;add reservation</a>
+<a href="showreservations.php?tri=AZ"> Alphabetique A-Z</a>
+<a href="showreservations.php?tri=ZA"> Alphabetique Z-A</a>
+<a href="showreservations.php?tri=D"> Date</a>
+<a href="showreservations.php?tri=P"> Places</a>
+<hr>
+<div class="container">
+    <div class="row col-md-6 col-md-offset-2 custyle">
+        <table class="table table-striped custab">
+            <thead>
+    <tr>
+        <th>Id</th>
+        <th>firstname</th>
+        <th>lastname</th>
+        <th>adresse</th>
+        <th>tel</th>
+        <th>date</th>
+        <th>email</th>
+        <th>nbn</th>
+        <th>room</th>
+        <th>rp</th>
+        <th>idroom</th>
+        <th>supprimer</th>
+        <th>modifier</th>
+    </tr>
+            </thead>
+    <?PHP
+    foreach($listereservation as $reservation){ //echo reservation 9dima//
+        ?>
+        <tr>
+            <td><?PHP echo $reservation['idreservation']; ?></td>
+            <td><?PHP echo $reservation['firstname']; ?></td>
+            <td><?PHP echo $reservation['lastname']; ?></td>
+            <td><?PHP echo $reservation['adresse']; ?></td>
+            <td><?PHP echo $reservation['tel']; ?></td>
+            <td><?PHP echo $reservation['date']; ?></td>
+            <td><?PHP echo $reservation['email']; ?></td>
+            <td><?PHP echo $reservation['nbn']; ?></td>
+            <td><?PHP echo $reservation['room']; ?></td>
+            <td><?PHP echo $reservation['rp']; ?></td>
+            <td><?PHP echo $reservation['idroom']; ?></td>
+
+            <td>
+                <form method="POST" action="deletereservation.php">
+                    <input type="submit"  class=" btn btn-danger" name="supprimer" value="supprimer">
+                    <input type="hidden" value=<?PHP echo $reservation['idreservation'] ; // ba3thna id  champs hiddden bch na9rawh fi page spperimer ?> name="idreservation">
+                    <input type="hidden" value=<?PHP echo $reservation['idroom'] ;  ?> name="idroom">
+
+                </form>
+            </td>
+            <td>
+
+                <a type="button" class="btn btn-primary shop-item-button" href = "updatereservation.php?idreservation=<?= $reservation['idreservation']?>">Modifier</a>
+            </td>
+        </tr>
+        <?PHP
+
+
+
+    }
+
+    ?>
+</table>
+    </div>
+</div>
+<style>
+    .custab{
+        border: 1px solid #ccc;
+        padding: 5px;
+        margin: 5% 0;
+        box-shadow: 3px 3px 2px #ccc;
+        transition: 0.5s;
+    }
+    .custab:hover{
+        box-shadow: 3px 3px 0px transparent;
+        transition: 0.5s;
+    }</style>
+</body>
+</html>
