@@ -85,9 +85,24 @@ function verification_sign_in ($Login, $Password)
 
 function Connect ($id)
 {
+  $sql="SELECT * FROM utilisateur WHERE id=:id";
+     $db=getConnexion();
+     try{
+      $query=$db->prepare($sql);
+      $query->execute(['id' => $id]);
+      $count=$query->rowCount();
     session_start();
     try{
-    $_SESSION['e']=$id;
+      $_SESSION['e']=$id;
+      $_SESSION['Nom']= $x["Nom"];
+      $_SESSION['Prenom']=$x["Prenom"];
+      $_SESSION['Sexe']=$x["sexe"];
+      $_SESSION['Email']=$x["Email"]
+      $_SESSION['Date']=$x["Date_N"];
+      $_SESSION['Login']=$x["Login"];
+      $_SESSION['Password']=$x["Password"];
+      $_SESSION['Facture']=$x["Facture"];
+      $_SESSION['Picture']=$x["Picture"];
     }  
     catch (Exception $e)
     {

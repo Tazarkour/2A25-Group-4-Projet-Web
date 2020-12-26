@@ -50,13 +50,10 @@ if (isset($_POST["message"]))
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#">Blog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="#">Account</a>
           </li>
         </ul>
       </div>
@@ -96,13 +93,22 @@ if (isset($_POST["message"]))
           <div class="card-body">
             <form NAME="f" action="read_post.php?id=<?= $id ?>" method="POST">
               <div class="form-group">
+                <?php 
+                session_start();
+                if (isset($_SESSION["e"])&& !empty($_SESSION["e"]))
+                {?>
                 <textarea class="form-control" name="message" id="message" rows="3"></textarea>
+                
+
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
+              <?php } else {?>
+              <button type="button" class="btn btn-primary" href>Login</button>
+              <button type="button" class="btn btn-primary" href>Register</button>
             </form>
           </div>
         </div>
-         <?php afficher_comments($id); ?>
+         <?php }afficher_comments($id); ?>
 
 
           </div>
