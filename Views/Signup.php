@@ -15,18 +15,20 @@
 	<div class="page-content">
 		<div class="form-v5-content">
 			<?php
+			include "../Controller/UserC.php";
+			require_once "../Model/User.php";	
 			if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["Date_N"]) && isset($_POST["sexe"]) && isset($_POST["email"]) && isset($_POST["Login"]) && isset($_POST["password"]) && isset($_POST["password2"])) 
 			{ 
-				$User=new user($_POST["nom"],$_POST["prenom"],$_POST["sexe"],$_POST["email"],$_POST["Date_N"],$_POST["Login"],$_POST["password"]);
-				if ($_POST["password"]!=$_POST["password^2"])
+				$New_User=new User($_POST["nom"],$_POST["prenom"],$_POST["sexe"],$_POST["email"],$_POST["Date_N"],$_POST["Login"],$_POST["password"]);
+				if ($_POST["password"]!=$_POST["password2"])
 					echo "Les deux mot de passes sont differents";
 				else
 				{
-					Check_Info ($User->email,$User->login);
-					if (Check_Info ($User->email,$User->login))
+					Check_Info ($New_User->email,$New_User->login);
+					if (Check_Info ($New_User->email,$New_User->login))
 					{
- 						create_user($user);
- 						header("Register_Success.html");
+ 						user_creation($New_User);
+ 						header("Location: Register_Sccuess.html");
 					}
 				}
 			} 
@@ -44,8 +46,8 @@
 					<i class="fas fa-user"></i>
 				</div>
 				<div class="form-row">
-					<label for="full-name" name="sexe" id="sexe">Sexe</label>
-					<select class="input-text">
+					<label for="full-name">Sexe</label>
+					<select class="input-text" name="sexe" id="sexe">
 					<option value="Femme">Femme</option>
  					<option value="Homme">Homme</option>
  				</select>
@@ -74,6 +76,10 @@
 					<label for="password">Confirmer Votre Mot De passe</label>
 					<input type="password" name="password2" id="password2" class="input-text" placeholder="Confirmer Votre Mot De passe" required>
 					<i class="fas fa-lock"></i>
+				</div>
+				<div class="form-row">
+					Vous avez déja un compte ?
+					<a href="signin.php">Login</a>
 				</div>
 				<div class="form-row-last">
 					<input type="submit" name="register" class="register" value="Register">

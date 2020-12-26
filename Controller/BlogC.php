@@ -18,8 +18,6 @@ function afficherposts($search, $tri)
     $sql="SELECT Titre, Message, date_p, picture, id FROM review_post ORDER BY date_p ASC"; 
     if ($tri=="DD")
     $sql="SELECT Titre, Message, date_p, picture, id FROM review_post ORDER BY date_p DESC"; 
-  
-  echo $sql;
   $result = $conn->query($sql);
   if ($result->num_rows > 0) 
   {if (isset($search) && $search!=="")
@@ -77,6 +75,14 @@ function afficherpostsMod($search)
       die("Connection failed: " . $conn->connect_error);
   }
   $sql="SELECT Titre, Message, date_p, picture, id FROM review_post ORDER BY date_p DESC";
+    if ($tri=="AZ")
+    $sql="SELECT Titre, Message, date_p, picture, id FROM review_post ORDER BY Titre  ASC";
+    if ($tri=="ZA")
+    $sql="SELECT Titre, Message, date_p, picture, id FROM review_post ORDER BY Titre  DESC";
+    if ($tri=="DC")
+    $sql="SELECT Titre, Message, date_p, picture, id FROM review_post ORDER BY date_p ASC"; 
+    if ($tri=="DD")
+    $sql="SELECT Titre, Message, date_p, picture, id FROM review_post ORDER BY date_p DESC"; 
   $result = $conn->query($sql);
   if ($result->num_rows > 0) 
   {if (isset($search) && $search!=="")

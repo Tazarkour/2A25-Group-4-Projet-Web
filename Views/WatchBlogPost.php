@@ -75,7 +75,6 @@
         if (isset($_GET["tri"]))
           $tri=$_GET["tri"];
         else $tri="";
-        echo $tri;
         afficherposts($search, $tri);
 
         ?>

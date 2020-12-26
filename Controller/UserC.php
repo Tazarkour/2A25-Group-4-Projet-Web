@@ -1,26 +1,26 @@
 <?php
-include "../config.php"
-include "../config1.php"
-function create_user($New_User)
+include "../config.php";
+include "../config1.php";
+require_once "../Model/User.php";  
+function user_creation ($New_User)
 {
-
+            try
+              {
                 $pdo = getConnexion();
+                $zero=0;
                 $query = $pdo->prepare(
-                    'INSERT INTO `utilisateur`(`Nom`, `Prenom`, `Email`, `Date_N`, `Facture`, `Picture`, `Login`, `Password`, `sexe`) VALUES (:Nom, :Prenom, :email, :Date_N, :Facture,:Picture , :login, :picture, :Password, :sexe)'
+                    'INSERT INTO utilisateur (Nom, Prenom, Email, Date_N, Login, Password, sexe) VALUES (:Nom, :Prenom, :email, :Date_N, :login, :Password, :sexe)'
                 );
                 $query->execute([
                     'Nom' => $New_User->nom,
                     'Prenom' => $New_User->prenom,
                     'email' => $New_User->email,
                     'Date_N' => $New_User->date,
-                    'Facture' => 0,
-                    'Picture' => "Unknown.png",
                     'login' => $New_User->login,
-                    'password' => $New_User->password,
-                    'sexe' => $New_User->sexe,
+                    'Password' => $New_User->password,
+                    'sexe' => $New_User->sexe
                      
-                ]);
-                echo "Posted Successfully";
+                ]);}
              catch (PDOException $e) {
                 echo $e->getMessage();
             }
@@ -37,7 +37,8 @@ function Check_Info ($email,$Login)
   }
   $sql="SELECT Login, Email FROM utilisateur WHERE Login=$Login OR Email=$email";
   $result = $conn->query($sql);
-  if ($result->num_rows > 0)
+  if (isset($result->num_row))
+  {if ($result->num_rows > 0)
   {
     while($row = $result->fetch_assoc())
     {
@@ -48,6 +49,7 @@ function Check_Info ($email,$Login)
     }
     return 0;
   }
+  else return 1;}
   else return 1;
 }
 
@@ -56,7 +58,7 @@ function Check_Info ($email,$Login)
 
 
 
-session_start();
+/*session_start();
 
 // initializing variables
 $username = "";
@@ -137,5 +139,5 @@ if (isset($_POST['login_user'])) {
   	}
   }
 }
-
+*/
 ?>
