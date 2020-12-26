@@ -8,6 +8,7 @@ class User
 	public $date;
 	public $login;
 	public $password;
+	public $id;
 
 	 function __construct($nom,$prenom,$sexe,$email,$date,$login,$password)
 	
