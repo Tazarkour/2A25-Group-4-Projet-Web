@@ -77,8 +77,6 @@ $account="Backend.php";
         if (isset($_GET["tri"]))
           $tri=$_GET["tri"];
         else $tri="";
-        echo $_SESSION["e"];
-        echo "test";
         afficherposts($search, $tri);
         ?>
       </div>

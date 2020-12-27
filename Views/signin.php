@@ -29,7 +29,7 @@
 				}
 				else echo "Remplissez les champs";
 			}	
-			echo $_SESSION["e"];
+
 
 		?>
 		<div class="form-v5-content">

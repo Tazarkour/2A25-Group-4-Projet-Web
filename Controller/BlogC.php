@@ -220,7 +220,7 @@ function get_post_by_id($id)
   {
       die("Connection failed: " . $conn->connect_error);
   }
-  $sql="SELECT Titre, Message, date_p, picture FROM review_post WHERE id=47";
+  $sql="SELECT Titre, Message, date_p, picture FROM review_post WHERE id=$id";
   $result = $conn->query($sql);
   if ($result->num_rows > 0)
   {
@@ -242,7 +242,7 @@ function afficher_comments($id)
   {
       die("Connection failed: " . $conn->connect_error);
   }
-  $sql="SELECT id_user,id_post,message,date_p FROM comment WHERE id_post=$id ORDER BY date_p DESC ";
+  $sql="SELECT Nom_User,id_user,id_post,message,date_p FROM comment WHERE id_post=$id ORDER BY date_p DESC ";
   $result = $conn->query($sql); 
   if ($result->num_rows > 0) 
   {
@@ -253,7 +253,7 @@ function afficher_comments($id)
           <div class="media mb-4">
           <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
           <div class="media-body">
-            <h5 class="mt-0"><?php echo $row["id_user"]; ?></h5>
+            <h5 class="mt-0"><?php echo $row["Nom_User"]; ?></h5>
            <?php echo $row["message"]; ?>
             <h6 class="mt-0">Posted on <?php echo $row["date_p"]; ?></h6>
           </div>
@@ -263,18 +263,19 @@ function afficher_comments($id)
 }
 }
 
-function add_comment($id,$id_user,$message)
+function add_comment($id,$id_user,$message,$Nom)
 {
    try {
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'INSERT INTO comment (id_user,id_post,message) 
-                VALUES (:id_user,:id_post,:message)'
+                    'INSERT INTO comment (id_user,id_post,message,Nom_User) 
+                VALUES (:id_user,:id_post,:message,:Nom_User)'
                 );
                 $query->execute([
                     'id_user' => $id_user,
                     'id_post' => $id,
-                    'message' =>$message
+                    'message' =>$message,
+                    'Nom_User'=>$Nom
                 ]);
                 echo "Posted Successfully";
             } catch (PDOException $e) {

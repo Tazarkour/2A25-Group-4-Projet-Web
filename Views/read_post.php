@@ -4,12 +4,12 @@ include "../Model/bloc.php";
 $post=new post();
 $id=$_GET["id"];
 echo $id;
+session_start();
 $post=get_post_by_id($id);
-if (isset($_POST["message"]))
+if (isset($_POST["message"]) && isset($_SESSION )&& !empty($_SESSION["e"]))
 {
   $message=$_POST["message"];
-  $id_user=60;
-  add_comment($id,$id_user,$message);
+  add_comment($id,$_SESSION["e"],$message,$_SESSION["Nom"]." ".$_SESSION["Prenom"]);
 }
 ?>
 
@@ -38,7 +38,7 @@ if (isset($_POST["message"]))
     <br>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
+      <a class="navbar-brand" href="#">Radisson Blu</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -91,10 +91,10 @@ if (isset($_POST["message"]))
         <div class="card my-4">
           <h5 class="card-header">Leave a Comment:</h5>
           <div class="card-body">
-            <form NAME="f" action="read_post.php?id=<?= $id ?>" method="POST">
+            <form NAME="f" action="" method="POST">
               <div class="form-group">
                 <?php 
-                session_start();
+
                 if (isset($_SESSION["e"])&& !empty($_SESSION["e"]))
                 {?>
                 <textarea class="form-control" name="message" id="message" rows="3"></textarea>
@@ -103,11 +103,12 @@ if (isset($_POST["message"]))
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
               <?php } else {?>
-              <button type="button" class="btn btn-primary" href>Login</button>
-              <button type="button" class="btn btn-primary" href>Register</button>
+              <a type="button" class="btn btn-primary" href="signin.php">Login</a>
+              <a type="button" class="btn btn-primary" href="signup.php">Register</a>
             </form>
           </div>
         </div>
+        <br>
          <?php }afficher_comments($id); ?>
 
 
