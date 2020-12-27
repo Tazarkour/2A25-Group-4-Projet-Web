@@ -11,6 +11,13 @@ if (isset($_POST["message"]) && isset($_SESSION )&& !empty($_SESSION["e"]))
   $message=$_POST["message"];
   add_comment($id,$_SESSION["e"],$message,$_SESSION["Nom"]." ".$_SESSION["Prenom"]);
 }
+if (isset($_GET["idcomment"]))
+{
+  if (!empty($_GET["idcomment"]))
+  {
+    deletecomment($_GET["idcomment"]);
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -109,7 +116,8 @@ if (isset($_POST["message"]) && isset($_SESSION )&& !empty($_SESSION["e"]))
           </div>
         </div>
         <br>
-         <?php }afficher_comments($id); ?>
+         <?php }afficher_comments($id,$_SESSION["e"]); ?>
+
 
 
           </div>
