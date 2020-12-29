@@ -68,17 +68,17 @@
             try {
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'INSERT INTO activites(nom, activites, places, date)
-                VALUES (:nom, :activites, :places,:dateS,1)'
+                    'INSERT INTO activites(nom, id_activites, places, dateS)
+                VALUES (:nom, :id_activites, :places,:dateS)'
                 );
                 $query->execute([
                     'nom' => $activites->getNom(),
-                    'activites' => $activites->getActivites(),
+                    'id_activites' => $activites->getActivites(),
                     'places' => $activites->getPlaces(),
 					'dateS' => $activites->getDateS(),
                 ]);
             } catch (PDOException $e) {
-                $e->getMessage();
+               echo $e->getMessage();
             }
         }
 
@@ -148,7 +148,7 @@
             try {
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'INSERT INTO activites (nom, activites,dateS,places) 
+                    'INSERT INTO activites (nom, id_activites,dateS,places) 
                 VALUES (:nom, :activites, :dateS,:places)'
                 );
                 $query->execute([
@@ -164,5 +164,50 @@
             }
 
         }
+        public function getselect ()
+        {
+            {
+      try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM activites1'
+                );
 
+
+
+                $query->execute();
+                return $query->fetchAll();}
+             catch (PDOException $e) {
+               echo $e->getMessage();
+            }
+}
+        }
+        public function subsplaces ($places,$id)
+        {
+
+            
+      try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT places FROM activites1 where id=:id'
+                );
+
+
+
+                $query->execute(["id"=>$id]);
+                $placesrest= $query->fetch();
+                if ($placesrest["places"]>$places)
+                {
+                    $query = $pdo->prepare(
+                    'UPDATE activites1 SET places=(places-:placesrest) WHERE id = :id');
+                    $query->execute(["id"=>$id,"placesrest"=>$places]);
+                    return 1;
+                }
+                else
+                    return 0;
+            }
+             catch (PDOException $e) {
+               echo $e->getMessage();
+        }
     }
+}

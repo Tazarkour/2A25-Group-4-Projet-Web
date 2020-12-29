@@ -21,8 +21,10 @@ $post->activites= $_POST["activites"];
 $post->dateS = $_POST["date"];
 $post->places= $_POST["places"];
 $post->email= $_POST["email"];
-
+if ($ActivitesC ->subsplaces($_POST["places"],$_POST["activites"])==1)
 $ActivitesC ->connexion1($post);
-$ActivitesC ->sendmail($post);
+else echo "places non restantes";
+
+/*$ActivitesC ->sendmail($post);*/
 ?>
 
