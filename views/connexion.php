@@ -23,6 +23,6 @@ $post->places= $_POST["places"];
 $post->email= $_POST["email"];
 
 $ActivitesC ->connexion1($post);
-$ActivitesC ->sendmail($post);
+/*$ActivitesC ->sendmail($post);*/
 ?>
 

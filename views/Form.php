@@ -24,8 +24,18 @@
 			<input type="text" name="nom",id="nom">
 		</label>
 		<label class="col-one-half">
-			<span class="label-text">activites</span>
-			<input type="text" name="activites" id="activites">
+			<span class="label-text">Activté</span>
+			  <?PHP
+			   include "../models/activites.php";
+ include "../controller/ActivitesC.php";
+$ActivitesC=new ActivitesC();
+    $listeActivites=$ActivitesC->getselect();?>
+                   
+                 <select type="select" name="activites" id="activites" >
+                         <?php foreach($listeActivites as $activites){
+                    ?>
+<option  value="<?php echo $activites['id']; ?>"><?php echo  $activites['nom']; ?></option> <?php } ?>
+         </select>
 		</label>
 		<label>
 			<span class="label-text">date</span>
