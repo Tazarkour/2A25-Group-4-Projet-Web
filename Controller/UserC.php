@@ -104,6 +104,7 @@ function Connect ($id)
       $_SESSION['Password']=$x["Password"];
       $_SESSION['Facture']=$x["Facture"];
       $_SESSION['Picture']=$x["Picture"];
+      $_SESSION['role']=$x["Role"];
     }  
     catch (Exception $e)
     {

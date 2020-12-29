@@ -77,6 +77,12 @@ $account="Backend.php";
         if (isset($_GET["tri"]))
           $tri=$_GET["tri"];
         else $tri="";
+        if (isset($_SESSION["role"]))
+          {if ( $_SESSION["role"]=="admin")
+          afficherpostsMod($search, $tri);
+        else
+        afficherposts($search, $tri);}
+        else
         afficherposts($search, $tri);
         ?>
       </div>

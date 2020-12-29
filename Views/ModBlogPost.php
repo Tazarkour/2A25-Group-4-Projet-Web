@@ -4,10 +4,16 @@
 require_once "../Controller/BlogC.php";
 require_once "../model/bloc.php";
 
+session_start();
+if ($_SESSION["role"]=="admin")
+{   if (isset($_POST['id'])) {
 
-    if (isset($_POST['id'])) {
       $id=$_POST['id'];
+
+
         deletePost($id);
+    
+
 
     }
 ?>
@@ -80,9 +86,9 @@ require_once "../model/bloc.php";
         {
           $search=$_GET["search"];
         }
+        $tri="DD";
 
-
-        afficherpostsMod($search);
+        afficherpostsMod($search,$tri);
 
         ?>
       </div>
@@ -123,3 +129,6 @@ require_once "../model/bloc.php";
 </body>
 
 </html>
+<?php }
+else header("Location: WatchBlogPost.php");
+?>

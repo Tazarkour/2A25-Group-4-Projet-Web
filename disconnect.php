@@ -9,5 +9,6 @@ unset($_SESSION['Date']);
 unset($_SESSION['Login']);
 unset($_SESSION['Password']);
 unset($_SESSION['Facture']);
+unset($_SESSION);
 session_destroy();
 ?>
