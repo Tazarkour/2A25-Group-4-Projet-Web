@@ -21,8 +21,8 @@ require "../model/bloc.php";
     </head>
 <body>
 <h1>Post</h1>    
-    <form NAME="f" action="AddBlogPost.php" method="POST">
-    <table border="1" width="50%">
+    <form NAME="f" action="blank.php" method="POST">
+    <table border="1" width="80%">
         <tr>
             <th align="left" rowspan ="8">
             </th>
@@ -31,7 +31,7 @@ require "../model/bloc.php";
         </label>
             </th>
             <th align="left">
-        <input type="text" id="name" name="name" maxlength="25" size="20" placeholder="entrez votre nom" required>
+        <input type="text" id="name" name="name" maxlength="25" size="20" placeholder="Titre" required>
             </th>
         </tr>
         <tr>
@@ -50,11 +50,11 @@ require "../model/bloc.php";
         </tr>
           <tr>
             <th align="left">
-                <label for="name">Picture:
+                <label for="name" >Picture:
         </label>
             </th>
             <th align="left">
-        <input type="file" id="image" name="image" required>
+        <input type="file" id="image" name="image"  required>
             </th>
         </tr>
                     
@@ -62,10 +62,7 @@ require "../model/bloc.php";
             <th align="left">
             </th>
             <th align="left">
-                <button type="submit">Envoyer</button>
-            </th>
-             <th align="left">
-                <button type="button">Annuler</button>
+                <button type="submit" class="btn btn-success">Envoyer</button>
             </th>
         </tr>
     </table>

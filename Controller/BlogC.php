@@ -294,6 +294,35 @@ function  deletecomment($id)
 }
 
 
+function  affichertoutposts()
+{
+   try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM review_post'
+                );
+                $query->execute();
+                return $query->fetchAll();}
+            catch (PDOException $e) {
+              echo  $e->getMessage();
+            }
+}
+function  afficheronepost($id)
+{
+   try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM review_post WHERE id = :id'
+                );
+                $query->execute(['id' => $id]);
+                return $query->fetchAll();
+              }
+            catch (PDOException $e) {
+              echo  $e->getMessage();
+            }
+}
+
+
 
 
 ?>

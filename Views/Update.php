@@ -1,18 +1,15 @@
 <?php
 require "../Controller/BlogC.php";
 require "../model/bloc.php";
-        if (isset($_GET['id']))
+        if (isset($_POST['id']))
         {
-        $id=$_GET['id'];
+        $id=$_POST['id'];
+         $post=afficheronepost($id);
     }
 
     if (isset($_POST['name']) && isset($_POST['post']) && isset($_POST['image']) && isset($_POST['id1'])) {
-        $post =  new post();
         $id=$_POST['id1'];
-        $post->nom = $_POST["name"];
-        $post->text = $_POST["post"];
-        $post->picture = $_POST["image"];
-
+       
         update($post, $id);
     }
 ?>
@@ -20,12 +17,12 @@ require "../model/bloc.php";
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>Inscription</title>
+        <title>Modification</title>
         <script src="script.js"></script>
     </head>
 <body>
 <h1>Post</h1>    
-    <form NAME="f" action="Update.php" method="POST">
+    <form NAME="f" action="Modifier Post.php" method="POST">
     <table border="1" width="50%">
         <tr>
             <th align="left" rowspan ="8">
@@ -35,7 +32,7 @@ require "../model/bloc.php";
         </label>
             </th>
             <th align="left">
-        <input type="text" id="name" name="name" maxlength="25" size="20" placeholder="entrez votre nom" required>
+        <input type="text" id="name" name="name" maxlength="25" size="20" value="<?php echo  $post["Titre"]?>" required>
             </th>
         </tr>
         <tr>
@@ -44,7 +41,7 @@ require "../model/bloc.php";
         </label>
             </th>
             <th align="left">
-        <textarea name="post" id="post" cols="30" rows="5" maxlength="200">
+        <textarea name="post" id="post" cols="30" rows="5"  value="<?php  echo $post["message"]?>" maxlength="200">
                 </textarea>
             </th>
         </tr>
@@ -58,7 +55,7 @@ require "../model/bloc.php";
         </label>
             </th>
             <th align="left">
-        <input type="file" id="image" name="image" required>
+        <input type="file" id="image" name="image"  value="<?php  echo $post["image"];?>" required>
             </th>
         </tr>
         <input value="<?php echo $id ?>" id="id1" name="id1" hidden>         
@@ -67,9 +64,6 @@ require "../model/bloc.php";
             </th>
             <th align="left">
                 <button type="submit">Envoyer</button>
-            </th>
-             <th align="left">
-                <button type="button">Annuler</button>
             </th>
         </tr>
     </table>
