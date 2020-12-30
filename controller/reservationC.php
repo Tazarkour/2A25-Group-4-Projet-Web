@@ -6,11 +6,11 @@ include "../config.php";
 
 class reservationC
 {
-    public function ajouterReservation($Reservation ,$qty,$idroom)
-    {
+    public function ajouterReservation($Reservation ,$qty,$idroom,$user)
+    { echo('hhh');
         $db = config::getConnexion();
-        $sql="INSERT INTO reservation ( idreservation,firstname, lastname, adresse,tel,email,nbn,date,room,rp,idroom)
-			VALUES (:idreservation,:firstname,:lastname,:adresse,:tel,:email,:nbn,:date,:room,:rp,:idroom)";
+        $sql="INSERT INTO reservation ( idreservation,firstname, lastname, adresse,tel,email,nbn,date,room,rp,idroom,iduser)
+			VALUES (:idreservation,:firstname,:lastname,:adresse,:tel,:email,:nbn,:date,:room,:rp,:idroom,:iduser)";
 
 
  $sql1=" UPDATE rooms SET qty = :qty - 1 where idroom= :idroom";
@@ -25,6 +25,7 @@ class reservationC
                 'idroom' => $idroom
             ]);
             $query->execute([
+
                 /*nom de colonne*/ 'idreservation' => $Reservation->getIdreservation(),
                 'firstname' => $Reservation->getFirstname(),
                 'lastname' => $Reservation->getLastname(),
@@ -36,7 +37,10 @@ class reservationC
                 'nbn' => $Reservation->getNbn(),
                  'room' => $Reservation->getRoom(),
                 'rp' => $Reservation->getRp(),
-               'idroom' => $Reservation->getIdroom()
+               'idroom' => $Reservation->getIdroom(),
+
+                 'iduser' => $user
+
 
             ]);
         }
@@ -79,7 +83,7 @@ class reservationC
         try { echo('hhhh');
             $db = config::getConnexion();
             $query = $db->prepare(
-                "UPDATE reservation SET idreservation=:idreservation, firstname=:firstname, lastname=:lastname, adresse=:adresse,tel=:tel,email=:email,nbn:=nbn,date=:date1,room=:room,rp=:rp idroom=:idroom WHERE idreservation = :idreservation"
+                "UPDATE reservation SET idreservation=:idreservation, firstname=:firstname, lastname=:lastname, adresse=:adresse,tel=:tel,email=:email,nbn:=nbn,date=:date1,room=:room,rp=:rp ,idroom=:idroom WHERE idreservation = :idreservation"
             );
             echo "pass";
             echo
@@ -183,6 +187,18 @@ class reservationC
 
 
 
+    public function sendmail($reservation)
+    {
+        $headers = "From: hotelfarcha5etoile@gmail.com\r\n";
+        $to = $reservation->email;
+        $subject = "confirmation de reservation";
+        $message = "Bonjour Mr/Mme ".$reservation->firstname." je vous confirme qu'on a bien reçu votre reservation pour la chambre le ".$reservation->date." pour ".$reservation->nbn." nuits. SOYEZ LA BIENVENUE";
+        if (mail($to, $subject, $message, $headers))
+            echo 'Success!';
+        else
+            echo 'UNSUCCESSFUL...';
+
+    }
 
 
 
@@ -236,7 +252,7 @@ function afficherrooms($search)
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"></li>
 
-                        <img class="card-img-top" src= <?php echo "../assets/img/".$row["photo"]." width="."750"." height="."300";?> >
+                        <img class="card-img-top" src= <?php echo "img/".$row["photo"]." width="."750"." height="."300";?> >
                         <li class="list-group-item">
                             <form method="GET" action="index1.php">
 
@@ -336,7 +352,7 @@ function afficherrooms1($search)
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"></li>
 
-                    <img class="card-img-top" src= <?php echo "../assets/img/".$row["photo"]." width="."750"." height="."300";?> >
+                    <img class="card-img-top" src= <?php echo "img/".$row["photo"]." width="."750"." height="."300";?> >
 
                 </ul>
             </div>

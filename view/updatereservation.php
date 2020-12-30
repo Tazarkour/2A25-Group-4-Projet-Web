@@ -1,3 +1,4 @@
+
 <?php
 
     require_once '../controller/reservationC.php';
@@ -17,7 +18,8 @@ if (
     isset($_POST["email"]) &&
     isset($_POST["nbn"])&&
     isset($_POST["room"])&&
-    isset($_POST["rp"])
+    isset($_POST["rp"])&&
+isset($_POST["idroom"])
 ) {
     if (
         !empty($_POST["firstname"]) &&
@@ -28,222 +30,298 @@ if (
         !empty($_POST["email"])&&
         !empty($_POST["nbn"])&&
         !empty($_POST["room"])&&
-        !empty($_POST["rp"])
+        !empty($_POST["rp"])&&
+    !empty($_POST["idroom"])
     ) {
         $Reservation = new reservation(
             $_POST['firstname'],
             $_POST['lastname'],
             $_POST['adresse'],
-            $_POST['tel'],
             $_POST['date'],
+            $_POST['tel'],
+
             $_POST['email'],
             $_POST['nbn'],
             $_POST['room'],
-            $_POST['rp']
-
+            $_POST['rp'],
+            $_POST['idroom']
 
         );
        $idreservation=$_POST["idreservation"];
         $reservationC->updateReservation($Reservation, $idreservation);
-        //header('refresh:5;url=showreservations.php');
+        header('Location:showreservations.php');
     }
 
     else
         $error = "Missing information";
 
 }
-
-
-
-
 ?>
 
+<!DOCTYPE html>
 <html>
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <title>FormWizard_v2</title>
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Display</title>
+    <meta name="author" content="colorlib.com">
+    <!-- LINEARICONS -->
+    <link rel="stylesheet" href="fonts/linearicons/style.css">
+
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.css">
+
+    <!-- DATE-PICKER -->
+    <link rel="stylesheet" href="vendor/date-picker/css/datepicker.min.css">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="css/style1.css">
 </head>
+<div id="error">
+    <?php echo $error; ?>
+</div>
+
+
 <body>
-<a class="btn btn-info" href="showreservations.php">Back</a>
-<hr>
+<form action="" method="POST">
+<div class="wrapper">
+    <div class="inner">
+        <div class="image-holder">
+            <img src="images/form-wizard.jpg" alt="">
 
+            <h3>Your reservation</h3>
+        </div>
+        <div id="wizard">
 
+            <a href = "searchreservation.php" class="btn btn-primary shop-item-button">Search</a>
+            <?php
+            if (isset($_GET['idreservation'])) {
+            $result = $reservationC->getReservationById($_GET['idreservation']);
+            if ($result !== false) {
+            ?>
 
-<!DOCTYPE html>
-    <html lang="en">
+            <!-- SECTION 1 -->
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+            <h4>Choose Date</h4>
+            <section>
 
-        <title>Booking Form HTML Template</title>
+                <div class="form-row">
 
-        <!-- Google font -->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-
-        <!-- Bootstrap -->
-        <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-
-        <!-- Custom stlylesheet -->
-        <link type="text/css" rel="stylesheet" href="css/style.css" />
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <!--   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-              <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-            <![endif]-->
-
-    </head>
-
-    <body>
-    <div id="booking" class="section">
-        <div class="section-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-7 col-md-push-5">
-                        <div class="booking-cta">
-                            <h1>Make your reservation</h1>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque
-                                ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi.
-                                Perspiciatis.
-                            </p>
-                        </div>
+                    <div class="form-holder">
+                        <input type="text" class="form-control datepicker-here pl-85" data-language='en' data-date-format="dd - m - yyyy" id="dp1" name="date" value="<?= $result['date'] ?>">
+                        <span class="lnr lnr-chevron-down"></span>
+                        <span class="placeholder">Check in :</span>
                     </div>
-                    <div class="col-md-4 col-md-pull-7">
-                        <div class="booking-form">
-                            <form method="POST" action="">
-                                <a href = "searchreservation.php" class="btn btn-primary shop-item-button">Search</a>
-                                <?php
-                                if (isset($_GET['idreservation'])) {
-                                $result = $reservationC->getReservationById($_GET['idreservation']);
-                                if ($result !== false) {
-                                ?>
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <span class="form-label">First Name</span>
-                                            <input class="form-control" type="text" placeholder=" First Name" name="firstname" id="firstname"  value="<?= $result['firstname'] ?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <span class="form-label">Last Name</span>
-                                            <input class="form-control" type="text" placeholder=" Last Name" name="lastname" id="lastname"value="<?= $result['lastname'] ?>">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <span class="form-label">Phone Number</span>
-                                    <input class="form-control"  type="text" placeholder="Enter your Phone Number" width="48" name="tel" id="tel" value="<?= $result['tel'] ?>">
-                                </div>
-                                <div class="form-group">
-                                    <span class="form-label">Adress</span>
-                                    <input class="form-control"  type="text" placeholder="Enter your Phone Adresse" width="48" name="adresse" id="adresse" value="<?= $result['adresse'] ?>">
-                                </div>
-                                <div class="form-group">
-                                    <span class="form-label">Chek In</span>
-                                    <input class="form-control"  type="date"  width="48" name="date" id="date" value="<?= $result['date'] ?>">
-                                </div>
-                                <input id="idreservation" name="idreservation" value="<?php echo $idreservation ?>" hidden>
-                                <div class="form-group">
-                                    <span class="form-label">Email</span>
-                                    <input class="form-control" type="email" placeholder="Enter  your Email adress " width="18" name="email" id="email" value="<?= $result['email'] ?>">
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <span class="form-label">Rooms</span>
-                                        
-                                            <select class="form-control" name="room" value="<?= $result['room'] ?>">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                            </select>
-                                            <span class="select-arrow"></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <span class="form-label">Room Preference</span>
-                                                <select class="form-control"  name='rp'value="<?= $result['rp'] ?>" >
-                                                    <option >Single</option>
-                                                    <option > Twin room</option>
-                                                    <option >Double room</option>
-                                                    <option  >Triple room</option>
-                                                    <option value="Suite">Suite</option>
-                                                </select>
-                                                <span class="select-arrow"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <span class="form-label">Adults</span>
-                                            <select class="form-control" >
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                            </select>
-                                            <span class="select-arrow"></span>
-                                        </div>
+                    <div class="form-holder">
+                        <input type="text" class="form-control datepicker-here pl-96" data-language='en'  data-date-format="dd - m - yyyy" id="dp2">
+                        <input id="idreservation" name="idreservation" value="<?php echo $idreservation ?>" hidden>
+                        <span class="lnr lnr-chevron-down"></span>
+                        <span class="placeholder">Check out :</span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="select">
+                        <div class="form-holder">
+                            <div class="select-control">Duration :</div>
+                            <span class="lnr lnr-chevron-down"></span>
+                        </div>
+                        <select id =rp" name="rp" class="form-control" value="<?= $result['rp'] ?>">
+                            <option>1 Night</option>
+                            <option >2 Night</option>
+                            <option >3 Night</option>
+                            <option >4 Night</option>
+                            <option>5 Night</option>
+                        </select>
+                    </div>
+                    <div class="select">
+                        <div class="form-holder">
+                            <div class="select-control">Room :</div>
+                            <span class="lnr lnr-chevron-down"></span>
+                        </div>
+                        <select class="form-control" id =room" name="room" value="<?= $result['room'] ?>">
+                            <option >1 Room</option>
+                            <option >2 Room</option>
+                            <option ">3 Room</option>
+                            <option >4 Room</option>
+                            <option >5 Room</option>
+                        </select>
+                    </div>
+                </div>
 
 
+            </section>
 
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <span class="form-label">Children</span>
-                                            <select class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                            </select>
-                                            <span class="select-arrow"></span>
-                                        </div>
-
-
-
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <span class="form-label">Number of nights</span>
-
-                                            <input class="form-control" type="text" placeholder="Enter number" name="nbn"value="<?= $result['nbn'] ?>">
-
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-                                <div class="form-btn">
-                                    <input type="submit" value="modifier" name="modifier">
-                                </div>
-                            </form>
+            <!-- SECTION 2 -->
+            <h4>Choose Room</h4>
+            <section class="section-style">
+                <div class="board-wrapper">
+                    <div class="board-inner">
+                        <div class="board-item">
+                            Room 1 :
+                            <span>Small Room</span>
+                        </div>
+                        <div class="board-item">
+                            Room 2 :
+                            <span>Luxury Room</span>
+                        </div>
+                        <div class="board-line">
+                            <div class="board-item">
+                                Adult :
+                                <span>2</span>
+                            </div>
+                            <div class="board-item">
+                                Childern :
+                                <span>0</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="form-wrapper">
+                    <div class="form-row">
+                        <div class="form-holder w-100">
+                            <input type="text" class="form-control datepicker-here" data-language='en' data-date-format="dd M yyyy" id="dp3">
+                            <span class="lnr lnr-calendar-full"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-holder w-100">
+                            <input type="text" class="form-control datepicker-here" data-language='en' data-date-format="dd M yyyy" id="dp4">
+                            <span class="lnr lnr-calendar-full"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Room 1 :</label>
+                        <div class="form-row">
+                            <div class="select mr-20">
+                                <div class="form-holder">
+                                    <div class="select-control">1 Adult</div>
+                                    <span class="lnr lnr-chevron-down"></span>
+                                </div>
+                                <ul class="dropdown">
+                                    <li rel="1 Adult">1 Adult</li>
+                                    <li rel="2 Adults">2 Adults</li>
+                                    <li rel="3 Adults">3 Adults</li>
+                                </ul>
+                            </div>
+
+                            <div class="select">
+                                <div class="form-holder">
+                                    <div class="select-control">No Child</div>
+                                    <span class="lnr lnr-chevron-down"></span>
+                                </div>
+                                <ul class="dropdown">
+                                    <li rel="1 Room">No Child</li>
+                                    <li rel="1 Child">1 Child</li>
+                                    <li rel="2 Children">2 Children</li>
+                                    <li rel="3 Children">3 Children</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Room 2 :</label>
+                        <div class="form-row">
+                            <div class="select mr-20">
+                                <div class="form-holder">
+                                    <div class="select-control">1 Adult</div>
+                                    <span class="lnr lnr-chevron-down"></span>
+                                </div>
+                                <ul class="dropdown">
+                                    <li rel="1 Adult">1 Adult</li>
+                                    <li rel="2 Adults">2 Adults</li>
+                                    <li rel="3 Adults">3 Adults</li>
+                                </ul>
+                            </div>
+
+                            <div class="select">
+                                <div class="form-holder">
+                                    <div class="select-control">No Child</div>
+                                    <span class="lnr lnr-chevron-down"></span>
+                                </div>
+                                <ul class="dropdown">
+                                    <li rel="1 Room">No Child</li>
+                                    <li rel="1 Child">1 Child</li>
+                                    <li rel="2 Children">2 Children</li>
+                                    <li rel="3 Children">3 Children</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- SECTION 3 -->
+            <h4>Make a Reservation</h4>
+            <section>
+                <div class="form-row">
+                    <div class="form-holder">
+                        <input type="text" class="form-control" placeholder="First Name :" name="firstname" id="firstname"value="<?= $result['firstname'] ?>">
+                    </div>
+                    <div class="form-holder">
+                        <input type="text" class="form-control" placeholder="Last Name :"name="lastname" id="lastname" value="<?= $result['lastname'] ?>">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-holder">
+                        <input type="text" class="form-control" placeholder="Phone :" name="tel" value="<?= $result['tel'] ?>">
+                    </div>
+                    <div class="form-holder">
+                        <input type="text" class="form-control" placeholder="Mail :"name="email" id="email" value="<?= $result['email'] ?> ">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-holder w-100">
+                        <input type="text" class="form-control" placeholder="Address :" name="adresse" id="adresse" value="<?= $result['adresse'] ?>">
+                    </div>
+                <div>
+                <input class="form-control" type="text"  name="idroom" id="idroom"  value="<?= $result['idroom'] ?>">
+
+        </div>
+                </div>
+                <div class="form-row mb-21">
+                    <div class="form-holder w-100">
+                        <textarea name="nbn" id="nbn" value="<?= $result['nbn'] ?>" class="form-control" style="height: 79px;" placeholder="Special Requirements :"></textarea>
+
+                    </div>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> I have read and accept the <a href="#">terms and conditions.</a>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <input type="submit" value="modifier" name="modifier">
+            </section>
+
+        </form>
+<?php
+}
+}
+else {
+    header('Location:showreservations.php');
+}
+?>
+                </div>
+            </section>
         </div>
     </div>
-    <?php
-    }
-    }
-    else {
-        header('Location:showreservations.php');
-    }
-    ?>
-    </body>
+</div>
 
-    </html>
+<script src="js/jquery-3.3.1.min.js"></script>
+
+<!-- JQUERY STEP -->
+<script src="js/jquery.steps.js"></script>
+
+<!-- DATE-PICKER -->
+<script src="vendor/date-picker/js/datepicker.js"></script>
+<script src="vendor/date-picker/js/datepicker.en.js"></script>
+
+<script src="js/main.js"></script>
+<!-- Template created and distributed by Colorlib -->
+
+</body>
+</html>

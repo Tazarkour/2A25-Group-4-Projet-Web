@@ -72,7 +72,7 @@ $listereservation=$reservationC->afficherActivites($tri);
                 <form method="POST" action="deletereservation.php">
                     <input type="submit"  class=" btn btn-danger" name="supprimer" value="supprimer">
                     <input type="hidden" value=<?PHP echo $reservation['idreservation'] ; // ba3thna id  champs hiddden bch na9rawh fi page spperimer ?> name="idreservation">
-                    <input type="hidden" value=<?PHP echo $reservation['idroom'] ;  ?> name="idroom">
+                    <input type="hidden" value=<?PHP echo $reservation['idroom'] ; ?> name="idroom">
 
                 </form>
             </td>

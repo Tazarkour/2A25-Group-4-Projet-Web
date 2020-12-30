@@ -15,7 +15,7 @@ class Reservation
   private $rp=null;
 
     private $idroom=null;
-
+    private $iduser=null;
     /**
      * Reservation constructor.
      * @param null $firstname
@@ -29,7 +29,7 @@ class Reservation
      * @param null $rp
      * @param null $idroom
      */
-    public function __construct($firstname, $lastname, $adresse, $date, $tel, $email, $nbn, $room, $rp, $idroom)
+    public function __construct($firstname, $lastname, $adresse, $date, $tel, $email, $nbn, $room, $rp, $idroom,$iduser)
     {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
@@ -41,6 +41,7 @@ class Reservation
         $this->room = $room;
         $this->rp = $rp;
         $this->idroom = $idroom;
+        $this->iduser = $iduser;
     }
 
     /**
@@ -234,6 +235,21 @@ class Reservation
         $this->rp = $rp;
     }
 
+    /**
+     * @return null
+     */
+    public function getIduser()
+    {
+        return $this->iduser;
+    }
+
+    /**
+     * @param null $iduser
+     */
+    public function setIduser($iduser)
+    {
+        $this->iduser = $iduser;
+    }
 
 
 }

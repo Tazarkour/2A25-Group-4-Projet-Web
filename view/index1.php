@@ -4,7 +4,9 @@
 include_once '../model/reservation.php';
 include_once '../controller/reservationC.php';
 include_once '../model/room.php';
-
+session_start();
+if (isset($_SESSION["e"])&& !empty($_SESSION["e"]))
+{
 $error = "";
 
 // create user
@@ -18,11 +20,12 @@ if (
     isset($_POST["adresse"])&&
     isset($_POST["tel"]) &&
     isset($_POST["date"])&&
-isset($_POST["email"]) &&
-isset($_POST["nbn"])&&
+    isset($_POST["email"]) &&
+    isset($_POST["nbn"])&&
     isset($_POST["room"])&&
     isset($_POST["rp"])&&
-    isset($_POST["idroom"])
+    isset($_POST["idroom"])&&
+isset($_POST["iduser"])
 ) {
     if (
         !empty($_POST["firstname"]) &&
@@ -30,11 +33,12 @@ isset($_POST["nbn"])&&
         !empty($_POST["adresse"])&&
         !empty($_POST["tel"])&&
         !empty($_POST["date"])&&
-    !empty($_POST["email"])&&
-    !empty($_POST["nbn"])&&
+        !empty($_POST["email"])&&
+        !empty($_POST["nbn"])&&
         !empty($_POST["room"])&&
         !empty($_POST["rp"])&&
-        isset($_POST["idroom"])
+        !empty($_POST["idroom"])&&
+    !empty($_POST["iduser"])
     ) {
         $Reservation = new reservation(
             $_POST['firstname'],
@@ -43,211 +47,313 @@ isset($_POST["nbn"])&&
             $_POST['date'],
             $_POST['tel'],
 
-             $_POST['email'],
+            $_POST['email'],
             $_POST['nbn'],
             $_POST['room'],
- $_POST['rp'],
-            $_POST['idroom']
-
+            $_POST['rp'],
+            $_POST['idroom'],
+$_POST['iduser']
         );
         $qty= $_GET["qty"];
         $idroom= $_GET["idroom"];
-        $reservationC-> ajouterReservation($Reservation,$qty,$idroom);
+        $reservationC-> ajouterReservation($Reservation,$qty,$idroom,$_SESSION['e']);
 
 
         header('Location:showreservations.php');
     }
     else
         $error = "Missing information";
+
+
+    $reservationC = new reservationC();
+    $post=new reservationC();
+   $post->firstname= $_POST["firstname"];
+    $post->lastname= $_POST["lastname"];
+    $post->date = $_POST["date"];
+    $post->tel= $_POST["tel"];
+   $post->adresse= $_POST["adresse"];
+    $post->nbn= $_POST["nbn"];
+   $post->rp= $_POST["rp"];
+   $post->email= $_POST["email"];
+
+   $reservationC ->sendmail($post);
+
 }
+
 
 
 
 ?>
 
-<html>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Display</title>
-</head>
-<body>
+    <meta charset="utf-8">
+    <title>FormWizard_v2</title>
 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="colorlib.com">
+    <!-- LINEARICONS -->
+    <link rel="stylesheet" href="fonts/linearicons/style.css">
+
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.css">
+
+    <!-- DATE-PICKER -->
+    <link rel="stylesheet" href="vendor/date-picker/css/datepicker.min.css">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="css/style1.css">
+</head>
 <div id="error">
     <?php echo $error; ?>
+
 </div>
 
-<form action="" method="POST"><!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-	<title>Booking Form HTML Template</title>
-
-	<!-- Google font -->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-
-	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-
-	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="css/style.css" />
-
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-		<!--   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-
-</head>
 
 <body>
-	<div id="booking" class="section">
-		<div class="section-center">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-7 col-md-push-5">
-						<div class="booking-cta">
+
+<h1  <?php echo $_SESSION['Nom']; echo $_SESSION['e']?></h1>
+
+
+<form action="" method="POST">
+<!DOCTYPE html>
+<div class="wrapper">
+    <div class="inner">
+        <?php
+        $search="";
+        if (isset($_GET["search"]))
+        {
+            $search=$_GET["search"];
+        }
+        afficherrooms1($search);
+
+        ?>
+        <div id="wizard">
 
 
 
-                            <?php
-                            $search="";
-                            if (isset($_GET["search"]))
-                            {
-                                $search=$_GET["search"];
-                            }
-                            afficherrooms1($search);
+            <!-- SECTION 1 -->
 
-                            ?>
+            <h4>Choose Date</h4>
+            <section>
 
+                <div class="form-row">
 
-						</div>
-					</div>
-					<div class="col-md-4 col-md-pull-7">
-						<div class="booking-form">
+                    <div class="form-holder">
+                        <input type="text" class="form-control datepicker-here pl-85" data-language='en' data-date-format="dd - m - yyyy" id="dp1" name="date" >
+                        <span class="lnr lnr-chevron-down"></span>
+                        <span class="placeholder">Check in :</span>
+                    </div>
+                    <div class="form-holder">
+                        <input type="text" class="form-control datepicker-here pl-96" data-language='en'  data-date-format="dd - m - yyyy" id="dp2">
+                        <span class="lnr lnr-chevron-down"></span>
+                        <span class="placeholder">Check out :</span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="select">
 
-							<form>
+                        <select id =rp" name="rp" class="form-control">
+                            <option style="color: midnightblue">1 Night</option>
+                            <option style="color: midnightblue" >2 Night</option>
+                            <option style="color: midnightblue" >3 Night</option>
+                            <option style="color: midnightblue" >4 Night</option>
+                            <option style="color: midnightblue">5 Night</option>
+                        </select>
+                    </div>
+                    <div class="select">
+                        <div class="form-holder">
 
+                            <span class="lnr lnr-chevron-down"></span>
+                        </div>
+                        <select class="form-control id =room" name="room">
+                            <option rel="1 Room">1 Room</option>
+                            <option rel="2 Room">2 Room</option>
+                            <option rel="3 Room">3 Room</option>
+                            <option rel="4 Room">4 Room</option>
+                            <option rel="5 Room">5 Room</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="forward">NEXT
+                    <i class="zmdi zmdi-long-arrow-right"></i>
+                </button>
 
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<span class="form-label">First Name</span>
-											<input class="form-control" type="text" placeholder=" First Name" name="firstname" id="firstname">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<span class="form-label">Last Name</span>
-											<input class="form-control" type="text" placeholder=" Last Name" name="lastname" id="lastname">
-										</div>
-									</div>
-								</div>
-                                <div class="form-group">
-                                    <span class="form-label">Adress</span>
-                                    <input class="form-control"  type="text" placeholder="Enter your Adresse" width="48" name="adresse" id="adresse">
-                                </div>
-								<div class="form-group">
-									<span class="form-label">Phone Number</span>
-									<input class="form-control"  type="text" placeholder="Enter your Phone Number" width="48" name="tel" >
-								</div>
-                                <div class="form-group">
-                                    <span class="form-label">Email</span>
-                                    <input class="form-control" type="email" placeholder="Enter  your Email adress " width="18" name="email" id="email">
-                                </div>
-                                <div class="form-group">
-                                    <span class="form-label">Chek In</span>
-                                    <input class="form-control" type="date"  width="48" name="date" id="date" >
-                                </div>
+            </section>
 
-
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <span class="form-label">Rooms</span>
-                                            <select class="form-control" name="room">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                            </select>
-                                            <span class="select-arrow"></span>
-                                        </div>
-                                    </div>
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <span class="form-label">Room Preference</span>
-                                            <select class="form-control" name="rp" >
-                                                <option>Single</option>
-                                                <option> Twin room</option>
-                                                <option>Double room</option>
-                                                <option>Triple room</option>
-                                                <option>Suite</option>
-                                            </select>
-                                            <span class="select-arrow"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <span class="form-label">Adults</span>
-                                            <select class="form-control" >
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                            </select>
-                                            <span class="select-arrow"></span>
-                                        </div>
-
-
-
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <span class="form-label">Children</span>
-                                            <select class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                            </select>
-                                            <span class="select-arrow"></span>
-                                        </div>
-
-
-
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <span class="form-label">Number of nights</span>
-
-                                            <input class="form-control" type="text" placeholder="Enter number" name="nbn">
-                                            <input class="form-control" type="text" value=<?PHP echo $_GET['idroom'] ;?> name="idroom">
-
-                                        </div>
-                                    </div>
-
-                                    </div>
-
-
-                                <div class="form-btn">
-                                    <button class="submit-btn">Book Now </button>
-                                </div>
-                            </form>
+            <!-- SECTION 2 -->
+            <h4>Choose Room</h4>
+            <section class="section-style">
+                <div class="board-wrapper">
+                    <div class="board-inner">
+                        <div class="board-item">
+                            Room 1 :
+                            <span>Small Room</span>
+                        </div>
+                        <div class="board-item">
+                            Room 2 :
+                            <span>Luxury Room</span>
+                        </div>
+                        <div class="board-line">
+                            <div class="board-item">
+                                Adult :
+                                <span>2</span>
+                            </div>
+                            <div class="board-item">
+                                Childern :
+                                <span>0</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="form-wrapper">
+                    <div class="form-row">
+                        <div class="form-holder w-100">
+                            <input type="text" class="form-control datepicker-here" '  id="dp3">
+                            <span class="lnr lnr-calendar-full"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-holder w-100">
+                            <input type="text" class="form-control datepicker-here" data-language='en' data-date-format="dd M yyyy" id="dp4">
+                            <span class="lnr lnr-calendar-full"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Room 1 :</label>
+                        <div class="form-row">
+                            <div class="select mr-20">
+                                <div class="form-holder">
+                                    <div class="select-control">1 Adult</div>
+                                    <span class="lnr lnr-chevron-down"></span>
+                                </div>
+                                <ul class="dropdown">
+                                    <li rel="1 Adult">1 Adult</li>
+                                    <li rel="2 Adults">2 Adults</li>
+                                    <li rel="3 Adults">3 Adults</li>
+                                </ul>
+                            </div>
+
+                            <div class="select">
+                                <div class="form-holder">
+                                    <div class="select-control">No Child</div>
+                                    <span class="lnr lnr-chevron-down"></span>
+                                </div>
+                                <ul class="dropdown">
+                                    <li rel="1 Room">No Child</li>
+                                    <li rel="1 Child">1 Child</li>
+                                    <li rel="2 Children">2 Children</li>
+                                    <li rel="3 Children">3 Children</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Room 2 :</label>
+                        <div class="form-row">
+                            <div class="select mr-20">
+                                <div class="form-holder">
+                                    <div class="select-control">1 Adult</div>
+                                    <span class="lnr lnr-chevron-down"></span>
+                                </div>
+                                <ul class="dropdown">
+                                    <li rel="1 Adult">1 Adult</li>
+                                    <li rel="2 Adults">2 Adults</li>
+                                    <li rel="3 Adults">3 Adults</li>
+                                </ul>
+                            </div>
+
+                            <div class="select">
+                                <div class="form-holder">
+                                    <div class="select-control">No Child</div>
+                                    <span class="lnr lnr-chevron-down"></span>
+                                </div>
+                                <ul class="dropdown">
+                                    <li rel="1 Room">No Child</li>
+                                    <li rel="1 Child">1 Child</li>
+                                    <li rel="2 Children">2 Children</li>
+                                    <li rel="3 Children">3 Children</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="forward">NEXT
+                        <i class="zmdi zmdi-long-arrow-right"></i>
+                    </button>
+                </div>
+
+            </section>
+
+            <!-- SECTION 3 -->
+            <h4>Make a Reservation</h4>
+            <section>
+                <div class="form-row">
+                    <div class="form-holder">
+                        <input type="text" class="form-control" placeholder="First Name :" name="firstname" id="firstname">
+                    </div>
+                    <div class="form-holder">
+                        <input type="text" class="form-control" placeholder="Last Name :"name="lastname" id="lastname">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-holder">
+                        <input type="text" class="form-control" placeholder="Phone :" name="tel" >
+                    </div>
+                    <div class="form-holder">
+                        <input type="text" class="form-control" placeholder="Mail :"name="email" id="email" required >
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-holder w-100">
+                        <input type="text" class="form-control" placeholder="Address :" name="adresse" id="adresse">
+                    </div>
+                </div>
+                <div class="form-row mb-21">
+                    <div class="form-holder w-100">
+                        <textarea name="nbn" id="nbn" class="form-control" style="height: 79px;" placeholder="Special Requirements :"></textarea>
+                        <input class="form-control" type="text" value=<?PHP echo $_GET['idroom'] ;?> name="idroom">
+
+
+
+                    </div>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> I have read and accept the <a href="#">terms and conditions.</a>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <button type="submit" value="Submit">Submit</button>
+            </section>
+
+        </form>
+                </div>
+            </section>
         </div>
     </div>
-</body>
+</div>
 
+<script src="js/jquery-3.3.1.min.js"></script>
+
+<!-- JQUERY STEP -->
+<script src="js/jquery.steps.js"></script>
+
+<!-- DATE-PICKER -->
+<script src="vendor/date-picker/js/datepicker.js"></script>
+<script src="vendor/date-picker/js/datepicker.en.js"></script>
+
+<script src="js/main.js"></script>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<!-- Template created and distributed by Colorlib -->
+</body>
 </html>
+
+<?php
+    }
+    else
+
+    header('Location:signin.php');
+    ?>
