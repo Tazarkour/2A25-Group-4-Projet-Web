@@ -5,6 +5,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
   if ($_SESSION["role"]=="admin")
   {
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,12 +40,13 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
       TOP BAR CONTENT & NOTIFICATIONS
       *********************************************************************************************************************************************************** -->
       <!--header start-->
+
       <header class="header black-bg">
               <div class="sidebar-toggle-box">
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>DASHGUM FREE</b></a>
+            <a href="index.html" class="logo"><b>Radisson Blue</b></a>
             <!--logo end-->
              <div class="top-menu">
               <ul class="nav pull-right top-menu">
@@ -74,13 +76,13 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                           <span>Dashboard</span>
                       </a>
                   </li>
-                  <li class="sub-menu">
+                   <li class="sub-menu" class="active">
                       <a href="javascript:;" >
                           <i class="fa fa-cogs"></i>
                           <span>Gérer Comptes</span>
                       </a>
                       <ul class="sub">
-                          <li ><a  href="Affichertoutusers.php">Gérer les Comptes</a></l>
+                          <li class="active"><a  href="Affichertoutusers.php">Gérer les Comptes</a></l>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -89,7 +91,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                           <span>Blog</span>
                       </a>
                       <ul class="sub">
-                          <li class="active"><a  href="blank.php">Ajouter un Blog Post</a></li>
+                          <li ><a  href="blank.php">Ajouter un Blog Post</a></li>
                           <li><a  href="Affichertoutposts.php">Afficher les Blog Posts</a></li>
                       </ul>
                   </li>
@@ -105,78 +107,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper site-min-height">
-          	<?php
-require "../Controller/BlogC.php";
-require "../model/bloc.php";
-        if (isset($_POST['id']))
-        {
-        $id=$_POST['id'];
-         $poste=afficheronepost($id);         
-    }
-
-    if (isset($_POST['name']) && isset($_POST['post']) && isset($_POST['image']) && isset($_POST['id1'])) {
-        $id=$_POST['id1'];
-        $post=new post();
-        $post->nom = $_POST["name"];
-        $post->text = $_POST["post"];
-        $post->picture = $_POST["image"];
-       
-        update($post, $id);
-         echo("<script>location.href = 'Affichertoutposts.php';</script>");
-       
-    }
-    foreach ($poste as $posted)
-    {
-       $posts=$posted;
-    }  
-?>
-<h1>Post</h1>    
-    <form NAME="f" action="Modifier Post.php" method="POST">
-    <table border="1" width="50%">
-        <tr>
-            <th align="left" rowspan ="8">
-            </th>
-            <th align="left">
-                <label for="name">Title:
-        </label>
-            </th>
-            <th align="left">
-        <input type="text" id="name" name="name" maxlength="25" size="20" value="<?php echo  $posts["Titre"]?>" required>
-            </th>
-        </tr>
-        <tr>
-            <th align="left">
-                <label for="comment">Text:
-        </label>
-            </th>
-            <th align="left">
-        <textarea name="post" id="post" cols="30" rows="5"  value="<?php  echo $posts["Message"]?>" maxlength="200">
-                </textarea>
-            </th>
-        </tr>
-          <tr>
-            <th align="left">
-            </th>
-        </tr>
-          <tr>
-            <th align="left">
-                <label for="name">Picture:
-        </label>
-            </th>
-            <th align="left">
-        <input type="file" id="image" name="image"  value="<?php  echo $posts["Picture"];?>" required>
-            </th>
-        </tr>
-        <input value="<?php echo $id ?>" id="id1" name="id1" hidden>         
-        <tr>
-            <th align="left">
-            </th>
-            <th align="left">
-                <button type="submit">Envoyer</button>
-            </th>
-        </tr>
-    </table>
-</form>
+          	<?php include_once 'AfficheUsers.php'; ?>
           		</div>
           	</div>
 			

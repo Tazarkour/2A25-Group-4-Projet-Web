@@ -28,14 +28,14 @@ function user_creation ($New_User)
 
 }
 
-function Check_Info ($email,$Login)
+function Check_Info ($email,$Login,$id)
 {
    $conn = getConnexion1();
   if ($conn->connect_error) 
   {
       die("Connection failed: " . $conn->connect_error);
   }
-  $sql="SELECT Login, Email FROM utilisateur WHERE Login=$Login OR Email=$email";
+  $sql="SELECT Login, Email FROM utilisateur WHERE (Login=$Login AND id!==$id) OR (Email=$email AND id !== $id)";
   $result = $conn->query($sql);
   if (isset($result->num_row))
   {if ($result->num_rows > 0)
@@ -114,6 +114,125 @@ function Connect ($id)
     }
 }
 
+function Get_All_User_Info ()
+{
+     $sql="SELECT * FROM utilisateur";
+     $db=getConnexion();
+     try{
+      $query=$db->prepare($sql);
+      $query->execute();
+      $count=$query->rowCount();
+      if ($count==0){
+        echo "Aucun Resultat";
 
+      }
+      else
+      {
+        $x=$query->fetchAll();
+        return $x;
+      }}
+      catch (Exception $e)
+      {
+        echo $e->getMessage();
+      }
+}
+function Get_one_User_Info($id)
+{
+     $sql="SELECT * FROM utilisateur where id=$id";
+     $db=getConnexion();
+     try{
+      $query=$db->prepare($sql);
+      $query->execute();
+      $count=$query->rowCount();
+      if ($count==0){
+        echo "Aucun Resultat";
 
+      }
+      else
+      {
+        $x=$query->fetchAll();
+        return $x;
+      }}
+      catch (Exception $e)
+      {
+        echo $e->getMessage();
+      }
+}
+
+function deleteuser($id) {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'DELETE FROM utilisateur WHERE id = :id'
+                );
+                $query->execute([
+                    'id' => $id
+                ]);
+            } catch (PDOException $e) {
+               echo $e->getMessage();
+            }
+        }
+function  permutadmin($id)
+{
+            try {
+                $pdo = getConnexion();
+                $admin="admin";
+                $query = $pdo->prepare(
+                    'UPDATE utilisateur SET Role=:adm WHERE id = :id'
+                );
+                $query->execute(['id'=>$id,'adm'=>$admin]);
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+        }
+function  permutclient($id)
+{
+            try {
+                $pdo = getConnexion();
+                $admin="client";
+                $query = $pdo->prepare(
+                    'UPDATE utilisateur SET Role=:adm WHERE id = :id'
+                );
+                $query->execute(['id'=>$id,'adm'=>$admin]);
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+        }
+function  setpictodefault($id)
+{
+            try {
+                $pdo = getConnexion();
+                $admin="Unknown.png";
+                $query = $pdo->prepare(
+                    'UPDATE utilisateur SET Picture=:adm WHERE id = :id'
+                );
+                $query->execute(['id'=>$id,'adm'=>$admin]);
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+        }        
+
+function updateUSER($New_User, $id, $facture) {
+            try
+              {
+                $pdo = getConnexion();
+                $zero=0;
+                $query = $pdo->prepare(
+                    'UPDATE utilisateur SET Nom=:Nom, Prenom=:Prenom, Email=:email, Date_N=:Date_N, Login=:login, Password=:Password, sexe=:sexe, Facture=:Facture WHERE id=:id'
+                );
+                $query->execute([
+                    'Nom' => $New_User->nom,
+                    'Prenom' => $New_User->prenom,
+                    'email' => $New_User->email,
+                    'Date_N' => $New_User->date,
+                    'login' => $New_User->login,
+                    'Password' => $New_User->password,
+                    'sexe' => $New_User->sexe,
+                    'id'=> $id,
+                    'Facture'=>$facture                     
+                ]);}
+             catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+    } 
 ?>

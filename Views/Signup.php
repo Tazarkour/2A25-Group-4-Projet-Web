@@ -15,6 +15,7 @@
 	<div class="page-content">
 		<div class="form-v5-content">
 			<?php
+			$id=0;
 			include "../Controller/UserC.php";
 			require_once "../Model/User.php";	
 			if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["Date_N"]) && isset($_POST["sexe"]) && isset($_POST["email"]) && isset($_POST["Login"]) && isset($_POST["password"]) && isset($_POST["password2"])) 
@@ -24,7 +25,7 @@
 					echo "Les deux mot de passes sont differents";
 				else
 				{
-					Check_Info ($New_User->email,$New_User->login);
+					Check_Info ($New_User->email,$New_User->login,$id);
 					if (Check_Info ($New_User->email,$New_User->login))
 					{
  						user_creation($New_User);

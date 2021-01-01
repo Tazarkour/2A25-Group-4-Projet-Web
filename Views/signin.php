@@ -25,6 +25,7 @@
 					 if ($x!==0)
 					 {
 					 	 Connect ($x);
+					 	 echo("<script>location.href = 'Affichertoutusers.php';</script>");
 					 }
 				}
 				else echo "Remplissez les champs";

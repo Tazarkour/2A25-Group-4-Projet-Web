@@ -116,7 +116,7 @@ if (isset($_GET["idcomment"]))
           </div>
         </div>
         <br>
-         <?php }afficher_comments($id,$_SESSION["e"]); ?>
+         <?php }afficher_comments($id,$_SESSION["e"],$_SESSION["role"]); ?>
 
 
 

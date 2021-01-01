@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
+{
+  if ($_SESSION["role"]=="admin")
+  {
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,6 +46,11 @@
             <!--logo start-->
             <a href="index.html" class="logo"><b>DASHGUM FREE</b></a>
             <!--logo end-->
+             <div class="top-menu">
+              <ul class="nav pull-right top-menu">
+                    <li><a class="logout" href="login.html">Logout</a></li>
+              </ul>
+            </div>
                                 
         </header>
       <!--header end-->
@@ -52,8 +64,9 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-              	  <p class="centered"><a href="profile.html"><img src="../assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered">Marcel Newman</h5>
+              	  <p class="centered"><a href="profile.html"><img src="../assets/img/<?php echo $_SESSION["Picture"];?>" class="img-circle" width="60"></a></p>
+                  <h5 class="centered"><?php echo $_SESSION["Nom"]." ".$_SESSION["Prenom"]; ?></h5>
+                  <h6 class="centered"><?php echo $_SESSION["role"]?></h6>
               	  	
                   <li class="mt">
                       <a href="index.html">
@@ -61,8 +74,15 @@
                           <span>Dashboard</span>
                       </a>
                   </li>
-
-                  
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-cogs"></i>
+                          <span>Gérer Comptes</span>
+                      </a>
+                      <ul class="sub">
+                          <li ><a  href="Affichertoutusers.php">Gérer les Comptes</a></l>
+                      </ul>
+                  </li>
                   <li class="sub-menu">
                       <a class="active" href="javascript:;" >
                           <i class="fa fa-book"></i>
@@ -95,14 +115,7 @@
 
       <!--main content end-->
       <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-              2014 - Alvarez.is
-              <a href="blank.html#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
-          </div>
-      </footer>
+      
       <!--footer end-->
   </section>
 
@@ -132,3 +145,8 @@
 
   </body>
 </html>
+<?php }
+else echo "Access denied to non admins";
+}
+else   echo("<script>location.href = 'signin.php';</script>");
+?>

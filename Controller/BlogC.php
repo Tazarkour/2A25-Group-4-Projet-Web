@@ -227,7 +227,7 @@ function get_post_by_id($id)
   return $post;
 }
 
-function afficher_comments($id, $id_user)
+function afficher_comments($id, $id_user, $role)
 {
   $conn = getConnexion1();
   if ($conn->connect_error) 
@@ -248,7 +248,7 @@ function afficher_comments($id, $id_user)
             <h5 class="mt-0"><?php echo $row["Nom_User"]; ?></h5>
            <?php echo $row["message"]; ?>
             <h6 class="mt-0">Posted on <?php echo $row["date_p"]; ?></h6>
-             <?php if ($id_user==$row["id_user"]) { ?>
+             <?php if ($id_user==$row["id_user"] || $role=="admin") { ?>
               <a href="read_post.php?id=<?php echo $row['id_post'];?>&idcomment=<?php echo $row["id"];?>"> Supprimer</a>
             <?php } ?>
           </div>
@@ -294,13 +294,30 @@ function  deletecomment($id)
 }
 
 
-function  affichertoutposts()
+function  affichertoutposts($tri)
 {
    try {
                 $pdo = getConnexion();
+                if ($tri==="DA"){
+                $query = $pdo->prepare(
+                    'SELECT * FROM review_post ORDER BY date_p ASC'
+                );}
+                if ($tri==="DS"){
+                $query = $pdo->prepare(
+                    'SELECT * FROM review_post ORDER BY date_p DESC'
+                );}
+                if ($tri==="NA"){
+                $query = $pdo->prepare(
+                    'SELECT * FROM review_post ORDER BY Titre ASC'
+                );}
+                if ($tri==="ND"){
+                $query = $pdo->prepare(
+                    'SELECT * FROM review_post ORDER BY Titre DESC'
+                );}
+                if ($tri===""){
                 $query = $pdo->prepare(
                     'SELECT * FROM review_post'
-                );
+                );}
                 $query->execute();
                 return $query->fetchAll();}
             catch (PDOException $e) {
