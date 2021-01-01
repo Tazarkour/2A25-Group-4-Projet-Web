@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -21,13 +23,14 @@
 	<form class="registration-form" NAME="f" action="connexion.php" method="POST">
 		<label class="col-one-half">
 			<span class="label-text">Nom</span>
-			<input type="text" name="nom",id="nom">
+			<input value="<?php echo $_SESSION["Nom"];?>" type="text" name="nom",id="nom" disabled>
 		</label>
 		<label class="col-one-half">
 			<span class="label-text">Activté</span>
 			  <?PHP
 			   include "../models/activites.php";
  include "../controller/ActivitesC.php";
+ 
 $ActivitesC=new ActivitesC();
     $listeActivites=$ActivitesC->getselect();?>
                    
@@ -38,16 +41,12 @@ $ActivitesC=new ActivitesC();
          </select>
 		</label>
 		<label>
-			<span class="label-text">date</span>
-			<input type="date" name="date" id="date">
-		</label>
-		<label>
 			<span class="label-text">places</span>
 			<input type="number" name="places" id="places">
 		</label>
 		<label>
 			<span class="label-text">email</span>
-			<input type="text" name="email" id="email">
+			<input value="<?php echo $_SESSION["Email"];?>" type="text" name="email" id="email" disabled>
 		</label>
 		<label class="checkbox">
 			<input type="checkbox" name="newsletter" >

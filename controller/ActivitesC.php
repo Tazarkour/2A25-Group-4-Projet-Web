@@ -33,6 +33,38 @@
                 $e->getMessage();
             }
         }
+        public function afficherActivites1($tri) {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM activites1'
+                );
+                if (isset($tri))
+                {if ($tri=="AZ")
+                {$query = $pdo->prepare(
+                    'SELECT * FROM activites1 ORDER BY nom ASC'
+                );}
+
+                    if ($tri=="ZA")
+                    {$query = $pdo->prepare(
+                        'SELECT * FROM activites1 ORDER BY nom DESC '
+                    );}
+                    if ($tri=="I")
+                    {$query = $pdo->prepare(
+                        'SELECT * FROM activites1 ORDER BY id ASC '
+                    );}
+                    if ($tri=="P")
+                    {$query = $pdo->prepare(
+                        'SELECT * FROM activites1 ORDER BY places ASC '
+                    );}
+                }
+
+                $query->execute();
+                return $query->fetchAll();
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        }
 
         public function getActivitesById($id) {
             try {
@@ -64,18 +96,19 @@
             }
         }
 
-        public function connexion($activites) {
+        public function connexion($activites,$id) {
             try {
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'INSERT INTO activites(nom, id_activites, places, dateS)
-                VALUES (:nom, :id_activites, :places,:dateS)'
+                    'INSERT INTO activites(nom, id_activites, places,id_user)
+                VALUES (:nom, :id_activites, :placesS,:id_user)'
                 );
                 $query->execute([
                     'nom' => $activites->getNom(),
                     'id_activites' => $activites->getActivites(),
                     'places' => $activites->getPlaces(),
-					'dateS' => $activites->getDateS(),
+                    'id_user' => $id
+                    
                 ]);
             } catch (PDOException $e) {
                echo $e->getMessage();
@@ -86,17 +119,32 @@
             try {
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'UPDATE activites SET dateS= :date, nom=:nom,activites = :activites, places= :places WHERE id = :id'
+                    'UPDATE activites SET  nom=:nom,activites = :activites, places= :places WHERE id = :id'
                 );
                 $query->execute([
-				 'date' => $activites->getDateS(),
 				 'nom' => $activites->getNom(),
-                    'activites' => $activites->getActivites(),
 					'places' => $activites->getPlaces(),
                     'id' => $id
                 ]);
              echo $id;
               echo $query->rowCount() . " records UPDATED successfully";
+            } catch (PDOException $e) {
+               echo $e->getMessage();
+            }
+        }
+        public function modifierActivites1($nom, $places,$id) {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'UPDATE activites1 SET  nom=:nom, places= :places WHERE id = :id'
+                );
+                $query->execute([
+				 'nom' => $nom,
+				 'places' => $places,
+                    'id' => $id
+                ]);
+             echo $id;
+             $query->rowCount(); 
             } catch (PDOException $e) {
                echo $e->getMessage();
             }
@@ -107,6 +155,19 @@
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
                     'DELETE FROM activites WHERE id= :id'
+                );
+                $query->execute([
+                    'id' => $id
+                ]);
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        }
+        public function supprimerActivites1($id) {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'DELETE FROM activites1 WHERE id= :id'
                 );
                 $query->execute([
                     'id' => $id
@@ -137,25 +198,25 @@
             $headers = "From: istupid692@gmail.com\r\n";
             $to = $activites->email;
             $subject = "confirmation de reservation";
-            $message = "Bonjour Mr/Mme ".$activites->nom." je vous confirme qu'on a bien reçu votre reservation pour l'activité ".$activites->activites." le ".$activites->dateS." pour ".$activites->places." personnes. ";
+            $message = "Bonjour Mr/Mme ".$activites->nom." je vous confirme qu'on a bien reçu votre reservation pour aujourd'hui pour ".$activites->places." personnes. ";
             if (mail($to, $subject, $message, $headers))
                 echo 'Success!';
             else
                 echo 'UNSUCCESSFUL...';
 
         }
-        public function connexion1($post) {
+        public function connexion1($post,$id) {
             try {
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'INSERT INTO activites (nom, id_activites,dateS,places) 
-                VALUES (:nom, :activites, :dateS,:places)'
+                    'INSERT INTO activites (nom, id_activites,places,id_user) 
+                VALUES (:nom,:id_activites,:places,:id_user)'
                 );
                 $query->execute([
                     'nom' => $post->nom,
-                    'activites' => $post->activites,
-                    'dateS' => $post->dateS,
-                    'places' => $post->places
+                    'id_activites'=>  $post->activites, 
+                    'places' => $post->places,
+                    'id_user' => $id
 
                 ]);
                 echo "Posted Successfully";

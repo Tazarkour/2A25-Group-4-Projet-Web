@@ -17,10 +17,9 @@
 		<title> Afficher Liste Utilisateurs </title>
     </head>
     <body>
-		<button><a href="form.html">Ajouter activites</a></button>
+		<button><a href="form.php">Ajouter activites</a></button>
         <a href="afficherActivites.php?tri=AZ"> Alphabetique A-Z</a>
         <a href="afficherActivites.php?tri=ZA"> Alphabetique Z-A</a>
-        <a href="afficherActivites.php?tri=D"> Date</a>
         <a href="afficherActivites.php?tri=P"> Places</a>
 		<hr>
 
@@ -28,8 +27,6 @@
 			<tr>
 				<th>Id</th>
 				<th>Nom</th>
-				<th>Activites</th>
-				<th>DateS</th>
 				<th>Places</th>
 				<th>supprimer</th>
 				<th>modifier</th>
@@ -41,8 +38,6 @@
 				<tr>
 					<td><?PHP echo $activites['id']; ?></td>
 					<td><?PHP echo $activites['nom']; ?></td>
-					<td><?PHP echo $activites['activites']; ?></td>
-					<td><?PHP echo $activites['dateS']; ?></td>
 					<td><?PHP echo $activites['places']; ?> </td>
 					<td>
 						<form method="POST" action="supprimerActivites.php">
