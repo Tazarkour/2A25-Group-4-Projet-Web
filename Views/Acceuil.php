@@ -55,7 +55,9 @@
   echo "<li><a href = 'DashboardAdmin.php'>Admin Space</a></li>";
 
 
-} if (!isset($_SESSION["e"]))
+}
+
+ if (!isset($_SESSION["e"]))
     {
 
 

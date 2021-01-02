@@ -11,5 +11,5 @@ unset($_SESSION['Password']);
 unset($_SESSION['Facture']);
 unset($_SESSION['role']);
 session_destroy();
-header("Location: Signin.php");
+header("Location: Views/Acceuil.php");
 ?>

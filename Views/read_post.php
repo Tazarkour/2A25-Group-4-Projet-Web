@@ -3,7 +3,6 @@ include "../Controller/BlogC.php";
 include "../Model/bloc.php";
 $post=new post();
 $id=$_GET["id"];
-echo $id;
 session_start();
 $post=get_post_by_id($id);
 if (isset($_POST["message"]) && isset($_SESSION )&& !empty($_SESSION["e"]))
@@ -52,15 +51,15 @@ if (isset($_GET["idcomment"]))
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="Acceuil.php">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Blog</a>
+            <a class="nav-link" href="WatchBlogPost.php.">Blog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Account</a>
+            <a class="nav-link" href="">Account</a>
           </li>
         </ul>
       </div>
