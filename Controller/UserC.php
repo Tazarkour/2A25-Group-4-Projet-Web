@@ -64,7 +64,6 @@ function verification_sign_in ($Login, $Password)
                     'Password' =>  $Password]);
       $count=$query->rowCount();
       if ($count==0){
-        echo "le mote de passe ou le pseudo est incorrecte";
         return 0;
       }
       else
@@ -235,4 +234,20 @@ function updateUSER($New_User, $id, $facture) {
                 echo $e->getMessage();
             }
     } 
+    function disconnect()
+    {
+
+      session_start();
+unset($_SESSION['e']);
+unset($_SESSION['Nom']);
+unset($_SESSION['Prenom']);
+unset( $_SESSION['Sexe']);
+unset($_SESSION['Email']);
+unset($_SESSION['Date']);
+unset($_SESSION['Login']);
+unset($_SESSION['Password']);
+unset($_SESSION['Facture']);
+unset($_SESSION['role']);
+session_destroy();
+    }
 ?>

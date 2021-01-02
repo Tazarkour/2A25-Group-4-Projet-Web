@@ -15,6 +15,7 @@
 	<div class="page-content">
 		<div class="form-v5-content">
 			<?php
+			$error="0";
 			$id=0;
 			include "../Controller/UserC.php";
 			require_once "../Model/User.php";	
@@ -22,7 +23,7 @@
 			{ 
 				$New_User=new User($_POST["nom"],$_POST["prenom"],$_POST["sexe"],$_POST["email"],$_POST["Date_N"],$_POST["Login"],$_POST["password"]);
 				if ($_POST["password"]!=$_POST["password2"])
-					echo "Les deux mot de passes sont differents";
+					$error= "Les deux mot de passes sont differents";
 				else
 				{
 					Check_Info ($New_User->email,$New_User->login,$id);
@@ -36,6 +37,9 @@
 			?>
 			<form class="form-detail" action="Signup.php" method="post">
 				<h2>Register Account Form</h2>
+				<div class="form-row">
+					<p value="<?php echo $error;?>">
+				</div>
 				<div class="form-row">
 					<label for="full-name">Nom</label>
 					<input type="text" name="nom" id="nom" class="input-text" placeholder="Nom" required>

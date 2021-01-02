@@ -17,6 +17,7 @@
 
 			include "../Controller/UserC.php";
 			require_once "../Model/User.php";
+			$error="";
 			if (isset($_POST["Login"]) && isset($_POST["password"]))
 			{
 				if (!empty($_POST["Login"]) && !empty($_POST["password"]))
@@ -27,15 +28,19 @@
 					 	 Connect ($x);
 					 	 echo("<script>location.href = 'Affichertoutusers.php';</script>");
 					 }
+					 else $error= "****Le mote de passe ou le pseudo est incorrecte";
 				}
-				else echo "Remplissez les champs";
+				else $error= "Remplissez les champs";
 			}	
 
 
 		?>
 		<div class="form-v5-content">
 			<form class="form-detail" action="signin.php" method="post">
-				<h2>Register Account Form</h2>
+				<h2>Login</h2>
+				<div class="form-row">
+					<h5><?php echo $error;?></h5>
+				</div>
 				<div class="form-row">
 					<label for="full-name">Login</label>
 					<input type="text" name="Login" id="Login" class="input-text" placeholder="Inserer votre login" required>
@@ -48,7 +53,7 @@
 				</div>
 				<div class="form-row">
 					Vous n'avez pas de compte ?
-					<a href="Signyp.php">Register</a>
+					<a href="Signup.php">Register</a>
 				<div class="form-row-last">
 					<input type="submit" name="register" class="register" value="Login">
 				</div>
