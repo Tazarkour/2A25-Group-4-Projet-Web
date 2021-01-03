@@ -28,7 +28,7 @@ function afficherposts($search, $tri)
         {
         ?>
           <div class="card mb-4">
-          <img class="card-img-top" src= <?php echo "../assets/img/".$row["picture"]." width="."750"." height="."300";?> >
+          <img class="card-img-top" src= <?php echo "../assets/img/blog/".$row["picture"]." width="."750"." height="."300";?> >
           <div class="card-body">
             <h2 class="card-title"><?php echo $row["Titre"];?></h2>
             <p class="card-text" ><?php echo $row["Message"]; ?></p> 
@@ -49,7 +49,7 @@ function afficherposts($search, $tri)
         
         ?>
           <div class="card mb-4">
-          <img class="card-img-top" src= <?php echo "../assets/img/".$row["picture"]." width="."750"." height="."300";?> >
+          <img class="card-img-top" src= <?php echo "../assets/img/blog/".$row["picture"]." width="."750"." height="."300";?> >
           <div class="card-body">
             <h2 class="card-title"><?php echo $row["Titre"];?></h2>
             <p class="card-text" ><?php echo $row["Message"]; ?></p> 
@@ -85,7 +85,7 @@ function afficherpostsMod($search, $tri)
         {
         ?>
           <div class="card mb-4">
-          <img class="card-img-top" src= <?php echo "../assets/img/".$row["picture"]." width="."750"." height="."300";?> >
+          <img class="card-img-top" src= <?php echo "../assets/img/blog/".$row["picture"]." width="."750"." height="."300";?> >
           <div class="card-body">
             <h2 class="card-title"><?php echo $row["Titre"];?></h2>
             <p class="card-text" ><?php echo $row["Message"]; ?></p> 
@@ -111,11 +111,11 @@ function afficherpostsMod($search, $tri)
         
         ?>
           <div class="card mb-4">
-          <img class="card-img-top" src= <?php echo "../assets/img/".$row["picture"]." width="."750"." height="."300";?> >
+          <img class="card-img-top" src= <?php echo "../assets/img/blog/".$row["picture"]." width="."750"." height="."300";?> >
           <div class="card-body">
             <h2 class="card-title"><?php echo $row["Titre"];?></h2>
             <p class="card-text" ><?php echo $row["Message"]; ?></p> 
-            <a href="#" class="btn btn-primary">Read More &rarr;</a>
+            <a href="read_post.php?id=<?= $row['id'] ?>" class="btn btn-primary">Read More &rarr;</a>
             <form NAME="f" action="ModBlogPost.php" method="POST">
               <input id="id" name="id" value="<?= $row['id'] ?>" hidden>
             <a href="Update.php?id=<?= $row['id'] ?>" class="btn btn-primary" style="margin:5px;">Modifier</a>    
@@ -243,7 +243,7 @@ function afficher_comments($id, $id_user, $role)
         
         ?>
           <div class="media mb-4">
-          <img class="d-flex mr-3 rounded-circle" src="../Assets/img/<?php echo $row["Picture"];?>" width ="50" height="50" alt="">
+          <img class="d-flex mr-3 rounded-circle" src="../Assets/img/blog/<?php echo $row["Picture"];?>" width ="50" height="50" alt="">
           <div class="media-body">
             <h5 class="mt-0"><?php echo $row["Nom_User"]; ?></h5>
            <?php echo $row["message"]; ?>
@@ -332,6 +332,34 @@ function  afficheronepost($id)
                     'SELECT * FROM review_post WHERE id = :id'
                 );
                 $query->execute(['id' => $id]);
+                return $query->fetchAll();
+              }
+            catch (PDOException $e) {
+              echo  $e->getMessage();
+            }
+}
+function count_Number_blogs()
+{
+   try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'COUNT(SELECT * FROM review_post)'
+                );
+                $query->execute();
+                return $query->fetchAll();
+              }
+            catch (PDOException $e) {
+              echo  $e->getMessage();
+            }
+}
+function count_Number_comm()
+{
+   try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'COUNT(SELECT * FROM comment)'
+                );
+                $query->execute();
                 return $query->fetchAll();
               }
             catch (PDOException $e) {

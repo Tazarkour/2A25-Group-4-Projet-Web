@@ -3,14 +3,22 @@ require "../Controller/BlogC.php";
 require "../model/bloc.php";
 
 
-    if (isset($_POST['name']) && isset($_POST['post']) && isset($_POST['image'])) {
+    if (isset($_POST['name']) && isset($_POST['post'])) {
+        echo "rerere";
+        include "../file_upload.php";
         $post =  new post();
         $post->nom = $_POST["name"];
         $post->text = $_POST["post"];
-        $post->picture = $_POST["image"];
+        $post->picture = basename($_FILES["image"]["name"]);
+        echo $post->picture; 
         addReveiw($post);
-        sendmail ();
-    }
+        /*sendmail ();*/
+
+    
+
+
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +29,7 @@ require "../model/bloc.php";
     </head>
 <body>
 <h1>Post</h1>    
-    <form NAME="f" action="blank.php" method="POST">
+    <form NAME="f" action="blank.php" method="POST" enctype="multipart/form-data">
     <table border="1" width="80%">
         <tr>
             <th align="left" rowspan ="8">
@@ -54,7 +62,7 @@ require "../model/bloc.php";
         </label>
             </th>
             <th align="left">
-        <input type="file" id="image" name="image"  required>
+        <input type="file"  name="image" id="image"  required>
             </th>
         </tr>
                     
@@ -62,7 +70,7 @@ require "../model/bloc.php";
             <th align="left">
             </th>
             <th align="left">
-                <button type="submit" class="btn btn-success">Envoyer</button>
+                <button type="submit" name="submit" class="btn btn-success">Envoyer</button>
             </th>
         </tr>
     </table>

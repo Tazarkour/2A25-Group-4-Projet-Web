@@ -21,21 +21,19 @@
             $id=$_SESSION["e"];
             $list=Get_one_User_Info ($id);
             if (isset($_POST["password"]) && isset($_POST["password2"])&& isset($_POST["passwordA"])) 
-            {
-                $New_User=new User($_SESSION["nom"],$_SESSION["prenom"],$_SESSION["sexe"],$_SESSION["email"],$_SESSION["Date_N"],$_SESSION["Login"],$_POST["password"]);
-                $facture=$_POST["facture"];
+            {$MDP=$_POST["password"];
                 if($_POST["passwordA"]==$_SESSION["Password"])
                 {if ($_POST["password"]!=$_POST["password2"])
                     echo "Les deux mot de passes sont differents";
                 else
                 {
-                    Check_Info ($New_User->email,$New_User->login,$id);
-                    if (Check_Info ($New_User->email,$New_User->login,$id))
-                    {
-                        updateUSER($New_User, $id, $facture);
+                    
+                    
+                    
+                        updateUmdp($MDP, $id);
                         disconnect();
                          echo("<script>location.href = 'signin.php';</script>");
-                    }
+                    
                 }
                 
             } else echo "l'ancien mot de passe est faux";

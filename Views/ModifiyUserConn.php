@@ -43,7 +43,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>DASHGUM FREE</b></a>
+            <a href="index.html" class="logo"><b>Radisson Blu</b></a>
             <!--logo end-->
                   <div class="top-menu">
               <ul class="nav pull-right top-menu">
@@ -67,7 +67,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                   <h6 class="centered"><?php echo $_SESSION["role"]?></h6>
                     
                   <li class="mt">
-                      <a href="index.html">
+                      <a href="DashboardUser.php">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
@@ -78,9 +78,10 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                           <span>Gérer Comptes</span>
                       </a>
                       <ul class="sub">
-                          <li class="active"><a  href="Affichertoutusers.php">Gérer Votre Compte</a></li>
+                          <li class="active"><a  href="ModifiyUserConn.php">Gérer Votre Compte</a></li>
                             <li><a  href="ModifyUserPass.php">Modifier Mot de passe</a></li>
-                            <li><a  href="Affichertoutusers.php">Supprimer Votre Compte</a></li>
+                            <li><a  href="SupprimerUserConn.php">Supprimer Votre Compte</a></li>
+                            <li><a  href="SupprimerUserConn.php">Modifier Votre Photo</a></li>
 
                       </ul>
                   </li>

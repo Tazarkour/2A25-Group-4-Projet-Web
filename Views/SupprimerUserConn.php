@@ -1,9 +1,15 @@
 <?php
 session_start();
+require_once "../Controller/UserC.php";
+
 if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
 {
-  if ($_SESSION["role"]=="admin")
+  if (isset($_POST["supp"]))
   {
+    deleteuser($_SESSION["e"]);
+     header("Location : disconnect.php");
+  }
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,14 +50,13 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="Acceuil.php" class="logo"><b>DASHGUM FREE</b></a>
+            <a href="index.html" class="logo"><b>Radisson Blu</b></a>
             <!--logo end-->
-             <div class="top-menu">
+                  <div class="top-menu">
               <ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="login.html">Logout</a></li>
+                    <li><a class="logout" href="../disconnect.php">Logout</a></li>
               </ul>
-            </div>
-                                
+            </div>               
         </header>
       <!--header end-->
       
@@ -69,28 +74,22 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                   <h6 class="centered"><?php echo $_SESSION["role"]?></h6>
                     
                   <li class="mt">
-                      <a href="DashboardAdmin.php">
+                      <a href="DashboardUser.php">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
                   </li>
-                  <li class="sub-menu">
+                  <li class="sub-menu" class="active">
                       <a href="javascript:;" >
                           <i class="fa fa-cogs"></i>
                           <span>Gérer Comptes</span>
                       </a>
                       <ul class="sub">
-                          <li ><a  href="Affichertoutusers.php">Gérer les Comptes</a></l>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a class="active" href="javascript:;" >
-                          <i class="fa fa-book"></i>
-                          <span>Blog</span>
-                      </a>
-                      <ul class="sub">
-                          <li ><a  href="blank.php">Ajouter un Blog Post</a></li>
-                          <li class="active"><a  href="Affichertoutposts.php">Afficher les Blog Posts</a></li>
+                          <li ><a  href="ModifiyUserConn.php">Gérer Votre Compte</a></li>
+                            <li><a  href="ModifyUserPass.php">Modifier Mot de passe</a></li>
+                            <li class="active"><a  href="SupprimerUserConn.php">Supprimer Votre Compte</a></li>
+                            <li><a  href="SupprimerUserConn.php">Modifier Votre Photo</a></li>
+
                       </ul>
                   </li>
               </ul>
@@ -105,7 +104,11 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper site-min-height">
-          	<?php include_once 'affichage.php'; ?>
+          	<form method="post" action="">
+            <h3>Est vous sure de vouloir supprimer votre compte :</h3>
+            <br>
+            <input Type="submit" value="Supprimer" class="btn btn-danger" name="supp">    
+            </form>
           		</div>
           	</div>
 			
@@ -144,8 +147,8 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
 
   </body>
 </html>
-<?php }
-else echo "Access denied to non admins";
+<?php 
+
 }
 else   echo("<script>location.href = 'signin.php';</script>");
 ?>

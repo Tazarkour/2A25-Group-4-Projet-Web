@@ -20,7 +20,7 @@
             require_once "../Model/User.php";   
             $id=$_SESSION["e"];
             $list=Get_one_User_Info ($id);
-            if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["Date_N"]) && isset($_POST["sexe"]) && isset($_POST["email"]) && isset($_POST["Login"]) && isset($_POST["password"]) && isset($_POST["password2"])) 
+            if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["Date_N"]) && isset($_POST["sexe"]) && isset($_POST["email"]) && isset($_POST["Login"]) && isset($_POST["register"]))
             {
                 $New_User=new User($_POST["nom"],$_POST["prenom"],$_POST["sexe"],$_POST["email"],$_POST["Date_N"],$_POST["Login"],$_SESSION["password"]);
                 $facture=$_POST["facture"];
@@ -31,13 +31,14 @@
                     Check_Info ($New_User->email,$New_User->login,$id);
                     if (Check_Info ($New_User->email,$New_User->login,$id))
                     {
-                        updateUSER($New_User, $id, $facture);
-                         echo("<script>location.href = 'Affichertoutusers.php';</script>");
+                        updateUSERssmdp($New_User, $id);
+                          disconnect();
+                         echo("<script>location.href = 'signin.php';</script>");
                     }
                 }
             } 
             foreach ($list as $Old_User) {?>
-            <form class="form-detail" action="modifierUser.php" method="post">
+            <form class="form-detail" action="ModifiyUserConn.php" method="post">
                 <h2>Register Account Form</h2>
                 <div class="form-row">
                     <label for="full-name">Nom</label>

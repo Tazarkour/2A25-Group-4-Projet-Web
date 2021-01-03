@@ -44,7 +44,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="Acceuil.php" class="logo"><b>DASHGUM FREE</b></a>
+            <a href="acceuil.php" class="logo"><b>Radisson Blu</b></a>
             <!--logo end-->
              <div class="top-menu">
               <ul class="nav pull-right top-menu">
@@ -68,7 +68,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                   <h5 class="centered"><?php echo $_SESSION["Nom"]." ".$_SESSION["Prenom"]; ?></h5>
                   <h6 class="centered"><?php echo $_SESSION["role"]?></h6>
                     
-                  <li class="mt">
+                  <li class="mt" class="active">
                       <a href="DashboardAdmin.php">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
@@ -84,15 +84,16 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                       </ul>
                   </li>
                   <li class="sub-menu">
-                      <a class="active" href="javascript:;" >
+                      <a href="javascript:;" >
                           <i class="fa fa-book"></i>
                           <span>Blog</span>
                       </a>
                       <ul class="sub">
                           <li ><a  href="blank.php">Ajouter un Blog Post</a></li>
-                          <li class="active"><a  href="Affichertoutposts.php">Afficher les Blog Posts</a></li>
+                          <li><a  href="Affichertoutposts.php">Afficher les Blog Posts</a></li>
                       </ul>
                   </li>
+
               </ul>
               <!-- sidebar menu end-->
           </div>
@@ -105,11 +106,11 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper site-min-height">
-          	<?php include_once 'affichage.php'; ?>
-          		</div>
-          	</div>
-			
-		</section><! --/wrapper -->
+            <?php include_once 'Info User.php'; ?>
+              </div>
+            </div>
+      
+    </section><! --/wrapper -->
       </section><!-- /MAIN CONTENT -->
 
       <!--main content end-->

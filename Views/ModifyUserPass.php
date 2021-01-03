@@ -67,7 +67,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                   <h6 class="centered"><?php echo $_SESSION["role"]?></h6>
                     
                   <li class="mt">
-                      <a href="index.html">
+                      <a href="DashboardUser.php">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
@@ -78,10 +78,11 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                           <span>Gérer Comptes</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="Affichertoutusers.php">Gérer Votre Compte</a></li>
+                          <li><a  href="ModifiyUserConn.php">Gérer Votre Compte</a></li>
                             <li class="active"><a  href="ModifyUserPass.php">Modifier Mot de passe</a>
                           </li>
-                            <li><a  href="Affichertoutusers.php">Supprimer Votre Compte</a></li>
+                            <li><a  href="SupprimerUserConn.php">Supprimer Votre Compte</a></li>
+                            <li><a  href="SupprimerUserConn.php">Modifier Votre Photo</a></li>
                       </ul>
                   </li>
               </ul>

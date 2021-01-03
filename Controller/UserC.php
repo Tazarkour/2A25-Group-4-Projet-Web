@@ -234,6 +234,43 @@ function updateUSER($New_User, $id, $facture) {
                 echo $e->getMessage();
             }
     } 
+    function updateUSERssmdp($New_User, $id) {
+            try
+              {
+                $pdo = getConnexion();
+                $zero=0;
+                $query = $pdo->prepare(
+                    'UPDATE utilisateur SET Nom=:Nom, Prenom=:Prenom, Email=:email, Date_N=:Date_N, Login=:login, sexe=:sexe WHERE id=:id'
+                );
+                $query->execute([
+                    'Nom' => $New_User->nom,
+                    'Prenom' => $New_User->prenom,
+                    'email' => $New_User->email,
+                    'Date_N' => $New_User->date,
+                    'login' => $New_User->login,
+                    'sexe' => $New_User->sexe,
+                    'id'=> $id                    
+                ]);}
+             catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+    } 
+     function updateUmdp($Pass, $id) {
+            try
+              {
+                $pdo = getConnexion();
+                $zero=0;
+                $query = $pdo->prepare(
+                    'UPDATE utilisateur SET Password=:Password WHERE id=:id'
+                );
+                $query->execute([
+                    'Password' => $Pass,
+                    'id'=> $id                  
+                ]);}
+             catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+    } 
     function disconnect()
     {
 
@@ -250,4 +287,18 @@ unset($_SESSION['Facture']);
 unset($_SESSION['role']);
 session_destroy();
     }
+    function count_Number_Users()
+{
+   try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'COUNT(SELECT * FROM utilsateur WHERE role="admin")'
+                );
+                $query->execute();
+                return $query->fetchAll();
+              }
+            catch (PDOException $e) {
+              echo  $e->getMessage();
+            }
+}
 ?>

@@ -26,7 +26,7 @@
 					 if ($x!==0)
 					 {
 					 	 Connect ($x);
-					 	 echo("<script>location.href = 'Affichertoutusers.php';</script>");
+					 	 echo("<script>location.href = 'Acceuil.php';</script>");
 					 }
 					 else $error= "****Le mote de passe ou le pseudo est incorrecte";
 				}
