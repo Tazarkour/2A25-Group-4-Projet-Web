@@ -5,7 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/../HOR/.idea/HOR.iml" filepath="$PROJECT_DIR$/../HOR/.idea/HOR.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/PROJET WEB.iml" filepath="$PROJECT_DIR$/.idea/PROJET WEB.iml" />
       <module fileurl="file://$USER_HOME$/Downloads/activites/.idea/activites.iml" filepath="$USER_HOME$/Downloads/activites/.idea/activites.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../tache yosr/.idea/tache yosr.iml" filepath="$PROJECT_DIR$/../tache yosr/.idea/tache yosr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../hotel booking/.idea/hotel booking.iml" filepath="$PROJECT_DIR$/../hotel booking/.idea/hotel booking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../yosr/.idea/tache yosr.iml" filepath="$PROJECT_DIR$/../yosr/.idea/tache yosr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../yosr/.idea/tache yosr1.iml" filepath="$PROJECT_DIR$/../yosr/.idea/tache yosr1.iml" />
     </modules>
   </component>
 </project>

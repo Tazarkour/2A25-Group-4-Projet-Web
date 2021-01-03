@@ -6,18 +6,18 @@ include "../config.php";
 
 class reservationC
 {
-    public function ajouterReservation($Reservation ,$qty,$idroom,$user)
-    { echo('hhh');
+    public function ajouterReservation($Reservation, $qty, $idroom, $user)
+    {
+        echo('hhh');
         $db = config::getConnexion();
-        $sql="INSERT INTO reservation ( idreservation,firstname, lastname, adresse,tel,email,nbn,date,room,rp,idroom,iduser)
+        $sql = "INSERT INTO reservation ( idreservation,firstname, lastname, adresse,tel,email,nbn,date,room,rp,idroom,iduser)
 			VALUES (:idreservation,:firstname,:lastname,:adresse,:tel,:email,:nbn,:date,:room,:rp,:idroom,:iduser)";
 
 
- $sql1=" UPDATE rooms SET qty = :qty - 1 where idroom= :idroom";
+        $sql1 = " UPDATE rooms SET qty = :qty - 1 where idroom= :idroom";
 
 
-
-        try{
+        try {
             $query = $db->prepare($sql);
             $query1 = $db->prepare($sql1);
             $query1->execute([
@@ -32,85 +32,88 @@ class reservationC
                 'adresse' => $Reservation->getAdresse(),
                 'tel' => $Reservation->getTel(),
                 'email' => $Reservation->getEmail(),
-                'date'=>$Reservation->getDate(),
+                'date' => $Reservation->getDate(),
 
                 'nbn' => $Reservation->getNbn(),
-                 'room' => $Reservation->getRoom(),
+                'room' => $Reservation->getRoom(),
                 'rp' => $Reservation->getRp(),
-               'idroom' => $Reservation->getIdroom(),
+                'idroom' => $Reservation->getIdroom(),
 
-                 'iduser' => $user
+                'iduser' => $user
 
 
             ]);
-        }
-        catch (Exception $e){
-            echo 'Erreur: '.$e->getMessage();
+        } catch (Exception $e) {
+            echo 'Erreur: ' . $e->getMessage();
         }
     }
-    function afficherReservation(){
 
-        $sql="SELECT * FROM reservation ";
+    function afficherReservation()
+    {
+
+        $sql = "SELECT * FROM reservation ";
         $db = config::getConnexion();
-        try{
+        try {
             $liste = $db->query($sql);
 
             return $liste;
-        }
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
         }
     }
 
-    function supprimerReservation($idreservation,$idroom){
-        $sql="DELETE FROM reservation WHERE idreservation= :idreservation";
-        $sql1=" UPDATE rooms SET qty = qty + 1 where idroom= :idroom";
+    function supprimerReservation($idreservation, $idroom)
+    {
+        $sql = "DELETE FROM reservation WHERE idreservation= :idreservation";
+        $sql1 = " UPDATE rooms SET qty = qty + 1 where idroom= :idroom";
         $db = config::getConnexion();
-        $req=$db->prepare($sql);
-        $req1=$db->prepare($sql1);
-        $req->bindValue(':idreservation',$idreservation);
-        $req1->bindValue(':idroom',$idroom);
-        try{
+        $req = $db->prepare($sql);
+        $req1 = $db->prepare($sql1);
+        $req->bindValue(':idreservation', $idreservation);
+        $req1->bindValue(':idroom', $idroom);
+        try {
             $req->execute();
             $req1->execute();
-        }
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
+        } catch (Exception $e) {
+            die('Erreur: ' . $e->getMessage());
         }
     }
 
- function updateReservation ($Reservation, $idreservation) {
-        try { echo('hhhh');
+    function updateReservation($Reservation, $idreservation)
+    {
+        try {
+            echo('hhhh');
             $db = config::getConnexion();
             $query = $db->prepare(
-                "UPDATE reservation SET idreservation=:idreservation, firstname=:firstname, lastname=:lastname, adresse=:adresse,tel=:tel,email=:email,nbn:=nbn,date=:date1,room=:room,rp=:rp ,idroom=:idroom WHERE idreservation = :idreservation"
+                "UPDATE reservation SET idreservation=:idreservation, firstname=:firstname, lastname=:lastname, adresse=:adresse,tel=:tel,email=:email,nbn:=nbn,date=:date1,room=:room,rp=:rp ,idroom=:idroom,iduser=:iduser WHERE idreservation = :idreservation"
             );
             echo "pass";
             echo
-                $Reservation->getFirstname()." "
-                .$Reservation->getLastname()." "
-                .$Reservation->getAdresse()." "
-                .$Reservation->getTel()." "
-                .$Reservation->getEmail()." "
-                . $Reservation->getNbn()." "
-                .$Reservation->getDate()." "
-                .$Reservation->getRoom()." "
-                .$Reservation->getRp()." "
-                .$Reservation->getIdroom()." "
-                .$idreservation,
+                $Reservation->getFirstname() . " "
+                . $Reservation->getLastname() . " "
+                . $Reservation->getAdresse() . " "
+                . $Reservation->getTel() . " "
+                . $Reservation->getEmail() . " "
+                . $Reservation->getNbn() . " "
+                . $Reservation->getDate() . " "
+                . $Reservation->getRoom() . " "
+                . $Reservation->getRp() . " "
+                . $Reservation->getIdroom() . " "
+                . $idreservation,
             $query->execute([
 
                 'firstname' => $Reservation->getFirstname(),
                 'lastname' => $Reservation->getLastname(),
                 'adresse' => $Reservation->getAdresse(),
                 'tel' => $Reservation->getTel(),
-                'email'=>$Reservation->getEmail(),
+                'email' => $Reservation->getEmail(),
                 'nbn' => $Reservation->getNbn(),
-                'date1'=>$Reservation->getDate(),
-                 'room' => $Reservation->getRoom(),
+                'date1' => $Reservation->getDate(),
+                'room' => $Reservation->getRoom(),
                 'rp' => $Reservation->getRp(),
-                  'idroom'=> $Reservation->getIdroom(),
-                  'idreservation' => $_GET["idreservation"]
+                'idroom' => $Reservation->getIdroom(),
+                'iduser' => $Reservation->getIduser(),
+                'idreservation' => $_GET["idreservation"]
             ]);
             echo "pass";
             echo $query->rowCount() . " reservation UPDATED successfully";
@@ -119,7 +122,8 @@ class reservationC
         }
     }
 
-    public function getReservationByFirstname($firstname) {
+    public function getReservationByFirstname($firstname)
+    {
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
@@ -133,7 +137,9 @@ class reservationC
             $e->getMessage();
         }
     }
-    public function getReservationById($idreservation) {
+
+    public function getReservationById($idreservation)
+    {
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
@@ -151,31 +157,35 @@ class reservationC
     }
 
 
-
-    public function afficherActivites($tri) {
+    public function afficherActivites($tri)
+    {
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
                 'SELECT * FROM reservation'
             );
-            if (isset($tri))
-            {if ($tri=="AZ")
-            {$query = $db->prepare(
-                'SELECT * FROM reservation ORDER BY firstname  ASC'
-            );}
+            if (isset($tri)) {
+                if ($tri == "AZ") {
+                    $query = $db->prepare(
+                        'SELECT * FROM reservation ORDER BY firstname  ASC'
+                    );
+                }
 
-                if ($tri=="ZA")
-                {$query = $db->prepare(
-                    'SELECT * FROM reservation ORDER BY firstname DESC '
-                );}
-                if ($tri=="D")
-                {$query = $db->prepare(
-                    'SELECT * FROM reservation ORDER BY adresse ASC '
-                );}
-                if ($tri=="P")
-                {$query = $db->prepare(
-                    'SELECT * FROM reservation ORDER BY lastname ASC '
-                );}
+                if ($tri == "ZA") {
+                    $query = $db->prepare(
+                        'SELECT * FROM reservation ORDER BY firstname DESC '
+                    );
+                }
+                if ($tri == "D") {
+                    $query = $db->prepare(
+                        'SELECT * FROM reservation ORDER BY adresse ASC '
+                    );
+                }
+                if ($tri == "P") {
+                    $query = $db->prepare(
+                        'SELECT * FROM reservation ORDER BY lastname ASC '
+                    );
+                }
             }
 
             $query->execute();
@@ -186,13 +196,12 @@ class reservationC
     }
 
 
-
     public function sendmail($reservation)
     {
         $headers = "From: hotelfarcha5etoile@gmail.com\r\n";
         $to = $reservation->email;
         $subject = "confirmation de reservation";
-        $message = "Bonjour Mr/Mme ".$reservation->firstname." je vous confirme qu'on a bien reçu votre reservation pour la chambre le ".$reservation->date." pour ".$reservation->nbn." nuits. SOYEZ LA BIENVENUE";
+        $message = "Bonjour Mr/Mme " . $reservation->firstname . " je vous confirme qu'on a bien reçu votre reservation pour la chambre le " . $reservation->date . " pour " . $reservation->nbn . " nuits. SOYEZ LA BIENVENUE";
         if (mail($to, $subject, $message, $headers))
             echo 'Success!';
         else
@@ -202,31 +211,32 @@ class reservationC
 
 
 
-
-
 }
 class roomC
 {
-    function addRoom($Room) {
+    function addRoom($Room)
+    {
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
-                'INSERT INTO rooms (idroom, roomtype, price,photo) 
-                VALUES (:idroom, :roomtype, :price,:photo)'
+                'INSERT INTO rooms (idroom, roomtype, price,photo,qty) 
+                VALUES (:idroom, :roomtype, :price,:photo,:qty)'
             );
             $query->execute([
                 'idroom' => $Room->getIdroom(),
                 'roomtype' => $Room->getRoomtype(),
                 'price' => $Room->getPrice(),
                 'photo' => $Room->getPhoto(),
+                'qty' => $Room->getQty(),
             ]);
             echo "Posted Successfully";
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
     }
-}
 
+
+}
 
 function afficherrooms($search)
 {  $db = config::getConnexion();
@@ -294,8 +304,8 @@ function afficherrooms($search)
 
                                           <?php }  ?>
                                 <?php if($row["qty"]  == 0){  ?>
-                                    <button href="index1.php" name="submit" type="submit" onclick="disabled=true;" class="btn disabled btn-primary"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                                        &nbsp;Book Now</button>
+                                    <button href="index1.php" name="submit" type="submit" onclick="disabled=true;" class="btn disabled btn-primary" ><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                        &nbsp;Book Now </button>
 
 
                                     <p>sorry, not available</p>                                <?php }  ?>
@@ -342,20 +352,10 @@ function afficherrooms1($search)
 
 
         ?>
-        <div class="col-lg-4 mb-4">
-            <div class="card h-100">
-                <h1 class="card-header"><?php echo $row["roomtype"];?></h1>
-                <div class="card-body">
-                    <div class="display-4"><?php echo $row["price"];?></div>
-                    <div class="display-4"><?php echo $row["qty"];?></div>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"></li>
+        <div class="image-holder">
+            <img src= <?php echo "./img/".$row["photo"]." width="."1000"." height="."400";;?>>
 
-                    <img class="card-img-top" src= <?php echo "img/".$row["photo"]." width="."750"." height="."300";?> >
-
-                </ul>
-            </div>
+            <h3><?php echo $row["roomtype"];?></h3>
         </div>
 
 

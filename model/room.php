@@ -9,6 +9,7 @@ class Room
    private $roomtype=null;
     private $price=null;
    private $photo;
+   private $qty=null;
 
     /**
      * room constructor.
@@ -17,13 +18,17 @@ class Room
      * @param $price
      * @param $photo
      */
-    public function __construct( $roomtype, $price, $photo)
+    public function __construct( $roomtype, $price, $photo,$qty)
     {
 
         $this->roomtype = $roomtype;
         $this->price = $price;
         $this->photo = $photo;
-    }
+        $this->qty = $qty;
+    }/**
+ * @return mixed
+ */
+
 
     /**
      * @return mixed
@@ -88,6 +93,24 @@ class Room
     {
         $this->photo = $photo;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getQty()
+    {
+        return $this->qty;
+    }
+
+    /**
+     * @param mixed $qty
+     */
+    public function setQty($qty): void
+    {
+        $this->qty = $qty;
+    }
+
+
 
 
 }
