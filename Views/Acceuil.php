@@ -41,7 +41,7 @@
     <li><a href = "#header">home</a></li>
    <li><a href = "#services">services</a></li>
    <li><a href = "WatchBlogPost.php">Blog</a></li>
-   <li><a href = "#services">acttivité</a></li>
+   <li><a href = "form.php">acttivité</a></li>
    <li><a href = "#services">services</a></li>
     <li><a href = "#rooms">rooms</a></li>
     <?php if (isset($_SESSION["e"]))

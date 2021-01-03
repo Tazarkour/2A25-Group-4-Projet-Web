@@ -84,7 +84,7 @@ if (isset($_GET["idcomment"]))
         <hr>
 
         <!-- Preview Image -->
-        <img class="img-fluid rounded" src=<?php echo "../assets/img/".$post->picture." width="."900"." height="."300"; ?>" alt=">
+        <img class="img-fluid rounded" src=<?php echo "../assets/img/blog/".$post->picture." width="."900"." height="."300"; ?>" alt=">
 
         <hr>
 

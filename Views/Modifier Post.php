@@ -14,7 +14,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>DASHGUM - Bootstrap Admin Template</title>
+    <title>Modify Post</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
@@ -44,7 +44,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="Acceuil.php" class="logo"><b>DASHGUM FREE</b></a>
+            <a href="Acceuil.php" class="logo"><b>Radisson Blu</b></a>
             <!--logo end-->
              <div class="top-menu">
               <ul class="nav pull-right top-menu">
@@ -94,6 +94,16 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                       </ul>
                   </li>
               </ul>
+              <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-book"></i>
+                          <span>Activité</span>
+                      </a>
+                      <ul class="sub">
+                          <li ><a  href="Act_gestion1.php">Gérer Les Activités</a></li>
+                          <li ><a  href="Act_Gestion.php">Gérer Les Réservations</a></li>
+                      </ul>
+                  </li>
               <!-- sidebar menu end-->
           </div>
       </aside>
@@ -114,13 +124,14 @@ require "../model/bloc.php";
          $poste=afficheronepost($id);         
     }
 
-    if (isset($_POST['name']) && isset($_POST['post']) && isset($_POST['image']) && isset($_POST['id1'])) {
-        $id=$_POST['id1'];
-        $post=new post();
+    if (isset($_POST['name']) && isset($_POST['post'])) {
+        echo "rerere";
+        include "../file_upload.php";
+        $post =  new post();
         $post->nom = $_POST["name"];
         $post->text = $_POST["post"];
-        $post->picture = $_POST["image"];
-       
+        $post->picture = basename($_FILES["image"]["name"]);
+        echo $post->picture; 
         update($post, $id);
          echo("<script>location.href = 'Affichertoutposts.php';</script>");
        
@@ -131,7 +142,7 @@ require "../model/bloc.php";
     }  
 ?>
 <h1>Post</h1>    
-    <form NAME="f" action="Modifier Post.php" method="POST">
+    <form NAME="f" action="Modifier Post.php" method="POST" enctype="multipart/form-data">
     <table border="1" width="50%">
         <tr>
             <th align="left" rowspan ="8">
@@ -172,7 +183,7 @@ require "../model/bloc.php";
             <th align="left">
             </th>
             <th align="left">
-                <button type="submit">Envoyer</button>
+                <button type="submit" name="submit">Envoyer</button>
             </th>
         </tr>
     </table>

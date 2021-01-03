@@ -13,7 +13,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Dashboard</title>
+    <title>Modifier</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
@@ -68,31 +68,30 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                     
                   <li class="mt">
                       <a href="DashboardUser.php">
-                          <i class="fa fa-dashboard"  class="active"></i>
+                          <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
                   </li>
-                  <li class="sub-menu">
+                  <li class="sub-menu" >
                       <a href="javascript:;" >
                           <i class="fa fa-cogs"></i>
                           <span>Gérer Comptes</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="ModifiyUserConn.php">Gérer Votre Compte</a></li>
+                          <li ><a  href="ModifiyUserConn.php">Gérer Votre Compte</a></li>
                             <li><a  href="ModifyUserPass.php">Modifier Mot de passe</a></li>
                             <li><a  href="SupprimerUserConn.php">Supprimer Votre Compte</a></li>
                             <li><a  href="SupprimerUserConn.php">Modifier Votre Photo</a></li>
 
                       </ul>
-                      <li class="sub-menu">
+                        <li class="sub-menu" class="active">
                       <a  href="javascript:;" >
                           <i class="fa fa-book"></i>
                           <span>Activitées</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="Act_gestion_conn.php">Afficher Voes Reservations</a></li>
+                          <li class="active"><a  href="Act_gestion_conn.php">Afficher Voes Reservations</a></li>
                       </ul>
-                  </li>
                   </li>
               </ul>
               <!-- sidebar menu end-->
@@ -106,7 +105,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper site-min-height">
-          	<?php include_once 'Info User.php'; ?>
+          	<?php include_once 'afficheruseract.php'; ?>
           		</div>
           	</div>
 			

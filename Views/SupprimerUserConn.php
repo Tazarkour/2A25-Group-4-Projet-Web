@@ -20,7 +20,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>DASHGUM - Bootstrap Admin Template</title>
+    <title>WARNING!!!!</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
@@ -90,6 +90,15 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                             <li class="active"><a  href="SupprimerUserConn.php">Supprimer Votre Compte</a></li>
                             <li><a  href="SupprimerUserConn.php">Modifier Votre Photo</a></li>
 
+                      </ul>
+                  </li>
+                   <li class="sub-menu">
+                      <a  href="javascript:;" >
+                          <i class="fa fa-book"></i>
+                          <span>Activitées</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="Act_gestion_conn.php">Afficher Voes Reservations</a></li>
                       </ul>
                   </li>
               </ul>

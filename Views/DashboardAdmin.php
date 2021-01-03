@@ -14,7 +14,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>DASHGUM - Bootstrap Admin Template</title>
+    <title>Dashboard</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
@@ -91,6 +91,16 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                       <ul class="sub">
                           <li ><a  href="blank.php">Ajouter un Blog Post</a></li>
                           <li><a  href="Affichertoutposts.php">Afficher les Blog Posts</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-book"></i>
+                          <span>Activité</span>
+                      </a>
+                      <ul class="sub">
+                          <li ><a  href="Act_gestion1.php">Gérer Les Activités</a></li>
+                          <li><a  href="Act_Gestion.php">Gérer Les Réservations</a></li>
                       </ul>
                   </li>
 

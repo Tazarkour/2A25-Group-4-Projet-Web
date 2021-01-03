@@ -44,7 +44,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="acceuil.php" class="logo"><b>DASHGUM FREE</b></a>
+            <a href="acceuil.php" class="logo"><b>Radisson Blu</b></a>
             <!--logo end-->
                   <div class="top-menu">
               <ul class="nav pull-right top-menu">
@@ -90,6 +90,16 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                       <ul class="sub">
                           <li ><a  href="blank.php">Ajouter un Blog Post</a></li>
                           <li><a  href="Affichertoutposts.php">Afficher les Blog Posts</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-book"></i>
+                          <span>Activité</span>
+                      </a>
+                      <ul class="sub">
+                          <li ><a  href="Act_gestion1.php">Gérer Les Activités</a></li>
+                          <li><a  href="Act_Gestion.php">Gérer Les Réservations</a></li>
                       </ul>
                   </li>
               </ul>

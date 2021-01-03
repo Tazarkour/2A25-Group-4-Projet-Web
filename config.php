@@ -4,7 +4,7 @@
         $servername = 'localhost';	
         $username = 'root';	
         $password = '';       
-        $dbname = 'atelierPHP';	
+        $dbname = 'radisson_blu';	
         try {
             $pdo = new PDO(
                 "mysql:host=$servername;dbname=$dbname", 

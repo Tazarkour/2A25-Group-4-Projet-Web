@@ -2,7 +2,8 @@
 session_start();
 if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
 {
-  
+  if ($_SESSION["role"]=="admin")
+  {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Dashboard</title>
+    <title>DASHGUM - Bootstrap Admin Template</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
@@ -43,13 +44,14 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>Radisson Blu</b></a>
+            <a href="acceuil.php" class="logo"><b>DASHGUM FREE</b></a>
             <!--logo end-->
-                  <div class="top-menu">
+             <div class="top-menu">
               <ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="../disconnect.php">Logout</a></li>
+                    <li><a class="logout" href="login.html">Logout</a></li>
               </ul>
-            </div>               
+            </div>
+                                
         </header>
       <!--header end-->
       
@@ -62,13 +64,13 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-                  <p class="centered"><a href="profile.html"><img src="../assets/img/<?php echo $_SESSION["Picture"];?>" class="img-circle" width="60"></a></p>
+              	  <p class="centered"><a href="profile.html"><img src="../assets/img/<?php echo $_SESSION["Picture"];?>" class="img-circle" width="60"></a></p>
                   <h5 class="centered"><?php echo $_SESSION["Nom"]." ".$_SESSION["Prenom"]; ?></h5>
                   <h6 class="centered"><?php echo $_SESSION["role"]?></h6>
-                    
+              	  	
                   <li class="mt">
-                      <a href="DashboardUser.php">
-                          <i class="fa fa-dashboard"  class="active"></i>
+                      <a href="DashboardAdmin.php">
+                          <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
                   </li>
@@ -78,22 +80,21 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                           <span>Gérer Comptes</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="ModifiyUserConn.php">Gérer Votre Compte</a></li>
-                            <li><a  href="ModifyUserPass.php">Modifier Mot de passe</a></li>
-                            <li><a  href="SupprimerUserConn.php">Supprimer Votre Compte</a></li>
-                            <li><a  href="SupprimerUserConn.php">Modifier Votre Photo</a></li>
-
+                          <li ><a  href="Affichertoutusers.php">Gérer les Comptes</a></l>
                       </ul>
-                      <li class="sub-menu">
-                      <a  href="javascript:;" >
+                  </li>
+                  <li class="sub-menu">
+                      <a class="active" href="javascript:;" >
                           <i class="fa fa-book"></i>
-                          <span>Activitées</span>
+                          <span>Blog</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="Act_gestion_conn.php">Afficher Voes Reservations</a></li>
+                          <li class="active"><a  href="blank.php">Ajouter un Blog Post</a></li>
+                          <li><a  href="Affichertoutposts.php">Afficher les Blog Posts</a></li>
                       </ul>
                   </li>
-                  </li>
+                  
+
               </ul>
               <!-- sidebar menu end-->
           </div>
@@ -106,7 +107,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper site-min-height">
-          	<?php include_once 'Info User.php'; ?>
+          	<?php include_once 'AddBlogPost.php'; ?>
           		</div>
           	</div>
 			
@@ -145,8 +146,8 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
 
   </body>
 </html>
-<?php 
-
+<?php }
+else echo "Access denied to non admins";
 }
 else   echo("<script>location.href = 'signin.php';</script>");
 ?>
