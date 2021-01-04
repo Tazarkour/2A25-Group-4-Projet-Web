@@ -1,12 +1,12 @@
 @font-face {
   font-family: "Poppins-Regular";
-  src: url("../fonts/poppins/Poppins-Regular.ttf"); }
+  src: url("fonts/poppins/Poppins-Regular.ttf"); }
 @font-face {
   font-family: "Poppins-Medium";
-  src: url("../fonts/poppins/Poppins-Medium.ttf"); }
+  src: url("fonts/poppins/Poppins-Medium.ttf"); }
 @font-face {
   font-family: "Bitter-Regular";
-  src: url("../fonts/bitter/Bitter-Regular.ttf"); }
+  src: url("fonts/bitter/Bitter-Regular.ttf"); }
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -45,19 +45,19 @@ textarea {
 
 img {
   max-width: 100%;
-  vertical-align: middle;
-
-}
+  vertical-align: middle; }
 
 .wrapper {
   height: 100vh;
-  background: #f9f6f1;
-  display: flex;
-  align-items: center;
+
+ background-color: 	rgb(248, 244, 244);
+  display: flex;  align-items: center;
   justify-content: center;
   overflow: hidden;
 
+
   background-size: cover; }
+
 
 .inner {
   width: 909px; }
@@ -68,7 +68,8 @@ img {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); }
+    transform: translate(-50%, -50%);
+  color:#23234A;}
 
 h3 {
   font-family: "Bitter-Regular";
@@ -81,7 +82,7 @@ h3 {
   letter-spacing: 0.3px; }
 
 .wizard {
-  background: url("../images/form-content-bg.png") repeat;
+ background-color: #23234A;
   padding: 62px 60px 58px 62px;
   display: flex; }
   .wizard .steps {
@@ -183,9 +184,9 @@ label {
     color: #999;
     z-index: 9;
     border: 1px solid #81acee; }
-    .select .dropdown  {
+    .select .dropdown li {
       padding: 2px 10px; }
-      .select .dropdown  {
+      .select .dropdown li:hover {
         background: #81acee;
         color: #fff; }
 
@@ -305,7 +306,7 @@ button {
   width: 164px;
   justify-content: center;
   align-items: center;
-  background: #edc948;
+  background: #686868;
   font-family: "Poppins-Medium";
   text-transform: uppercase;
   font-size: 14px;
@@ -444,6 +445,8 @@ button {
 
   h3 {
     width: 90%;
-    text-align: center; } }
+    text-align: center;
+
+ } }
 
 /*# sourceMappingURL=style.css.map */

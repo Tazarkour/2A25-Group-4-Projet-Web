@@ -87,7 +87,7 @@ $_SESSION["e"]
 ?>
 
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <title>FormWizard_v2</title>
@@ -105,7 +105,7 @@ $_SESSION["e"]
     <link rel="stylesheet" href="vendor/date-picker/css/datepicker.min.css">
 
     <!-- STYLE CSS -->
-    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <div id="error">
     <?php echo $error; ?>
@@ -120,7 +120,7 @@ $_SESSION["e"]
 
 <form action="" method="POST">
 <!DOCTYPE html>
-<div class="wrapper">
+<div class="wrapper" id="shadow">
     <div class="inner">
         <?php
         $search="";
@@ -158,10 +158,10 @@ $_SESSION["e"]
 
                         <select id =nbn" name="nbn" class="form-control">
                             <option style="color: midnightblue">1 Night</option>
-                            <option style="color: midnightblue" >2 Night</option>
-                            <option style="color: midnightblue" >3 Night</option>
-                            <option style="color: midnightblue" >4 Night</option>
-                            <option style="color: midnightblue">5 Night</option>
+                            <option style="color: midnightblue" >2 Nights</option>
+                            <option style="color: midnightblue" >3 Nights</option>
+                            <option style="color: midnightblue" >4 Nights</option>
+                            <option style="color: midnightblue">5 Nights</option>
                         </select>
                     </div>
                     <div class="select">
@@ -171,10 +171,10 @@ $_SESSION["e"]
                         </div>
                         <select class="form-control" id =room" name="room">
                             <option style="color: midnightblue">1 Room</option>
-                            <option style="color: midnightblue" >2 Room</option>
-                            <option style="color: midnightblue">3 Room</option>
-                            <option style="color: midnightblue">4 Room</option>
-                            <option style="color: midnightblue" >5 Room</option>
+                            <option style="color: midnightblue" >2 Rooms</option>
+                            <option style="color: midnightblue">3 Rooms</option>
+                            <option style="color: midnightblue">4 Rooms</option>
+                            <option style="color: midnightblue" >5 Rooms</option>
                         </select>
                     </div>
                 </div>
@@ -214,19 +214,21 @@ $_SESSION["e"]
 
 
                         </div>
+
                         <select class="form-control" id ="lastname" name="lastname">
-                            <option style="color: midnightblue">1 children</option>
-                            <option style="color: midnightblue" >2 children</option>
-                            <option style="color: midnightblue">3 1  children</option>
-                            <option style="color: midnightblue">4  children</option>
-                            <option style="color: midnightblue" >5  children</option>
+
+                            <option style="color: midnightblue">No child</option>
+                            <option style="color: midnightblue" >1 children</option>
+                            <option style="color: midnightblue">2 children</option>
+                            <option style="color: midnightblue">3 children</option>
+                            <option style="color: midnightblue" >4 children</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-row mb-21">
                     <div class="form-holder w-100">
                         <textarea name="rp" id="rp" class="form-control" style="height: 79px;" placeholder="Special Requirements :"></textarea>
-                        <input class="form-control" type="text" value=<?PHP echo $_GET['idroom'] ;?> name="idroom" >
+                        <input class="form-control" type="text" value=<?PHP echo $_GET['idroom'] ;?> name="idroom" hidden >
 
 
 
@@ -247,7 +249,9 @@ $_SESSION["e"]
 
                 </div>
                 <div class="form-row">
+
                     <div class="form-holder">
+
                         <input type="text" class="form-control" placeholder="Phone :" name="tel" >
                     </div>
                     <div class="form-holder">

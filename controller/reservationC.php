@@ -253,17 +253,18 @@ function afficherrooms($search)
 
             <div class="col-lg-4 mb-4">
                 <div class="card h-100">
-                    <h3 class="card-header" style="color: #0056b3"><?php echo $row["roomtype"];?></h3>
+                    <h3 class="card-header" style="color: #23234A"><?php echo $row["roomtype"];?></h3>
                     <div class="card-body">
-                        <div class="display-4" style="color: #0056b3"><?php echo $row["price"];?>&nbsp;TNT</div>
+                        <div class="display-4" style="color: #23234A"><?php echo $row["price"];?>&nbsp;$</div>
 
 
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"></li>
-
+<div class="geeks">
                         <img class="card-img-top" src= <?php echo "img/".$row["photo"]." width="."750"." height="."300";?> >
-                        <li class="list-group-item">
+</div>
+    <li class="list-group-item">
                             <form method="GET" action="index1.php">
 
                                 <input class="form-control" type="hidden"  name="idroom"  value="<?= $row["idroom"] ?>"/>
@@ -280,13 +281,14 @@ function afficherrooms($search)
 
                                             <!-- Modal Header -->
                                             <div class="modal-header">
-                                                <h4 class="modal-title">More details</h4>
+                                                <h4 class="modal-title">
+                                                    <?php echo $row["roomtype"];?></h4>
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
 
                                             <!-- Modal body -->
                                             <div class="modal-body">
-                                                Modal body..
+                                                Spend time in our 34 sqm Classic Rooms and you'll discover modern design and functionality combined to create the perfect environment in which to unwind. With an option of city and garden views the outside is just as rewarding as the inside. Sleep soundly on either a king sized or twin beds. Unwind after a long day with a relaxing bath in the luxurious bathrooms. The bathroom is also equipped with a hairdryer. There is plenty of amenities to entertain yourself including a flat screen LCD TV featuring a number of national and international TV channels, along with free Wi-Fi allowing for easy access to work, home and entertainment.
                                             </div>
 
                                             <!-- Modal footer -->
@@ -304,11 +306,12 @@ function afficherrooms($search)
 
                                           <?php }  ?>
                                 <?php if($row["qty"]  == 0){  ?>
+
                                     <button href="index1.php" name="submit" type="submit" onclick="disabled=true;" class="btn disabled btn-primary" ><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                                         &nbsp;Book Now </button>
 
 
-                                    <p>sorry, not available</p>                                <?php }  ?>
+                                    <p> Sorry, Not available For the Time being!</p>                                <?php }  ?>
                             </form>
                         </li>
                     </ul>
