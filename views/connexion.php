@@ -17,7 +17,7 @@ class service
             try {
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'INSERT INTO service (nom_service, num_chambre,facture,dateS) 
+                    'INSERT INTO service (nom_service, num_chambre,id_user,dateS) 
                 VALUES (:nom_service, :num_chambre, :facture,:dateS)'
                 );
                 $query->execute([
@@ -36,8 +36,10 @@ class service
 $post=new service ();
 $post->nom_service= $_POST["nom"];
 $post->num_chambre= $_POST["chambre"];
-$post->facture = $_POST["Numéro"];
+$post->facture = $_POST["id_user"];
 $post->dateS = $_POST["date"];
 connexion($post);
+
+header("Location: afficherServices.php");
 ?>
 

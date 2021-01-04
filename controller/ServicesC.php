@@ -146,4 +146,125 @@
             }
         }
 
+        function getAllTypeService() {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM type_service'
+                );
+                $query->execute();
+                return $query->fetchAll();
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        }
+
+        public function addTypeService($n,$p,$d) {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'INSERT INTO type_service(nom,prix,dateS)
+                VALUES (:n, :p, :d)'
+                );
+                $query->execute([
+                    'n' => $n,
+                    'p' => $p,
+                    'd' => $d,
+                ]);
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        }
+
+        public function supprimerType($id) {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'DELETE FROM type_service WHERE id = :id'
+                );
+                $query->execute([
+                    'id' => $id
+                ]);
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        }
+
+        public function getTypeById($id) {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM type_service WHERE id = :id'
+                );
+                $query->execute([
+                    'id' => $id
+                ]);
+                return $query->fetch();
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        }
+
+        public function updateTypeService($id,$n,$p,$d) {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'UPDATE type_service SET nom = :n, prix = :p, dateS = :d  WHERE id = :id' 
+                );
+                $query->execute([
+                    'id' => $id,
+                    'n' => $n,
+                    'p' => $p,
+                    'd' => $d,
+                ]);
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        }
+
+        public function getLogin($username, $password) {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM utilisateur WHERE Login = :l AND Password = :p' 
+                );
+                $query->execute([
+                    'l' => $username,
+                    'p' => $password,
+                ]);
+                foreach ($query->fetchAll() as $key ) {
+                    return $key;
+                }
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        }
+
+        public function getUsers() {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM utilisateur'
+                );
+                $query->execute();
+                return $query->fetchAll();
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }              
+        }
+
+        public function getTypesByDate($date) {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM type_service WHERE dateS > :d' 
+                );
+                $query->execute([
+                    'd' => $date,
+                ]);
+                return $query->fetchAll();
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        }
     }

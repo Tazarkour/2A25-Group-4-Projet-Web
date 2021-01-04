@@ -1,6 +1,12 @@
 <?php
 require "../Controller/ServicesC.php";
 require "../models/service.php";
+session_start();
+
+	if(!isset($_SESSION['id'])) {
+		header('Location: Login.php');
+	}
+
 $ServicesC=new ServicesC();
         if (isset($_GET['id']))
         {
@@ -15,7 +21,10 @@ $ServicesC=new ServicesC();
         $post->facture = $_POST["Numéro"];
 $post->dateS= $_POST["date"];
        $ServicesC->modifierServices($post, $id);
+       header('Location: afficherServices.php');
     }
+    $sC = new ServicesC();
+	$types = $sC->getAllTypeService();
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -40,7 +49,11 @@ $post->dateS= $_POST["date"];
 	<form class="registration-form" NAME="f" action="" method="POST">
 		<label class="col-one-half">
 			<span class="label-text">Nom_service</span>
-			<input type="text" name="nom",id="nom">
+			<select name="nom" id="nom">
+				<?php foreach( $types as $type ) { ?>
+ 				<option value="<?php echo $type['id']; ?>"><?php echo $type['nom']; ?></option>
+ 				<?php } ?>
+ 			</select>
 		</label>
 		<label class="col-one-half">
 			<span class="label-text">Num chambre</span>
@@ -50,10 +63,7 @@ $post->dateS= $_POST["date"];
 			<span class="label-text">date</span>
 			<input type="date" name="date" id="date">
 		</label>
-		<label>
-			<span class="label-text">facture</span>
-			<input type="number" name="Numéro" id="Numéro">
-		</label>
+		
 		<label class="checkbox">
 			<input type="checkbox" name="newsletter" >
 			<span>Sign me up for the weekly newsletter.</span>
