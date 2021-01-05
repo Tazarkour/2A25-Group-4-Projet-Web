@@ -6,8 +6,8 @@
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<!-- Font-->
-	<link rel="stylesheet" type="text/css" href="../assets/css/roboto-font.css">
-	<link rel="stylesheet" type="text/css" href="../assets/fonts/font-awesome-5/css/fontawesome-all.min.css">
+	<link rel="stylesheet" type="text/css" href="../Assets/css/roboto-font.css">
+	<link rel="stylesheet" type="text/css" href="../Assets/fonts/font-awesome-5/css/fontawesome-all.min.css">
 	<!-- Main Style Css -->
     <link rel="stylesheet" href="../Assets/css/style.css"/>
 </head>
