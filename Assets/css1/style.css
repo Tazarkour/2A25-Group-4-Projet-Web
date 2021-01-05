@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap');
+
+*{
+    font-family: 'Raleway', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+body{
+    background: #f5f5f5;
+}
+.wrapper{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;;
+    margin: 0px auto;
+}
+.about-info img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.cards-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+}
+.card:nth-child(1) .front-card{
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)), url("images/person1.jpg") center/cover no-repeat;
+}
+.card:nth-child(2) .front-card{
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)), url("images/person2.jpg") center/cover no-repeat;
+}
+.card:nth-child(3) .front-card{
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)), url("images/person3.jpg") center/cover no-repeat;
+}
+.card{
+    height: 450px;
+    perspective: 1000px;
+}
+.card-wrapper{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 1s ease;
+    transform-style: preserve-3d;
+    box-shadow: 0px 0px 9px -3px rgba(0, 0, 0, 0.5);
+}
+.card:hover .card-wrapper{
+    transform: rotateY(180deg);
+}
+.front-card, .rear-card{
+    border-radius: 4px;
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.rear-card{
+    text-align: center;
+    transform: rotateY(180deg);
+    background: #00cec1;
+    color: #fff;
+    padding: 20px;
+}
+.front-card div{
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    color: #fff;
+    line-height: 1.6;
+}
+.rear-card p{
+    line-height: 1.6;
+    font-size: 15px;
+    font-weight: 300;
+}
+.about-info{
+    margin-top: 18px;
+}
+.about-info div h2{
+    font-size: 19px;
+    padding: 10px 0 2px;
+}
+@media(max-width: 1170px){
+    .wrapper{
+        padding: 30px 0;
+    }
+    .cards-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media(max-width: 800px){
+    .cards-container{
+        width: 90vw;
+        grid-template-columns: 1fr;
+    }
+    .card{
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media(max-width: 400px){
+    .card{
+        width: 100%;
+    }
+}

@@ -175,6 +175,13 @@
 				
             </div>
         </section>
+         <section class = "rooms sec-width"  id = "rooms">
+            <div class = "title">
+                <h2>Services</h2>
+                <?php include_once "scroll.html";
+                ?>
+            </div> 
+         </section>      
 
         
 
