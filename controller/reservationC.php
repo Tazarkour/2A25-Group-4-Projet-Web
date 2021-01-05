@@ -4,8 +4,8 @@ include "../config.php";
 
 
 
-class reservationC
-{
+class reservationC{
+
     public function ajouterReservation($Reservation, $qty, $idroom, $user)
     {
         echo('hhh');
@@ -127,10 +127,11 @@ class reservationC
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
-                'SELECT * FROM reservation WHERE firstname = :firstname'
+                'SELECT * FROM reservation LEFT JOIN utilisateur ON utilisateur.id=reservation.iduser WHERE Nom = :firstname'
+
             );
             $query->execute([
-                'firstname' => $firstname
+                'Nom' => $firstname
             ]);
             return $query->fetch();
         } catch (PDOException $e) {
@@ -165,25 +166,25 @@ class reservationC
                 'SELECT * FROM reservation LEFT JOIN utilisateur ON utilisateur.id=reservation.iduser LEFT JOIN rooms ON rooms.idroom=reservation.idroom '
             );
             if (isset($tri)) {
-                if ($tri == "AZ") {
+                if ($tri == "DA") {
                     $query = $db->prepare(
-                        'SELECT * FROM reservation ORDER BY firstname  ASC'
+                        'SELECT * FROM reservation LEFT JOIN utilisateur ON utilisateur.id=reservation.iduser LEFT JOIN rooms ON rooms.idroom=reservation.idroom ORDER BY date  ASC'
                     );
                 }
 
-                if ($tri == "ZA") {
+                if ($tri == "DS") {
                     $query = $db->prepare(
-                        'SELECT * FROM reservation ORDER BY firstname DESC '
+                        'SELECT * FROM reservation LEFT JOIN utilisateur ON utilisateur.id=reservation.iduser LEFT JOIN rooms ON rooms.idroom=reservation.idroom ORDER BY date  DESC '
                     );
                 }
-                if ($tri == "D") {
+                if ($tri == "ZA") {
                     $query = $db->prepare(
-                        'SELECT * FROM reservation ORDER BY adresse ASC '
+                        'SELECT * FROM reservation LEFT JOIN utilisateur ON utilisateur.id=reservation.iduser LEFT JOIN rooms ON rooms.idroom=reservation.idroom ORDER BY Nom  DESC '
                     );
                 }
                 if ($tri == "P") {
                     $query = $db->prepare(
-                        'SELECT * FROM reservation ORDER BY lastname ASC '
+                        'SELECT * FROM reservation LEFT JOIN utilisateur ON utilisateur.id=reservation.iduser LEFT JOIN rooms ON rooms.idroom=reservation.idroom ORDER BY Nom  ASC '
                     );
                 }
             }
@@ -194,7 +195,6 @@ class reservationC
             $e->getMessage();
         }
     }
-
 
     public function sendmail($reservation)
     {
@@ -269,7 +269,7 @@ function afficherrooms($search)
 
                                 <input class="form-control" type="hidden"  name="idroom"  value="<?= $row["idroom"] ?>"/>
                                 <input class="form-control" type="hidden"  name="qty"  value="<?= $row["qty"] ?>"/>
-                                <button type="button" class="btn " data-toggle="modal" data-target="#myModal">
+                                <button type="button" class="btn" data-toggle="modal" data-target="#myModal">
                                     <i class="fa fa-list" aria-hidden="true"></i>
                                     &nbsp;  More details
                                 </button>
@@ -301,7 +301,7 @@ function afficherrooms($search)
                                 </div>
                                 <!-- Button trigger modal -->
                                           <?php if($row["qty"]  > 0){  ?>
-                                <button href="index1.php?idroom=<?php echo $row["idroom"]?> " name="submit" type="submit" class="btn "><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                <button href="index1.php?idroom=<?php echo $row["idroom"]?> " name="submit" type="submit" class="btn"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                                     &nbsp; Book Now</button>
 
                                           <?php }  ?>

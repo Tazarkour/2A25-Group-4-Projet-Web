@@ -114,6 +114,50 @@ function Connect ($id)
     }
 }
 
+function Get_All_User_Info ()
+{
+    $sql="SELECT * FROM utilisateur";
+    $db = config::getConnexion();
+    try{
+        $query=$db->prepare($sql);
+        $query->execute();
+        $count=$query->rowCount();
+        if ($count==0){
+            echo "Aucun Resultat";
+
+        }
+        else
+        {
+            $x=$query->fetchAll();
+            return $x;
+        }}
+    catch (Exception $e)
+    {
+        echo $e->getMessage();
+    }
+}
+function Get_one_User_Info($id)
+{
+    $sql="SELECT * FROM utilisateur where id=$id";
+    $db = config::getConnexion();
+    try{
+        $query=$db->prepare($sql);
+        $query->execute();
+        $count=$query->rowCount();
+        if ($count==0){
+            echo "Aucun Resultat";
+
+        }
+        else
+        {
+            $x=$query->fetchAll();
+            return $x;
+        }}
+    catch (Exception $e)
+    {
+        echo $e->getMessage();
+    }
+}
 
 
 ?>

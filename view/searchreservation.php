@@ -30,9 +30,9 @@ $reservationC =  new reservationC();
                 <input class="search_input"   name="firstname" placeholder="Search...">
                 <button class=" btn btn-info search_icon"  type="submit" name="search"><i class="fas fa-search"></i></button>
                 <?php
-
-if (isset($_POST['firstname']) && isset($_POST['search'])){
-    $result = $reservationC->getReservationByFirstname($_POST['firstname']);
+                session_start();
+if (isset($_SESSION['Nom']) && isset($_POST['search'])){
+    $result = $reservationC->getReservationByFirstname($_SESSION['Nom']);
     if ($result !== false) {
         ?>
 
@@ -43,7 +43,7 @@ if (isset($_POST['firstname']) && isset($_POST['search'])){
                     <div class="row">
                         <div class="span3">
                             <div class="well">
-                                <h2 class="muted"> <?= $result['firstname']."".$result['lastname'] ?> </h2>
+                                <h2 class="muted"> <?= $result['Nom'] ?> </h2>
                                 <p > <span class="label">Idreservation <?= $result['idreservation'] ?></span></p>
 
 
