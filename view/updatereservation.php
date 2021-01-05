@@ -19,23 +19,10 @@ if (
     isset($_POST["nbn"])&&
     isset($_POST["room"])&&
     isset($_POST["rp"])&&
-isset($_POST["idroom"])
-
+isset($_POST["idroom"])&&
+isset($_POST["iduser"])
 ) {
-    if (
-        !empty($_POST["firstname"]) &&
-        !empty($_POST["lastname"]) &&
-        !empty($_POST["adresse"])&&
-        !empty($_POST["tel"])&&
-        empty($_POST["date"])&&
-        !empty($_POST["email"])&&
-        !empty($_POST["nbn"])&&
-        !empty($_POST["room"])&&
-        !empty($_POST["rp"])&&
-    !empty($_POST["idroom"])
 
-
-    ) {
         $Reservation = new reservation(
             $_POST['firstname'],
             $_POST['lastname'],
@@ -55,10 +42,7 @@ $_POST['iduser']
         header('Location:showreservations.php');
     }
 
-    else
-        $error = "Missing information";
 
-}
 ?>
 
 <!DOCTYPE html>
@@ -80,7 +64,7 @@ $_POST['iduser']
     <link rel="stylesheet" href="vendor/date-picker/css/datepicker.min.css">
 
     <!-- STYLE CSS -->
-    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <div id="error">
     <?php echo $error; ?>
@@ -113,9 +97,15 @@ $_POST['iduser']
                 <div class="form-row">
 
                     <div class="form-holder">
-                        <input type="text" class="form-control datepicker-here pl-85" data-language='en' data-date-format="dd - m - yyyy" id="dp1" name="date" value="<?= $result['date'] ?>" >
+                        <input id="iduser" name="iduser" style="color: #0c5460" value=" <?php
+                        session_start();
+                        if((isset($_SESSION['e']))){
 
+                            echo $_SESSION['e'];}?>" hidden>
+                        <input type="text" class="form-control datepicker-here pl-85" data-language='en' data-date-format="dd - m - yyyy" id="dp1" name="date" value="<?= $result['date'] ?>" >
                         <input id="idreservation" name="idreservation" value="<?php echo $idreservation ?>" hidden>
+
+
                         <span class="lnr lnr-chevron-down"></span>
                         <span class="placeholder">Check in :</span>
                     </div>
@@ -128,7 +118,7 @@ $_POST['iduser']
                 <div class="form-row">
                     <div class="select">
 
-                        <select id =nbn" name="nbn" class="form-control" value="<?= $result['nbn'] ?>">
+                        <select  name="nbn" class="form-control" value="<?= $result['nbn'] ?>">
                             <option style="color: midnightblue">1 Night</option>
                             <option style="color: midnightblue" >2 Night</option>
                             <option style="color: midnightblue" >3 Night</option>
@@ -141,7 +131,7 @@ $_POST['iduser']
 
 
                         </div>
-                        <select class="form-control" id =room" name="room" value="<?= $result['room'] ?>">
+                        <select class="form-control" name="room" value="<?= $result['room'] ?>">
                             <option style="color: midnightblue">1 Room</option>
                             <option style="color: midnightblue" >2 Room</option>
                             <option style="color: midnightblue">3 Room</option>
@@ -150,9 +140,7 @@ $_POST['iduser']
                         </select>
                     </div>
                 </div>
-                <button class="forward">NEXT
-                    <i class="zmdi zmdi-long-arrow-right"></i>
-                </button>
+
 
             </section>
 
@@ -204,9 +192,7 @@ $_POST['iduser']
 
                     </div>
                 </div>
-                <button class="forward">NEXT
-                    <i class="zmdi zmdi-long-arrow-right"></i>
-                </button>
+
 
             </section>
 

@@ -85,7 +85,7 @@ class reservationC
             echo('hhhh');
             $db = config::getConnexion();
             $query = $db->prepare(
-                "UPDATE reservation SET idreservation=:idreservation, firstname=:firstname, lastname=:lastname, adresse=:adresse,tel=:tel,email=:email,nbn:=nbn,date=:date1,room=:room,rp=:rp ,idroom=:idroom,iduser=:iduser WHERE idreservation = :idreservation"
+                "UPDATE reservation SET idreservation=:idreservation, firstname=:firstname, lastname=:lastname, adresse=:adresse,tel=:tel,email=:email,nbn:=nbn,date=:date,room=:room,rp=:rp ,idroom=:idroom,iduser=:iduser WHERE idreservation = :idreservation"
             );
             echo "pass";
             echo
@@ -108,7 +108,7 @@ class reservationC
                 'tel' => $Reservation->getTel(),
                 'email' => $Reservation->getEmail(),
                 'nbn' => $Reservation->getNbn(),
-                'date1' => $Reservation->getDate(),
+                'date' => $Reservation->getDate(),
                 'room' => $Reservation->getRoom(),
                 'rp' => $Reservation->getRp(),
                 'idroom' => $Reservation->getIdroom(),
@@ -162,7 +162,7 @@ class reservationC
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
-                'SELECT * FROM reservation'
+                'SELECT * FROM reservation LEFT JOIN utilisateur ON utilisateur.id=reservation.iduser LEFT JOIN rooms ON rooms.idroom=reservation.idroom '
             );
             if (isset($tri)) {
                 if ($tri == "AZ") {
@@ -269,7 +269,7 @@ function afficherrooms($search)
 
                                 <input class="form-control" type="hidden"  name="idroom"  value="<?= $row["idroom"] ?>"/>
                                 <input class="form-control" type="hidden"  name="qty"  value="<?= $row["qty"] ?>"/>
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+                                <button type="button" class="btn " data-toggle="modal" data-target="#myModal">
                                     <i class="fa fa-list" aria-hidden="true"></i>
                                     &nbsp;  More details
                                 </button>
@@ -301,13 +301,13 @@ function afficherrooms($search)
                                 </div>
                                 <!-- Button trigger modal -->
                                           <?php if($row["qty"]  > 0){  ?>
-                                <button href="index1.php?idroom=<?php echo $row["idroom"]?> " name="submit" type="submit" class="btn btn-primary"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                <button href="index1.php?idroom=<?php echo $row["idroom"]?> " name="submit" type="submit" class="btn "><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                                     &nbsp; Book Now</button>
 
                                           <?php }  ?>
                                 <?php if($row["qty"]  == 0){  ?>
 
-                                    <button href="index1.php" name="submit" type="submit" onclick="disabled=true;" class="btn disabled btn-primary" ><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                                    <button href="index1.php" name="submit" type="submit" onclick="disabled=true;" class="btn disabled " ><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                                         &nbsp;Book Now </button>
 
 

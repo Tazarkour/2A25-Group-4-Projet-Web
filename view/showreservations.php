@@ -1,5 +1,6 @@
 <?php
 include '../controller/reservationC.php';
+
 $reservationC= new reservationC();
 
 $liste=$reservationC->afficherReservation();
@@ -47,7 +48,8 @@ $listereservation=$reservationC->afficherActivites($tri);
         <th>Adults</th>
         <th>Room</th>
         <th>Extra</th>
-        <th>idroom</th>
+        <th>roomtype<th>
+        <th>user</th>
 
         <th>delete</th>
         <th>update</th>
@@ -68,7 +70,9 @@ $listereservation=$reservationC->afficherActivites($tri);
             <td><?PHP echo $reservation['nbn']; ?></td>
             <td><?PHP echo $reservation['room']; ?></td>
             <td><?PHP echo $reservation['rp']; ?></td>
-            <td><?PHP echo $reservation['idroom']; ?></td>
+
+            <td><?PHP echo $reservation['roomtype']; ?></td>
+            <td><?PHP echo $reservation['Nom']; ?>&nbsp;<?PHP echo $reservation['Prenom'];?></td>
 
             <td>
                 <form method="POST" action="deletereservation.php">

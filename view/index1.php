@@ -157,6 +157,7 @@ $_SESSION["e"]
                     <div class="select">
 
                         <select id =nbn" name="nbn" class="form-control">
+                            <option value="" style="color:white " value="" selected disabled hidden>Nights</option>
                             <option style="color: midnightblue">1 Night</option>
                             <option style="color: midnightblue" >2 Nights</option>
                             <option style="color: midnightblue" >3 Nights</option>
@@ -170,6 +171,7 @@ $_SESSION["e"]
 
                         </div>
                         <select class="form-control" id =room" name="room">
+                            <option value="" style="color:white " value="" selected disabled hidden>Rooms</option>
                             <option style="color: midnightblue">1 Room</option>
                             <option style="color: midnightblue" >2 Rooms</option>
                             <option style="color: midnightblue">3 Rooms</option>
@@ -202,6 +204,7 @@ $_SESSION["e"]
                     <div class="select">
 
                         <select id =firstname" name="firstname" class="form-control">
+                            <option value="" style="color:white " value="" selected disabled hidden>Adults</option>
                             <option style="color: midnightblue">1 Adult</option>
                             <option style="color: midnightblue" >2 Adults</option>
                             <option style="color: midnightblue" >3 Adults</option>
@@ -216,7 +219,7 @@ $_SESSION["e"]
                         </div>
 
                         <select class="form-control" id ="lastname" name="lastname">
-
+                            <option value="" style="color:white " value="" selected disabled hidden>Children</option>
                             <option style="color: midnightblue">No child</option>
                             <option style="color: midnightblue" >1 children</option>
                             <option style="color: midnightblue">2 children</option>
