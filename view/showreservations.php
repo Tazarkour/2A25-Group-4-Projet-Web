@@ -30,8 +30,8 @@ $listereservation=$reservationC->afficherActivites($tri);
 <a class="btn btn-info" href="searchreservation.php"> <i class="glyphicon glyphicon-plus" > </i> &nbsp;Search reservation</a>
 <a href="showreservations.php?tri=P"> Alphabetique A-Z</a>
 <a href="showreservations.php?tri=ZA"> Alphabetique Z-A</a>
-<a href="showreservations.php?tri=DA"> Date</a>
-<a href="showreservations.php?tri=DS"> date</a>
+<a href="showreservations.php?tri=DA"> Date↓</a>
+<a href="showreservations.php?tri=DS"> Date↑</a>
 <hr>
 <div class="container">
     <div >

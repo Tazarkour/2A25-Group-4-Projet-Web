@@ -52,7 +52,7 @@ $error = "Missing information";
         </div>
         <br/>
         <fieldset>
-            <legend>Romm Details</legend>
+            <legend>Room Details</legend>
             <div class="columns">
                 <div class="item">
                     <label for="fname">Room Type<span>*</span></label>

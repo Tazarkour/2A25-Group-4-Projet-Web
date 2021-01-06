@@ -3,7 +3,9 @@ body,html{
     width: 100%;
     margin: 0;
     padding: 0;
-    background: #23234A ;
+    background-image: url("background.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 .searchbar{

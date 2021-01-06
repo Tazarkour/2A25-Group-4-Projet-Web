@@ -11,4 +11,3 @@
         header('Location:showrooms.php');
     }
 
-?>

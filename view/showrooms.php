@@ -21,7 +21,7 @@ $liste=$roomC1->affiche();
     <title> show reservation name </title>
 </head>
 <body>
-<a class="btn btn-info" href="addroom.php"> <i class="glyphicon glyphicon-plus" > </i> &nbsp;add reservation</a>
+<a class="btn btn-info" href="addroom.php"> <i class="glyphicon glyphicon-plus" > </i> &nbsp;add room</a>
 <hr>
 <div class="container">
     <div class="row col-md-6 col-md-offset-2 custyle">
@@ -51,7 +51,7 @@ $liste=$roomC1->affiche();
 
             <td>
                 <form method="POST" action="deleteroom.php">
-                    <input type="submit" name="supprimer" value="supprimer">
+                    <input type="submit"  class=" btn btn-danger" name="supprimer" value="Delete">
                     <input type="hidden" value=<?PHP echo $room['idroom'] ; // ba3thna id  champs hiddden bch na9rawh fi page spperimer ?> name="idroom">
                 </form>
             </td>
