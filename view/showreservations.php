@@ -1,10 +1,8 @@
 <?php
 include '../controller/reservationC.php';
-
 $reservationC= new reservationC();
 
 $liste=$reservationC->afficherReservation();
-
 
 $tri='';
 if (isset($_GET["tri"]))
@@ -28,72 +26,74 @@ $listereservation=$reservationC->afficherActivites($tri);
 </head>
 <body>
 <a class="btn btn-info" href="searchreservation.php"> <i class="glyphicon glyphicon-plus" > </i> &nbsp;Search reservation</a>
-<a href="showreservations.php?tri=P"> Alphabetique A-Z</a>
+<a href="showreservations.php?tri=AZ"> Alphabetique A-Z</a>
 <a href="showreservations.php?tri=ZA"> Alphabetique Z-A</a>
-<a href="showreservations.php?tri=DA"> Date↓</a>
-<a href="showreservations.php?tri=DS"> Date↑</a>
+<a href="showreservations.php?tri=D"> Date</a>
+<a href="showreservations.php?tri=P"> Places</a>
 <hr>
 <div class="container">
     <div >
         <table class="table table-striped custab">
             <thead>
-    <tr>
-        <th>Idreservation</th>
-        <th>Nights</th>
-        <th>Rooms </th>
-        <th>Adress</th>
-        <th>Phone</th>
-        <th>Check In</th>
-        <th>Email</th>
-        <th>Adults</th>
-        <th>Room</th>
-        <th>Extra</th>
-        <th>roomtype<th>
-        <th>user</th>
-        <th>delete</th>
-        <th>update</th>
-    </tr>
+            <tr>
+                <th>Idreservation</th>
+                <th>Nights</th>
+                <th>Rooms </th>
+                <th>Adress</th>
+                <th>Phone</th>
+                <th>Check In</th>
+                <th>Email</th>
+                <th>Adults</th>
+                <th>Extra</th>
+                <th>Room Type</th>
+                <th>User</th>
+
+                <th>delete</th>
+                <th>update</th>
+            </tr>
             </thead>
-    <?PHP
-    foreach($listereservation as $reservation){ //echo reservation 9dima//
-        ?>
-        <tr>
+            <?PHP
+            foreach($listereservation as $reservation) {
 
-            <td><?PHP echo $reservation['idreservation']; ?></td>
-            <td><?PHP echo $reservation['firstname']; ?></td>
-            <td><?PHP echo $reservation['lastname']; ?></td>
-            <td><?PHP echo $reservation['adresse']; ?></td>
-            <td><?PHP echo $reservation['tel']; ?></td>
-            <td><?PHP echo $reservation['date']; ?></td>
-            <td><?PHP echo $reservation['email']; ?></td>
-            <td><?PHP echo $reservation['nbn']; ?></td>
-            <td><?PHP echo $reservation['room']; ?></td>
-            <td><?PHP echo $reservation['rp']; ?></td>
+                ?>
+                <tr>
 
-            <td><?PHP echo $reservation['roomtype']; ?></td>
-            <td><?PHP echo $reservation['Nom']; ?>&nbsp;<?PHP echo $reservation['Prenom'];?></td>
+                    <td><?PHP echo $reservation['idreservation']; ?></td>
+                    <td><?PHP echo $reservation['firstname']; ?></td>
+                    <td><?PHP echo $reservation['lastname']; ?></td>
+                    <td><?PHP echo $reservation['adresse']; ?></td>
+                    <td><?PHP echo $reservation['tel']; ?></td>
+                    <td><?PHP echo $reservation['date']; ?></td>
+                    <td><?PHP echo $reservation['email']; ?></td>
+                    <td><?PHP echo $reservation['nbn']; ?></td>
 
-            <td>
-                <form method="POST" action="deletereservation.php">
-                    <input type="submit"  class=" btn btn-danger" name="supprimer" value="Delete">
-                    <input type="hidden" value=<?PHP echo $reservation['idreservation'] ; // ba3thna id  champs hiddden bch na9rawh fi page spperimer ?> name="idreservation">
-                    <input type="hidden" value=<?PHP echo $reservation['idroom'] ; ?> name="idroom">
-
-                </form>
-            </td>
-            <td>
-
-                <a type="button" class="btn btn-primary shop-item-button" href = "updatereservation.php?idreservation=<?= $reservation['idreservation']?>">Update</a>
-            </td>
-        </tr>
-        <?PHP
+                    <td><?PHP echo $reservation['rp']; ?></td>
+                    <td><?PHP echo $reservation['roomtype']; ?></td>
+                    <td><?PHP echo $reservation['Nom']; ?>&nbsp;
+                        <?PHP echo $reservation['Prenom'];?></td>
 
 
+                    <td>
+                        <form method="POST" action="deletereservation.php">
+                            <input type="submit" class=" btn btn-danger" name="supprimer" value="Delete">
+                            <input type="hidden"
+                                   value=<?PHP echo $reservation['idreservation']; // ba3thna id  champs hiddden bch na9rawh fi page spperimer ?> name="idreservation">
+                            <input type="hidden" value=<?PHP echo $reservation['idroom']; ?> name="idroom">
 
-    }
+                        </form>
+                    </td>
+                    <td>
 
-    ?>
-</table>
+                        <a type="button" class="btn btn-primary shop-item-button"
+                           href="updatereservation.php?idreservation=<?= $reservation['idreservation'] ?>">Update</a>
+                    </td>
+                </tr>
+                <?PHP
+
+
+            }
+            ?>
+        </table>
     </div>
 </div>
 <style>
