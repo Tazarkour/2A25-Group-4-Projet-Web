@@ -186,7 +186,21 @@ function update($post, $id) {
                 echo $e->getMessage();
             }
         } 
-
+function updatecomment($message, $id) {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'UPDATE comment SET message=:message WHERE id = :id'
+                );
+                $query->execute([
+                    'message' => $message,
+                    'id' => $id
+                ]);
+                echo $query->rowCount() . " records UPDATED successfully";
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+        } 
 
 
 
@@ -243,13 +257,14 @@ function afficher_comments($id, $id_user, $role)
         
         ?>
           <div class="media mb-4">
-          <img class="d-flex mr-3 rounded-circle" src="../Assets/img/blog/<?php echo $row["Picture"];?>" width ="50" height="50" alt="">
+          <img class="d-flex mr-3 rounded-circle" src="../Assets/img/<?php echo $row["Picture"];?>" width ="50" height="50" alt="">
           <div class="media-body">
             <h5 class="mt-0"><?php echo $row["Nom_User"]; ?></h5>
            <?php echo $row["message"]; ?>
             <h6 class="mt-0">Posted on <?php echo $row["date_p"]; ?></h6>
              <?php if ($id_user==$row["id_user"] || $role=="admin") { ?>
               <a href="read_post.php?id=<?php echo $row['id_post'];?>&idcomment=<?php echo $row["id"];?>"> Supprimer</a>
+               <a href="Modifier_Comment.php?id=<?php echo $row["id"];?>"> Modifier</a>
             <?php } ?>
           </div>
         </div>
@@ -277,6 +292,22 @@ function add_comment($id,$id_user,$message,$Nom)
                 echo $e->getMessage();
             }
 }
+function Get_Comment ($id)
+{
+   try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM comment WHERE id= :id'
+                );
+                $query->execute([
+                    'id' => $id
+                ]);
+                return $query->fetchAll();
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        }
+
 
 function  deletecomment($id)
 {

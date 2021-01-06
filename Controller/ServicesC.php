@@ -62,6 +62,20 @@
                 $e->getMessage();
             }
         }
+         public function getServiceByIdU($id) {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM service WHERE id_user= :id'
+                );
+                $query->execute([
+                    'id' => $id
+                ]);
+                return $query->fetchAll();
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        }
 
         public function getServiceByTitle($title) {
             try {
@@ -78,22 +92,23 @@
             }
         }
 
-        public function connexion($nom,$chambre,$id,$date,$Nom) {
+        public function connexion($nom,$chambre,$id,$date,$Nom,$idS) {
             try {
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'INSERT INTO service(num_chambre, nom_service, facture, dateS,id_user,$Nom_User)
-                VALUES (:num_chambre, :facture, :nom_service,:dateS,:id_user,:Nom)'
+                    'INSERT INTO service(num_chambre,id_service_choisi ,nom_service, dateS,id_user, Nom_User)
+                VALUES (:num_chambre,:id_service_choisi ,:nom_service,:dateS,:id_user,:Nom)'
                 );
                 $query->execute([
                     'num_chambre' => $chambre,
                     'nom_service' => $nom,
 					'dateS' => $date,
                     'id_user'=> $id,
-                    'Nom'=>$Nom
+                    'Nom'=>$Nom,
+                    'id_service_choisi'=>$idS
                 ]);
             } catch (PDOException $e) {
-                $e->getMessage();
+                echo $e->getMessage();
             }
         }
 
@@ -199,7 +214,7 @@
                 $query->execute([
                     'id' => $id
                 ]);
-                return $query->fetch();
+                return $query->fetchAll();
             } catch (PDOException $e) {
                 $e->getMessage();
             }
@@ -257,7 +272,7 @@
             try {
                 $pdo = getConnexion();
                 $query = $pdo->prepare(
-                    'SELECT * FROM type_service WHERE dateS > :d' 
+                    'SELECT * FROM type_service WHERE dateS < :d' 
                 );
                 $query->execute([
                     'd' => $date,

@@ -1,4 +1,4 @@
-get<?php
+<?php
     require_once '../config.php';
     class ActivitesC {
         public function afficherActivites($tri) {

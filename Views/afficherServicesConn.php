@@ -8,7 +8,7 @@ if (isset($_GET["tri"]))
     $tri=$_GET["tri"];
 	$ServicesC=new servicesC();
 	$listeSevices=$ServicesC->afficherServices();
-$liste=$ServicesC->afficherServices1($tri);
+$liste=$ServicesC->getServiceByIdU($_SESSION["e"]);
 
 	$sC = new ServicesC();
 	if (isset($_POST["supprimer"])){

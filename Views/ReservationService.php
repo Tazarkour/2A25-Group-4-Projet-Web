@@ -16,7 +16,7 @@
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="../Assets/Assets_Service/main.css">
 <title>formulaire</title>
 
 </head>
@@ -25,7 +25,7 @@
 	<header>
 		<h1>
 			<a href="#">
-				<img src="logo_web.png" alt="hotel">
+				<img src="../Assets/Assets_Service/logo_web.png" alt="hotel">
 			</a>
 		</h1>
 	</header>
@@ -49,7 +49,7 @@
 			<h1><?php echo $key['nom']; ?></h1>
 			<h5>prix: <?php echo $key['prix']; ?></h5>
 			<h5>date: <?php echo $key['dateS']; ?></h5>
-			<h5>reserver: <a href="form.php?r=<?php echo $key['id']; ?>"><button>Book Now</button></a></h5> <br><br><br><br>
+			<h5>reserver: <a href="Form_Ser.php?r=<?php echo $key['id']; ?>"><button>Book Now</button></a></h5> <br><br><br><br>
 		</label>
 		
 	<?php }

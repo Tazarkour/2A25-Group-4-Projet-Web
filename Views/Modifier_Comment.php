@@ -4,37 +4,41 @@ include "../Model/bloc.php";
 $post=new post();
 $id=$_GET["id"];
 session_start();
-$post=get_post_by_id($id);
 $error="";
-if (isset($_POST["message"]) && isset($_SESSION )&& !empty($_SESSION["e"]))
-{
-  if (!empty($_POST["message"]))
-  {$message=$_POST["message"];
-  add_comment($id,$_SESSION["e"],$message,$_SESSION["Nom"]." ".$_SESSION["Prenom"]);}
-  else $error="Le Commentaire est vide";
-}
-$role="no role";
-$e=-1;
 if (isset ($_SESSION["e"]) && isset ($_SESSION["role"]))
 {
   $role=$_SESSION["role"];
   $e=$_SESSION["e"];
 }
-if (isset($_GET["idcomment"]))
+if (isset($_GET["id"]))
 {
-  if (!empty($_GET["idcomment"]))
-  {
-    deletecomment($_GET["idcomment"]);
-  }
+  $id=$_GET["id"];
+  $comment=Get_Comment ($id);
+
+}
+if (isset($_POST["id"]))
+{
+  $id=$_POST["id"];
+  $comment=Get_Comment ($id);
+
+}
+if (isset($_POST["id"]) && isset($_POST["message"]))
+{
+  if (!empty($_POST["message"]))
+  {$id=$_POST["id"];
+  $comment=Get_Comment ($id);
+  updatecomment($_POST["message"], $id);
+  foreach($comment as $commentaire)
+echo("<script>location.href = 'read_post.php?id=".$commentaire["id_post"]."';</script>");}
+else $error="Empty";
+
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
+<script src="../Assets/Controledesaisiejs/controle.js"></script>
 <head>
-  <script src="../Assets/Controledesaisiejs/controle.js"></script>
-
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -77,62 +81,35 @@ if (isset($_GET["idcomment"]))
       </div>
     </div>
   </nav>
-  <!-- Page Content -->
-  <div class="container">
 
-    <div class="row">
-
-      <!-- Post Content Column -->
-      <div class="col-lg-8">
-
-        <!-- Title -->
-        <h1 class="mt-4"><?php echo $post->nom; ?></h1>
-
-        <hr>
-
-        <!-- Date/Time -->
-        <p><?php echo $post->date; ?></p>
-
-        <hr>
-
-        <!-- Preview Image -->
-        <img class="img-fluid rounded" src=<?php echo "../assets/img/blog/".$post->picture." width="."900"." height="."300"; ?>" alt=">
-
-        <hr>
-
-        <!-- Post Content -->
-        <p class="lead"><?php echo $post->text; ?></p>
-        <hr>
 
         <!-- Comments Form -->
        
         <div class="card my-4">
-          <h5 class="card-header">Leave a Comment:</h5>
-           <h6 class="card-header"><?php echo $error; ?></h6>
+          <h5 class="card-header">Modifiy:</h5>
+          <h6 class="card-header"><?php echo $error; ?></h6>
           <div class="card-body">
-            <form NAME="f" action="" method="POST">
+            <form NAME="f" action="Modifier_Comment.php" method="POST">
               <div class="form-group">
                 <?php 
 
                 if (isset($_SESSION["e"])&& !empty($_SESSION["e"]))
-                {?>
-                <textarea class="form-control" name="message" id="message" rows="3" onkeyup="EnableDisable(this)"></textarea>
-                
+                {foreach($comment as $commentaire){?>
+
+                <textarea class="form-control" name="message" id="message" rows="3" onkeyup="EnableDisable(this)" value="<?php echo  $commentaire["Message"]; ?>"><?php echo  $commentaire["Message"]; ?></textarea>
+                <input name="id" value="<?php  echo $commentaire["id"];?>" hidden>
+                <?php }?>
 
               </div>
-              <button type="submit" name="submit" id="submit" class="btn btn-primary" disabled>Submit</button>
+              <button type="submit" class="btn btn-primary" id="submit">Submit</button>
               <?php } else {?>
               <a type="button" class="btn btn-primary" href="signin.php">Login</a>
               <a type="button" class="btn btn-primary" href="signup.php">Register</a>
+            <?php } ?>
             </form>
           </div>
         </div>
-        <br>
-         <?php }afficher_comments($id,$e,$role); ?>
-
-
-
-          </div>
+         </div>
         </div>
 
       </div>

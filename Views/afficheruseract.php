@@ -13,6 +13,14 @@
 		$ActivitesC->addsplaces($_POST["places"],$_POST["id"]);
 
 	}
+	if (isset($_POST["id"]) && isset($_POST["Modifier"])){
+		$p=$_POST["places"]-$_POST["placesN"];
+		echo $p;
+		$ActivitesC->ModofierPlaces($_POST["placesN"],$_POST["id"]);
+		$ActivitesC->addsplaces($p,$_POST["id_act"]);
+		echo("<script>location.href = 'Act_gestion_conn.php';</script>");
+
+	}
 
 
 ?>
@@ -35,6 +43,7 @@
 				<th style="text-align: center; width: 250px; font-size: 20px ">id_user</th>
 				<th style="text-align: center; width: 250px; font-size: 20px ">Nom</th>
 				<th style="text-align: center; width: 250px; font-size: 20px ">Places</th>
+				<th style="text-align: center; width: 250px; font-size: 20px ">Modifier</th>
 				<th style="text-align: center; width: 250px; font-size: 20px ">Supprimer</th>
 
 			</tr>
@@ -44,23 +53,31 @@
 				foreach($listeActivites as $activites){
 			?>
 				<tr>
-                    <form method="post" action="Act_gestion.php">
+                    <form method="post" action="Act_gestion_conn.php">
 					<td align = 'center'><?PHP echo $activites['id']; ?></td>
 					<td align = 'center'><?PHP echo $activites['id_activites']; ?></td>
 					<td align = 'center'><?PHP echo $activites['Nom_Act']; ?></td>
 					<td align = 'center'><?PHP echo $activites['Id_User']; ?></td>
 					<td align = 'center'><?PHP echo $activites['nom']; ?></td>
-					<td align = 'center'><?PHP echo $activites['places'];?></td>
+					<td align = 'center'><input value="<?PHP echo $activites['places'];?>" name="placesN"></td>
 					<input name="id" value="<?PHP echo $activites['id']; ?>" hidden>
-					</form>
-                    
+                    <td align = 'center'>
+						<input type="hidden" value="<?PHP echo $activites['id']; ?>" name="id">
+						<input type="hidden" value="<?PHP echo $activites['id_activites']; ?>" name="id_act">
+						<input type="hidden" value="<?PHP echo $activites['places']; ?>" name="places">
+						<input type="submit" name="Modifier" value="Modifier" class="btn btn-warning">
+						</form>
+					</td>
 
 					<td align = 'center'>
-						<form method="POST" action="supprimerActivites.php">
+						<form method="POST" action="Act_gestion_conn.php">
 						<input type="hidden" value="<?PHP echo $activites['id']; ?>" name="id">
+						<input type="hidden" value="<?PHP echo $activites['id_activites']; ?>" name="id_act">
+						<input type="hidden" value="<?PHP echo $activites['places']; ?>" name="places">
 						<input type="submit" name="supprimer" value="supprimer" class="btn btn-danger">
 						</form>
 					</td>
+					
 				</tr>
 			<?PHP
 				}
