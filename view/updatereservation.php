@@ -120,10 +120,10 @@ $_POST['iduser']
 
                         <select  name="nbn" class="form-control" value="<?= $result['nbn'] ?>">
                             <option style="color: midnightblue">1 Night</option>
-                            <option style="color: midnightblue" >2 Night</option>
-                            <option style="color: midnightblue" >3 Night</option>
-                            <option style="color: midnightblue" >4 Night</option>
-                            <option style="color: midnightblue">5 Night</option>
+                            <option style="color: midnightblue" >2 Nights</option>
+                            <option style="color: midnightblue" >3 Nights</option>
+                            <option style="color: midnightblue" >4 Nights</option>
+                            <option style="color: midnightblue">5 Nights</option>
                         </select>
                     </div>
                     <div class="select">
@@ -133,10 +133,10 @@ $_POST['iduser']
                         </div>
                         <select class="form-control" name="room" value="<?= $result['room'] ?>">
                             <option style="color: midnightblue">1 Room</option>
-                            <option style="color: midnightblue" >2 Room</option>
-                            <option style="color: midnightblue">3 Room</option>
-                            <option style="color: midnightblue">4 Room</option>
-                            <option style="color: midnightblue" >5 Room</option>
+                            <option style="color: midnightblue" >2 Rooms</option>
+                            <option style="color: midnightblue">3 Rooms</option>
+                            <option style="color: midnightblue">4 Rooms</option>
+                            <option style="color: midnightblue" >5 Rooms</option>
                         </select>
                     </div>
                 </div>

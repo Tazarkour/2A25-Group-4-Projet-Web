@@ -37,13 +37,14 @@ $listereservation=$reservationC->afficherActivites($tri);
             <thead>
             <tr>
                 <th>Idreservation</th>
-                <th>Nights</th>
-                <th>Rooms </th>
+                <th>Adult</th>
+              <th>children </th>
                 <th>Adress</th>
                 <th>Phone</th>
                 <th>Check In</th>
                 <th>Email</th>
-                <th>Adults</th>
+                <th>Room</th>
+                <th>Nights</th>
                 <th>Extra</th>
                 <th>Room Type</th>
                 <th>User</th>
@@ -66,7 +67,7 @@ $listereservation=$reservationC->afficherActivites($tri);
                     <td><?PHP echo $reservation['date']; ?></td>
                     <td><?PHP echo $reservation['email']; ?></td>
                     <td><?PHP echo $reservation['nbn']; ?></td>
-
+                    <td><?PHP echo $reservation['room']; ?></td>
                     <td><?PHP echo $reservation['rp']; ?></td>
                     <td><?PHP echo $reservation['roomtype']; ?></td>
                     <td><?PHP echo $reservation['Nom']; ?>&nbsp;
