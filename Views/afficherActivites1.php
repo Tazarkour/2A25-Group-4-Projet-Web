@@ -17,10 +17,10 @@
 		<title> Afficher Liste Utilisateurs </title>
     </head>
     <body>
-        <a href="Act_gestion1.php?tri=AZ"> Alphabetique A-Z</a>
-        <a href="Act_gestion1.php?tri=ZA"> Alphabetique Z-A</a>
-        <a href="Act_gestion1.php?tri=I"> id</a>
-        <a href="Act_gestion1.php?tri=P"> Places</a>
+        <a href="Act_gestion1.php?tri=AZ" class="btn btn-success"> Alphabetique A-Z</a>
+        <a href="Act_gestion1.php?tri=ZA" class="btn btn-success"> Alphabetique Z-A</a>
+        <a href="Act_gestion1.php?tri=I" class="btn btn-success"> id</a>
+        <a href="Act_gestion1.php?tri=P" class="btn btn-success"> Places</a>
 		<hr>
 
 		<table border=3 align = 'center'>

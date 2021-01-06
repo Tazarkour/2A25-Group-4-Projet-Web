@@ -14,7 +14,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Gestion Reservations</title>
+    <title>Gestion Blog</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
@@ -94,23 +94,23 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                       </ul>
                   </li>
                   <li class="sub-menu">
-                      <a  class="active" href="javascript:;" >
+                      <a href="javascript:;" >
                           <i class="fa fa-book"></i>
                           <span>Activité</span>
                       </a>
                       <ul class="sub">
-                          <li ><a href="Act_gestion1.php">Gérer Les Activités</a></li>
-                          <li  class="active"><a  href="Act_Gestion.php">Gérer Les Réservations</a></li>
+                          <li ><a  href="Act_gestion1.php">Gérer Les Activités</a></li>
+                          <li><a  href="Act_Gestion.php">Gérer Les Réservations</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a href="javascript:;" class="active">
                           <i class="fa fa-book"></i>
                           <span>Services</span>
                       </a>
                       <ul class="sub">
                           <li ><a  href="Services_Gestion.php">Gérer Services</a></li>
-                          <li ><a  href="Res_Serv_Gestion.php">Gérer Les Réservations</a></li>
+                          <li class="active"><a  href="Res_Serv_Gestion.php">Gérer Les Réservations</a></li>
                       </ul>
                   </li>
 
@@ -126,7 +126,7 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper site-min-height">
-          	<?php include_once 'afficherActivites.php'; ?>
+          	<?php include_once 'modifierServices.php'; ?>
           		</div>
           	</div>
 			

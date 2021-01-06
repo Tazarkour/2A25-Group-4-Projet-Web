@@ -175,14 +175,14 @@
 				
             </div>
         </section>
-         <section class = "rooms sec-width"  id = "rooms">
+              
+<section class = "rooms sec-width"  id = "rooms">
             <div class = "title">
                 <h2>Services</h2>
                 <?php include_once "scroll.html";
                 ?>
             </div> 
-         </section>      
-
+         </section>  
         
 
         <section class = "rooms sec-width" id = "rooms">
@@ -281,6 +281,13 @@
                 <!-- end of single room -->
             </div>
         </section>
+        <section class = "rooms sec-width"  id = "rooms">
+            <div class = "title">
+                <h2>Services</h2>
+                <?php include_once "scrollA.html";
+                ?>
+            </div> 
+         </section>  
 
 
         <section class = "customers" id = "customers">

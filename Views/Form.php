@@ -5,7 +5,7 @@
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="assets/css1/main.css">
+<link rel="stylesheet" href="../assets/css1/main.css">
 <title>formulaire</title>
 
 </head>
@@ -14,7 +14,7 @@
 	<header>
 		<h1>
 			<a href="#">
-				<img src="logo_web.png" alt="hotel">
+				<img src="../assets/assets_service/logo_web.png" alt="hotel">
 			</a>
 		</h1>
 	</header>
@@ -24,16 +24,17 @@
 		<label class="col-one-half">
 			<span class="label-text">Nom</span>
 			<input value="<?php echo $_SESSION["Nom"];?>" type="text" name="nom",id="nom" disabled>
+
 		</label>
 		<label class="col-one-half">
 			<span class="label-text">Activté</span>
 			  <?PHP
-			   include "../models/activites.php";
- include "../controller/ActivitesC.php";
+			   include "../Model/activites.php";
+ include "../Controller/ActivitesC.php";
  
 $ActivitesC=new ActivitesC();
     $listeActivites=$ActivitesC->getselect();?>
-                   
+                 
                  <select type="select" name="activites" id="activites" >
                          <?php foreach($listeActivites as $activites){
                     ?>
@@ -41,6 +42,7 @@ $ActivitesC=new ActivitesC();
          </select>
 		</label>
 		<label>
+			  <input value="<?php echo $activites['nom'];?>" type="text" name="Nom",id="nom" hidden>
 			<span class="label-text">places</span>
 			<input type="number" name="places" id="places">
 		</label>

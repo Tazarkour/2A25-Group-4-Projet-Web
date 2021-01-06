@@ -1,0 +1,62 @@
+
+#services {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#services td, #service th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#services tr:nth-child(even){background-color: #f2f2f2;}
+
+#services tr:hover {background-color: #ddd;}
+
+#services th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+a:link {
+  background-color: yellow;
+}
+
+a:visited {
+  background-color: cyan;
+}
+
+a:hover {
+  background-color: lightgreen;
+}
+
+a:active {
+  background-color: hotpink;
+} 
+.supprimer {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.supprimer{
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.supprimer:hover {
+  background-color: #008CBA;
+  color: white;
+}

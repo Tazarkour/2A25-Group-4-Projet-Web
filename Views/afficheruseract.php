@@ -35,7 +35,7 @@
 				<th style="text-align: center; width: 250px; font-size: 20px ">id_user</th>
 				<th style="text-align: center; width: 250px; font-size: 20px ">Nom</th>
 				<th style="text-align: center; width: 250px; font-size: 20px ">Places</th>
-				<th style="text-align: center; width: 250px; font-size: 20px "h>Supprimer</th>
+				<th style="text-align: center; width: 250px; font-size: 20px ">Supprimer</th>
 
 			</tr>
 
@@ -46,9 +46,9 @@
 				<tr>
                     <form method="post" action="Act_gestion.php">
 					<td align = 'center'><?PHP echo $activites['id']; ?></td>
-					<td align = 'center'><?PHP echo $activites['id_act']; ?></td>
+					<td align = 'center'><?PHP echo $activites['id_activites']; ?></td>
 					<td align = 'center'><?PHP echo $activites['Nom_Act']; ?></td>
-					<td align = 'center'><?PHP echo $activites['id_user']; ?></td>
+					<td align = 'center'><?PHP echo $activites['Id_User']; ?></td>
 					<td align = 'center'><?PHP echo $activites['nom']; ?></td>
 					<td align = 'center'><?PHP echo $activites['places'];?></td>
 					<input name="id" value="<?PHP echo $activites['id']; ?>" hidden>

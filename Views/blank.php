@@ -103,6 +103,16 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                           <li><a  href="Act_Gestion.php">Gérer Les Réservations</a></li>
                       </ul>
                   </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-book"></i>
+                          <span>Services</span>
+                      </a>
+                      <ul class="sub">
+                          <li ><a  href="Services_Gestion.php">Gérer Services</a></li>
+                          <li ><a  href="Res_Serv_Gestion.php">Gérer Les Réservations</a></li>
+                      </ul>
+                  </li>
 
               </ul>
               <!-- sidebar menu end-->

@@ -1,7 +1,7 @@
 
    <?php
- include "../models/activites.php";
- include "../controller/ActivitesC.php";
+ include "../Model/activites.php";
+ include "../Controller/ActivitesC.php";
 
 /*class activites
 {
@@ -20,8 +20,10 @@ session_start();
 $Activite=$ActivitesC->getact($_POST["activites"]);
 foreach ($Activite as $activites)
 {if ($ActivitesC ->subsplaces($_POST["places"],$_POST["activites"])==1)
-$ActivitesC ->connexion($_SESSION['e'],$_SESSION['Nom']." ".$_SESSION['Prenom'],$_POST["places"],$_POST["activites"],$activites["nom"]);
-else echo "places non restantes";
+{$ActivitesC ->connexion($_SESSION['e'],$_SESSION['Nom']." ".$_SESSION['Prenom'],$_POST["places"],$_POST["activites"],$_POST["Nom"]);
+header( "refresh:5;url=Acceuil.php");}
+else {echo "places non restantes";
+header( "refresh:5;url=Form.php");}
 }
 /*$ActivitesC ->sendmail($post);*/
 ?>

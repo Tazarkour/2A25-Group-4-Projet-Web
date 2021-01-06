@@ -29,22 +29,13 @@ body{
     grid-gap: 30px;
 }
 .card:nth-child(1) .front-card{
-    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)), url("../img/serv/spa.jpg") center/cover no-repeat;
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)), url("images/person1.jpg") center/cover no-repeat;
 }
 .card:nth-child(2) .front-card{
-    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)), url("../img/serv/Reto.png") center/cover no-repeat;
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)), url("images/person2.jpg") center/cover no-repeat;
 }
 .card:nth-child(3) .front-card{
-    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)), url("../img/serv/Sport.png") center/cover no-repeat;
-}
-.card:nth-child(4) .front-card{
-    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)), url("../img/serv/1.jpg") center/cover no-repeat;
-}
-.card:nth-child(5) .front-card{
-    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)), url("../img/serv/5.jpg") center/cover no-repeat;
-}
-.card:nth-child(6) .front-card{
-    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)), url("../img/serv/9.jpg") center/cover no-repeat;
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5)), url("images/person3.jpg") center/cover no-repeat;
 }
 .card{
     height: 450px;

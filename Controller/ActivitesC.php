@@ -1,4 +1,4 @@
-<?php
+get<?php
     require_once '../config.php';
     class ActivitesC {
         public function afficherActivites($tri) {
@@ -103,7 +103,7 @@
                 $query->execute([
                     'id' => $id
                 ]);
-                return $query->fetch();
+                return $query->fetchAll();
             } catch (PDOException $e) {
                 $e->getMessage();
             }
@@ -163,6 +163,24 @@
                echo $e->getMessage();
             }
         }
+
+         public function ModofierPlaces($places, $id) {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'UPDATE activites SET  places= :places WHERE id = :id'
+                );
+                $query->execute([
+                    'places'=>$places,
+                    'id' => $id
+                ]);
+             echo $id;
+              echo $query->rowCount() . " records UPDATED successfully";
+            } catch (PDOException $e) {
+               echo $e->getMessage();
+            }
+        }
+
         public function modifierActivites1($nom, $places,$id) {
             try {
                 $pdo = getConnexion();
@@ -314,15 +332,12 @@
 
                 $query->execute(["id"=>$id]);
                 $placesrest= $query->fetch();
-                if ($placesrest["places"]>$places)
-                {
+
                     $query = $pdo->prepare(
                     'UPDATE activites1 SET places=(places+:placesrest) WHERE id = :id');
                     $query->execute(["id"=>$id,"placesrest"=>$places]);
-                    return 1;
-                }
-                else
-                    return 0;
+
+            
             }
              catch (PDOException $e) {
                echo $e->getMessage();
