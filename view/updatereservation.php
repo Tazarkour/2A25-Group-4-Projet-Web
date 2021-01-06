@@ -165,8 +165,8 @@ $_POST['iduser']
                             <option style="color: midnightblue">1 Adult</option>
                             <option style="color: midnightblue" >2 Adults</option>
                             <option style="color: midnightblue" >3 Adults</option>
-                            <option style="color: midnightblue" >4 1 Adults</option>
-                            <option style="color: midnightblue">5 1 Adults</option>
+                            <option style="color: midnightblue" >4 Adults</option>
+                            <option style="color: midnightblue">5 Adults</option>
                         </select>
                     </div>
                     <div class="select">
@@ -177,7 +177,7 @@ $_POST['iduser']
                         <select class="form-control" id ="lastname" name="lastname" value="<?= $result['lastname'] ?>">
                             <option style="color: midnightblue">1 children</option>
                             <option style="color: midnightblue" >2 children</option>
-                            <option style="color: midnightblue">3 1  children</option>
+                            <option style="color: midnightblue">3 children</option>
                             <option style="color: midnightblue">4  children</option>
                             <option style="color: midnightblue" >5  children</option>
                         </select>
@@ -186,7 +186,7 @@ $_POST['iduser']
                 <div class="form-row mb-21">
                     <div class="form-holder w-100">
                         <textarea name="rp" value="<?= $result['rp'] ?>" id="rp" class="form-control" style="height: 79px;" placeholder="Special Requirements :"></textarea>
-                        <input class="form-control" type="text"  name="idroom" id="idroom"  value="<?= $result['idroom'] ?>">
+                        <input class="form-control" type="text"  name="idroom" id="idroom"  value="<?= $result['idroom'] ?> " hidden>
 
 
 

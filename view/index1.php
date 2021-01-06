@@ -209,8 +209,8 @@ $_SESSION["e"]
                             <option style="color: midnightblue">1 Adult</option>
                             <option style="color: midnightblue" >2 Adults</option>
                             <option style="color: midnightblue" >3 Adults</option>
-                            <option style="color: midnightblue" >4 1 Adults</option>
-                            <option style="color: midnightblue">5 1 Adults</option>
+                            <option style="color: midnightblue" >4 Adults</option>
+                            <option style="color: midnightblue">5 Adults</option>
                         </select>
                     </div>
                     <div class="select">

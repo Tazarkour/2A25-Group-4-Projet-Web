@@ -122,16 +122,14 @@ class reservationC{
         }
     }
 
-    public function getReservationByFirstname($firstname)
-    {
+    public function getReservationByFirstname($firstname) {
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
-                'SELECT * FROM reservation LEFT JOIN utilisateur ON utilisateur.id=reservation.iduser WHERE Nom = :firstname'
-
+                'SELECT * FROM reservation LEFT JOIN utilisateur ON utilisateur.id=reservation.iduser WHERE Prenom= :Prenom'
             );
             $query->execute([
-                'Nom' => $firstname
+                'Prenom' => $firstname
             ]);
             return $query->fetch();
         } catch (PDOException $e) {

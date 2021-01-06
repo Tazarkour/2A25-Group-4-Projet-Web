@@ -3,7 +3,7 @@ body,html{
     width: 100%;
     margin: 0;
     padding: 0;
-    background: #e74c3c !important;
+    background: #23234A ;
 }
 
 .searchbar{
@@ -29,7 +29,7 @@ body,html{
 .searchbar:hover > .search_input{
     padding: 0 10px;
     width: 450px;
-    caret-color:red;
+    caret-color:#23234A;
     transition: width 0.4s linear;
 }
 

@@ -30,21 +30,23 @@ $reservationC =  new reservationC();
                 <input class="search_input"   name="firstname" placeholder="Search...">
                 <button class=" btn btn-info search_icon"  type="submit" name="search"><i class="fas fa-search"></i></button>
                 <?php
-                session_start();
-if (isset($_SESSION['Nom']) && isset($_POST['search'])){
-    $result = $reservationC->getReservationByFirstname($_SESSION['Nom']);
-    if ($result !== false) {
+
+if (isset($_POST['firstname']) && isset($_POST['search'])){
+    $result = $reservationC->getReservationByFirstname($_POST['firstname']);
+    if ($result !== false)
+
+    {
         ?>
 
 
-                <!------ Include the above in your HEAD tag ---------->
+        <br>  <br>    <!------ Include the above in your HEAD tag ---------->
 
                 <div class="container">
                     <div class="row">
                         <div class="span3">
                             <div class="well">
-                                <h2 class="muted"> <?= $result['Nom'] ?> </h2>
-                                <p > <span class="label">Idreservation <?= $result['idreservation'] ?></span></p>
+                                <h2 class="muted"> <?= $result['Prenom']."".$result['Nom'] ?> </h2>
+                                <p > <span class="label ">Idreservation <?= $result['idreservation'] ?></span></p>
 
 
 
