@@ -193,7 +193,7 @@ class reservationC{
                         'SELECT * FROM reservation LEFT JOIN utilisateur ON utilisateur.id=reservation.iduser LEFT JOIN rooms ON rooms.idroom=reservation.idroom ORDER BY Nom  DESC '
                     );
                 }
-                if ($tri == "P") {
+                if ($tri == "AZ") {
                     $query = $db->prepare(
                         'SELECT * FROM reservation LEFT JOIN utilisateur ON utilisateur.id=reservation.iduser LEFT JOIN rooms ON rooms.idroom=reservation.idroom ORDER BY Nom  ASC '
                     );

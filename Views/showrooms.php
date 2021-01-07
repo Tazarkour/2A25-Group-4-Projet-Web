@@ -7,7 +7,7 @@ $liste=$roomC1->affiche();
 
 if (isset($_POST["idroom"]) && isset($_POST["supprimer"])){
         $roomC1->deleteroom($_POST["idroom"]);
-        header('Location:Room_Gestion.php');
+       echo("<script>location.href = 'Room_Gestion.php';</script>");
     }
 
 

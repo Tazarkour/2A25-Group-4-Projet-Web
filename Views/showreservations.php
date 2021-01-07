@@ -13,7 +13,7 @@ $listereservation=$reservationC->afficherActivites($tri);
 
 if (isset($_POST["idreservation"])&& isset($_POST["idroom"]) && isset ($_POST["supprimer"])){
     $reservationC->supprimerReservation($_POST["idreservation"],$_POST["idroom"]);
-    header('Location:showreservations.php');
+    echo("<script>location.href = 'Reservation_Gestion.php';</script>");
 }
 
 
@@ -30,11 +30,11 @@ if (isset($_POST["idreservation"])&& isset($_POST["idroom"]) && isset ($_POST["s
     <title> show reservation name </title>
 </head>
 <body>
-<a class="btn btn-info" href="searchreservation.php"> <i class="glyphicon glyphicon-plus" > </i> &nbsp;Search reservation</a>
-<a href="showreservations.php?tri=AZ"> Alphabetique A-Z</a>
-<a href="showreservations.php?tri=ZA"> Alphabetique Z-A</a>
-<a href="showreservations.php?tri=D"> Date</a>
-<a href="showreservations.php?tri=P"> Places</a>
+<a class="btn btn-info" href="Reservation_GestionSearch.php"> <i class="glyphicon glyphicon-plus" > </i> &nbsp;Search reservation</a>
+<a href="Reservation_Gestion.php?tri=AZ"> Alphabetique A-Z</a>
+<a href="Reservation_Gestion.php?tri=ZA"> Alphabetique Z-A</a>
+<a href="Reservation_Gestion.php?tri=DA"> Date ↑</a>
+<a href="Reservation_Gestion.php?tri=DS"> Date ↓</a>
 <hr>
 <div class="container">
     <div >
