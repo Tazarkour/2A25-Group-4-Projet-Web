@@ -28,11 +28,18 @@
 
 <html>
 	<head>
+		<script src="../Assets/Controledesaisiejs/controleAct.js"></script>
+
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title> Afficher Liste Utilisateurs </title>
     </head>
     <body>
+    	<form method="GET" action="Affichertoutposts.php">
+  <label class="sr-only" for="search">Search</label>
+            <input style="margin: 5px;" size="20" class="form-control" type="text" name="search" id="search">
+            <input style="margin: 5px;"  class="btn btn-primary" type="submit" value="Search">
+            </form>
 		<a href="form.php" class="btn btn-primary">Ajouter activites</a>
         <a href="afficherActivites.php?tri=AZ" class="btn btn-success"> Alphabetique A-Z</a>
         <a href="afficherActivites.php?tri=ZA" class="btn btn-success"> Alphabetique Z-A</a>
@@ -64,13 +71,13 @@
 					<td align = 'center'><?PHP echo $activites['Nom_Act']; ?></td>
 					<td align = 'center'><?PHP echo $activites['Id_User']; ?></td>
 					<td align = 'center'><?PHP echo $activites['nom']; ?></td>
-					<td align = 'center'><input value="<?PHP echo $activites['places'];?>" name="placesN"></td>
+					<td align = 'center'><input value="<?PHP echo $activites['places'];?>" name="placesN" type="number"  onkeyup="EnableDisable(this)"></td>
 					<input name="id" value="<?PHP echo $activites['id']; ?>" hidden>
                     <td align = 'center'>
 						<input type="hidden" value="<?PHP echo $activites['id']; ?>" name="id">
 						<input type="hidden" value="<?PHP echo $activites['id_activites']; ?>" name="id_act">
-						<input type="hidden" value="<?PHP echo $activites['places']; ?>" name="places">
-						<input type="submit" name="Modifier" value="Modifier" class="btn btn-warning">
+						<input type="hidden" value="<?PHP echo $activites['places']; ?>" name="places" id='places'>
+						<button type="submit" name="Modifier" id="modifier" value="Modifier" class="btn btn-warning">Modifier</button>
 						</form>
 					</td>
 

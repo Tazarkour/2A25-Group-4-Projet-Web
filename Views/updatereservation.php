@@ -39,7 +39,7 @@ $_POST['iduser']
         );
        $idreservation=$_POST["idreservation"];
         $reservationC->updateReservation($Reservation, $idreservation);
-        header('Location:showreservations.php');
+          echo("<script>location.href = 'Reservation_Gestion.php';</script>");
     }
 
 

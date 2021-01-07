@@ -56,7 +56,7 @@ if (isset($search) && !empty($search))
           if (strpos($userc['Titre'],$search)!==false)
       {
       ?>
-        <tr style="color:  red"  >
+        <tr >
 
           <td align="center" ><?PHP echo $userc['Titre']; ?></td>
           <td align="center"><?PHP echo $userc['date_p']; ?></td>>

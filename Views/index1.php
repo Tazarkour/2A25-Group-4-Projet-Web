@@ -57,7 +57,12 @@ $_SESSION["e"]
         );
         $qty= $_GET["qty"];
         $idroom= $_GET["idroom"];
-        $reservationC-> ajouterReservation($Reservation,$qty,$idroom,$_SESSION['e']);
+        try
+        {$reservationC-> ajouterReservation($Reservation,$qty,$idroom,$_SESSION['e']);}
+        catch (Exception $e){
+            echo $e->getMessage();
+
+        }
 
 
         header('Location:Acceuil.php');
@@ -108,7 +113,7 @@ $_SESSION["e"]
     <!-- STYLE CSS -->
     <link rel="stylesheet" href="../Assets/Assets_Res/style.css">
 </head>
-<div id="error">
+<div id="error" >
     <?php echo $error; ?>
 
 </div>

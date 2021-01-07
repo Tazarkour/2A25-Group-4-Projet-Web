@@ -12,6 +12,7 @@
 
 <div class="container">
 	<header>
+		<script src="../Assets/Controledesaisiejs/controleAct1.js"></script>
 		<h1>
 			<a href="#">
 				<img src="../assets/assets_service/logo_web.png" alt="hotel">
@@ -44,7 +45,7 @@ $ActivitesC=new ActivitesC();
 		<label>
 			  <input value="<?php echo $activites['nom'];?>" type="text" name="Nom",id="nom" hidden>
 			<span class="label-text">places</span>
-			<input type="number" name="places" id="places">
+			<input type="number" name="places" id="places" onkeyup="EnableDisable(this)">
 		</label>
 		<label>
 			<span class="label-text">email</span>
@@ -55,7 +56,7 @@ $ActivitesC=new ActivitesC();
 			<span>Sign me up for the weekly newsletter.</span>
 		</label>
 		<div class="text-center">
-			<button class="submit" name="register">Reserver</button>
+			<button class="submit" name="register" id="submit">Reserver</button>
 		</div>
 	</form>
 </div>

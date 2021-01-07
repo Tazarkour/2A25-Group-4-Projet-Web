@@ -27,11 +27,13 @@
 
 <html>
 	<head>
+		<script src="../Assets/Controledesaisiejs/controleAct.js"></script>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title> Afficher Liste Utilisateurs </title>
     </head>
     <body>
+		
 		
 		<hr>
 
@@ -59,13 +61,13 @@
 					<td align = 'center'><?PHP echo $activites['Nom_Act']; ?></td>
 					<td align = 'center'><?PHP echo $activites['Id_User']; ?></td>
 					<td align = 'center'><?PHP echo $activites['nom']; ?></td>
-					<td align = 'center'><input value="<?PHP echo $activites['places'];?>" name="placesN"></td>
+					<td align = 'center'><input value="<?PHP echo $activites['places'];?>" name="placesN" onkeyup="EnableDisable(this)"></td>
 					<input name="id" value="<?PHP echo $activites['id']; ?>" hidden>
                     <td align = 'center'>
 						<input type="hidden" value="<?PHP echo $activites['id']; ?>" name="id">
 						<input type="hidden" value="<?PHP echo $activites['id_activites']; ?>" name="id_act">
 						<input type="hidden" value="<?PHP echo $activites['places']; ?>" name="places">
-						<input type="submit" name="Modifier" value="Modifier" class="btn btn-warning">
+						<button type="submit" name="Modifier" id="modifier" value="Modifier" class="btn btn-warning">Modifier</button>
 						</form>
 					</td>
 
