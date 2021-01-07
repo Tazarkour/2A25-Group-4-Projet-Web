@@ -112,6 +112,18 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                           <li ><a  href="Res_Serv_Gestion.php">Gérer Les Réservations</a></li>
                       </ul>
                   </li>
+      <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-book"></i>
+                          <span>Rooms</span>
+                      </a>
+                      <ul class="sub">
+                          <li ><a  href="Reservation_Gestion.php">Gérer Les Reservations</a></li>
+                          <li><a  href="Ajouter_Room.php">Ajouter Une Chambre</a></li>
+                          <li><a  href="Room_Gestion.php">Gérer Les Chambres</a></li>
+                      </ul>
+                  </li>
+                  </li>
               </ul>
               <!-- sidebar menu end-->
           </div>

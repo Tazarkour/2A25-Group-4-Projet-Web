@@ -39,11 +39,11 @@
     </span>
     <ul class = "navbar">
     <li><a href = "#header">home</a></li>
-   <li><a href = "#services">services</a></li>
+   <li><a href = "ReservationService.php">services</a></li>
    <li><a href = "WatchBlogPost.php">Blog</a></li>
    <li><a href = "form.php">acttivité</a></li>
-   <li><a href = "#services">services</a></li>
-    <li><a href = "#rooms">rooms</a></li>
+   <li><a href = "">Reviews</a></li>
+    <li><a href = "roomspage.php">rooms</a></li>
     <?php if (isset($_SESSION["e"]))
     {
 

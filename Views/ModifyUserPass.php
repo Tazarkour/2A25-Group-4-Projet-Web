@@ -94,6 +94,15 @@ if (isset($_SESSION["e"])&& isset($_SESSION["role"]))
                           <li><a  href="Act_gestion_conn.php">Afficher Voes Reservations</a></li>
                       </ul>
                   </li>
+                  <li class="sub-menu">
+                      <a  href="javascript:;" >
+                          <i class="fa fa-book"></i>
+                          <span>Reservations</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="Gestion_Res_Conn.php">Afficher Vos Reservations</a></li>
+                      </ul>
+                  </li>
               </ul>
               <!-- sidebar menu end-->
           </div>
