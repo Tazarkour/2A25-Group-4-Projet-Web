@@ -302,6 +302,7 @@ $_SESSION["e"]
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <!-- Template created and distributed by Colorlib -->
+<script src="../Assets/Assets_Res/js/script2.js"></script>
 </body>
 </html>
 

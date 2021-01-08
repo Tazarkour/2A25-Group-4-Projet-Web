@@ -91,7 +91,7 @@ if (isset($_POST["idreservation"])&& isset($_POST["idroom"]) && isset ($_POST["s
                     <td>
 
                         <a type="button" class="btn btn-primary shop-item-button"
-                           href="Modifier_Reservation.php?idreservation=<?= $reservation['idreservation'] ?>">Update</a>
+                           href="updatereservation.php?idreservation=<?= $reservation['idreservation'] ?>">Update</a>
                     </td>
                 </tr>
                 <?PHP

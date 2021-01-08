@@ -52,7 +52,7 @@ $_POST['iduser']
     <title>FormWizard_v2</title>
 
 
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">
+-<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="colorlib.com">
 
     <link rel="stylesheet" href="../Assets/Assets_Res/fonts/linearicons/style.css">
@@ -64,7 +64,7 @@ $_POST['iduser']
     <link rel="stylesheet" href="../Assets/Assets_Res/vendor/date-picker/css/datepicker.min.css">
 
 
-    <link rel="stylesheet" href="../Assets/Assets_Res/css/style.css">-->
+    <link rel="stylesheet" href="../Assets/Assets_Res/css/style.css">
 </head>
 <div id="error">
     <?php echo $error; ?>
