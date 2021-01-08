@@ -1,69 +1,70 @@
 <?php 
 require_once "../config1.php"; 
 require_once "../config.php"; 
-function afficherposts($search, $tri)
-{
-  $conn = getConnexion1();
-  if ($conn->connect_error) 
-  {
-      die("Connection failed: " . $conn->connect_error);
-  }
-  
-  $sql="SELECT Titre, Message, date_p, picture, id FROM review_post ORDER BY date_p DESC";
-    if ($tri=="AZ")
-    $sql="SELECT Titre, Message, date_p, picture, id FROM review_post ORDER BY Titre  ASC";
-    if ($tri=="ZA")
-    $sql="SELECT Titre, Message, date_p, picture, id FROM review_post ORDER BY Titre  DESC";
-    if ($tri=="DC")
-    $sql="SELECT Titre, Message, date_p, picture, id FROM review_post ORDER BY date_p ASC"; 
-    if ($tri=="DD")
-    $sql="SELECT Titre, Message, date_p, picture, id FROM review_post ORDER BY date_p DESC"; 
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) 
-  {if (isset($search) && $search!=="")
-    {echo "search results for: ".$search."<br>";
-      while($row = $result->fetch_assoc()) 
-      {
-        if (strpos($row["Titre"], $search)!==false)
-        {
-        ?>
-          <div class="card mb-4">
-          <img class="card-img-top" src= <?php echo "../assets/img/blog/".$row["picture"]." width="."750"." height="."300";?> >
-          <div class="card-body">
-            <h2 class="card-title"><?php echo $row["Titre"];?></h2>
-            <p class="card-text" ><?php echo $row["Message"]; ?></p> 
-            <a href="read_post.php?id=<?= $row['id'] ?>" class="btn btn-primary">Read More &rarr;</a>
-          </div>
-          <div class="card-footer text-muted">
-            Posted in <?php echo $row["date_p"];?>
-          </div>
-        </div>
-        <?php
-      }
-      }
-    }
-}
-    if (!isset($search) || $search===""){
-      while($row = $result->fetch_assoc()) 
-      {
+function AfficherComplaints() {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'SELECT * FROM complaint'
+                );       
+                $query->execute();
+                return $query->fetchAll();
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        }
+function Supprimer($id) {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'DELETE FROM Complaint WHERE id= :id'
+                );
+                $query->execute([
+                    'id' => $id
+                ]);
+            } catch (PDOException $e) {
+                $e->getMessage();
+            }
+        }   
+function Modifier($titre, $type,$desc,$id,$check) {
+            try {
+                $pdo = getConnexion();
+                $query = $pdo->prepare(
+                    'UPDATE complaint SET  Titre=:titre, Type= :type , Message= :Message, Checked=:Checked WHERE id = :id'
+                );
+                $query->execute([
+         'titre' => $titre,
+         'type' => $type,
+                    'id' => $id,
+                    'Message' => $desc,
+                    'Checked'=> $check
+                ]);
+             echo $id;
+             $query->rowCount(); 
+            } catch (PDOException $e) {
+               echo $e->getMessage();
+            }
+        }             
         
-        ?>
-          <div class="card mb-4">
-          <img class="card-img-top" src= <?php echo "../assets/img/blog/".$row["picture"]." width="."750"." height="."300";?> >
-          <div class="card-body">
-            <h2 class="card-title"><?php echo $row["Titre"];?></h2>
-            <p class="card-text" ><?php echo $row["Message"]; ?></p> 
-            <a href="read_post.php?id=<?= $row['id'] ?>" class="btn btn-primary">Read More &rarr;</a>
-          </div>
-          <div class="card-footer text-muted">
-            Posted in <?php echo $row["date_p"];?>
-          </div>
-        </div>
-        <?php
-      }
-      }
-    if ($result->num_rows ==0)
-      echo "no result";
-    
-  $conn->close();
+function Creation_Comp ($titre,$message,$type,$id_user,$nomuser)
+{
+            try
+              {
+                $pdo = getConnexion();
+                $zero=0;
+                $query = $pdo->prepare(
+                    'INSERT INTO complaint (Titre, Message, Type,id_user,nom_user) VALUES (:titre, :message, :type, :id_user, :nom_user)'
+                );
+                $query->execute([
+                    'titre' => $titre,
+                    'message' => $message,
+                    'type' => $type,
+                    'id_user' => $id_user,
+                    'nom_user' => $nomuser,              
+                ]);}
+             catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+
+
 }
