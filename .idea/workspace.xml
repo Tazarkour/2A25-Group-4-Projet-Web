@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cacfbee3-b0ac-4b8a-9207-2983be47d299" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets_Res/img/Family.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets_Res/js/script2.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/index1.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/index1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/showreservations.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/showreservations.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/updatereservation.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/updatereservation.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,10 +40,19 @@
       <updated>1610062876228</updated>
       <workItem from="1610062877436" duration="652000" />
       <workItem from="1610063558400" duration="639000" />
+      <workItem from="1610094955895" duration="1541000" />
+      <workItem from="1610102852296" duration="2296000" />
+      <workItem from="1610105215203" duration="1661000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1610105879941">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1610105879941" />
   </component>
 </project>

@@ -113,15 +113,17 @@ $_SESSION["e"]
     <!-- STYLE CSS -->
     <link rel="stylesheet" href="../Assets/Assets_Res/style.css">
 </head>
-<div id="error" >
-    <?php echo $error; ?>
+<strong style="color: #AA0000">
+    <?php echo $error;
 
-</div>
+    ?>
+
+</strong>
 
 
 <body>
 
-<h1 > <?php echo $_SESSION['Nom']; echo $_SESSION['e']?></h1>
+
 
 
 <form action="" method="POST">
@@ -261,7 +263,7 @@ $_SESSION["e"]
 
                     <div class="form-holder">
 
-                        <input type="text" class="form-control" placeholder="Phone :" name="tel" >
+                        <input type="text" class="form-control" placeholder="Phone :" name="tel" id="tel">
                     </div>
                     <div class="form-holder">
                         <input type="text" class="form-control" placeholder="Mail :"name="email" id="email" required >
@@ -279,7 +281,9 @@ $_SESSION["e"]
                         <span class="checkmark"></span>
                     </label>
                 </div>
-                <button type="submit" value="Submit">Submit</button>
+
+                <button type="submit" value="Submit" onclick="test()">Submit</button>
+
             </section>
 
         </form>
@@ -288,6 +292,39 @@ $_SESSION["e"]
         </div>
     </div>
 </div>
+<script>
+function test() {
+//1.saisie de control sur nom et prenom
+
+
+//3.sasie de control sur numero de telephone
+
+
+// 4.sasie de control sur profession
+
+
+
+//saise de control sur style de musique
+var x=document.getElementById('email').value;
+var atposition=x.indexOf("@");
+var dotposition=x.lastIndexOf(".");
+if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){
+alert("Please enter a valid e-mail address ");
+return false;}
+
+
+
+}
+
+</script>
+
+
+
+
+
+
+
+
 
 <script src="../Assets/Assets_Res/js/jquery-3.3.1.min.js"></script>
 
@@ -302,7 +339,7 @@ $_SESSION["e"]
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <!-- Template created and distributed by Colorlib -->
-<script src="../Assets/Assets_Res/js/script2.js"></script>
+
 </body>
 </html>
 
